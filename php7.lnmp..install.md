@@ -119,9 +119,16 @@ $ source /etc/profile
 ~~~
 $ cp php.ini-production /etc/php.ini
 $ cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf
-$ cp /usr/local/php/etc/php-fpm.d/www.conf.default/usr/local/php/etc/php-fpm.d/www.conf
+$ cp /usr/local/php/etc/php-fpm.d/www.conf.default /usr/local/php/etc/php-fpm.d/www.conf
 $ cp sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm
 $ chmod +x /etc/init.d/php-fpm
 $ /etc/init.d/php-fpm start
+~~~
+#### 编译安装
+~~~
+$ phpize
+./configure --width-php-config=/your/path/to/php-config
+make
+make install
 ~~~
 
