@@ -3,6 +3,7 @@
 * sudo rpm --import https://rpms.remirepo.net/RPM-GPG-KEY-remi
 * sudo rpm -ivh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 * sudo rpm -ivh https://mirrors.tuna.tsinghua.edu.cn/remi/enterprise/remi-release-7.rpm
+
 ### CentOS 6
 * sudo rpm --import https://rpms.remirepo.net/RPM-GPG-KEY-remi
 * sudo rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
