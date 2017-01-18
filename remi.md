@@ -12,6 +12,7 @@
 
 ### 安装
 > 如上所述，最好保持禁用REMI仓库，只有在需要的时候再启用。
+
 #### 搜索安装Remi仓库中的包
 * yum --enablerepo=remi search <keyword>
 * yum --enablerepo=remi install <package-name>
