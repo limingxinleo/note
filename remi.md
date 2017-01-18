@@ -1,12 +1,8 @@
 ## Remi仓库
-### CentOS 7
+### 更换源
 * sudo rpm --import https://rpms.remirepo.net/RPM-GPG-KEY-remi
 * sudo rpm -ivh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 * sudo rpm -ivh https://mirrors.tuna.tsinghua.edu.cn/remi/enterprise/remi-release-7.rpm
-
-### CentOS 6
-* sudo rpm --import https://rpms.remirepo.net/RPM-GPG-KEY-remi
-* sudo rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 
 > 默认地，REMI是禁用的。要检查REMI是否已经成功安装，使用这个命令。你会看到几个REMI仓库，比如remi、remi-php55和remi-php56。
 > yum repolist disabled | grep remi
