@@ -69,6 +69,10 @@ echo "HELLO WORLD";
 "%~dp0php.exe" "%~dp0composer.phar" %*
 ~~~
 * cmd 中运行composer 就可以看到效果了
+* cmd 中安装个项目试试看吧
+~~~
+composer create-project --prefer-dist laravel/lumen blog
+~~~
 
 ### 安装TortoiseGit
 * 直接安装下载的msi文件
