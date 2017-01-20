@@ -64,11 +64,16 @@ echo "HELLO WORLD";
 
 #### 编写composer.bat
 * 如果直接下载了composer.phar文件是没办法直接运行的，除非使用php composer.phar
-* 但是这样实在是不怎么人性化。所以我们把下载的composer.phar复制到之前的php文件夹中，然后再统计目录编写composer.bat
+* 但是这样实在是不怎么人性化。所以我们把下载的composer.phar复制到之前的php文件夹中，然后在同目录下编写composer.bat
+* 添加如下代码
 ~~~
 "%~dp0php.exe" "%~dp0composer.phar" %*
 ~~~
 * cmd 中运行composer 就可以看到效果了
+* 因为composer的官方源在国外，国内的情况大家都清楚，所以还是先替换成国内源吧
+~~~
+composer config repo.packagist composer https://packagist.phpcomposer.com
+~~~
 * cmd 中安装个项目试试看吧
 ~~~
 composer create-project --prefer-dist laravel/lumen blog
