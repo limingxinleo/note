@@ -108,7 +108,7 @@ location / {
 127.0.0.1 demo.app
 ~~~
 * 如果无法修改，复制出来然后修改，再覆盖回去即可
-* 访问http://demo.app，当你看到如下信息，就表示可以正常使用了
+* 访问[http://demo.app](http://demo.app)当你看到如下信息，就表示可以正常使用了
 ~~~
 Lumen (5.3.3) (Laravel Components 5.3.*)
 ~~~
