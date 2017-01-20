@@ -8,8 +8,8 @@
 
 ### 安装phpStudy
 ![结果图](http://7xrqhy.com1.z0.glb.clouddn.com/note_phpstydy_run.png)
-> 正常情况下，这已经可以正常使用了
-> 访问地址 http://127.0.0.1/phpinfo.php
+* 正常情况下，这已经可以正常使用了
+* 访问地址 http://127.0.0.1/phpinfo.php
 
 ### 小DEMO
 * 打开cmd终端 输入php -v
@@ -78,6 +78,19 @@ composer config repo.packagist composer https://packagist.phpcomposer.com
 ~~~
 composer create-project --prefer-dist laravel/lumen blog
 ~~~
+
+### Nginx配置
+> phpstudy默认是使用apache来做web服务器的，这里主要使用nginx。
+
+* 点击切换版本 使用php7 nginx组合
+* 进入Nginx目录，修改conf下的nginx.conf文件，在include vhosts.conf;下增加一行，如下。
+~~~
+include vhosts.conf;
+include conf.d/*.conf;
+~~~
+* 然后在同目录下增加conf.d文件夹
+* 并把[demo.conf](http://7xrqhy.com1.z0.glb.clouddn.com/phalcon.conf)复制到conf.d中
+
 
 ### 安装TortoiseGit
 * 直接安装下载的msi文件
