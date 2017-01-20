@@ -90,7 +90,28 @@ include conf.d/*.conf;
 ~~~
 * 然后在同目录下增加conf.d文件夹
 * 并把[demo.conf](http://7xrqhy.com1.z0.glb.clouddn.com/phalcon.conf)复制到conf.d中
+* 修改文件
+~~~
+server_name  demo.app;
+root   D:\phpStudy\WWW\lumen\public;
 
+location / {
+    if (!-e $request_filename) {
+        #rewrite "^/(.*)$" /index.php?_url=/$1 last;
+        rewrite "^/(.*)$" /index.php/$1 last;
+    }
+}
+~~~
+* 重启服务器
+* 修改C:\Windows\System32\drivers\etc\hosts 增加行
+~~~
+127.0.0.1 demo.app
+~~~
+* 如果无法修改，复制出来然后修改，再覆盖回去即可
+* 访问http://demo.app，当你看到如下信息，就表示可以正常使用了
+~~~
+Lumen (5.3.3) (Laravel Components 5.3.*)
+~~~
 
 ### 安装TortoiseGit
 * 直接安装下载的msi文件
