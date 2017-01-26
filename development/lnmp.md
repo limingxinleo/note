@@ -6,6 +6,17 @@ yum install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ~~~
 
+### 安装vim
+~~~
+yum install vim
+~~~
+
+### 修改zsh主题
+~~~
+vim /root/.zshrc
+修改 ZSH_THEME="bira"
+~~~
+
 ### 更换源Remi仓库
 ~~~
 sudo rpm --import https://rpms.remirepo.net/RPM-GPG-KEY-remi
