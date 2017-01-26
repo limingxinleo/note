@@ -59,8 +59,14 @@ mysql_secure_installation
 ### 安装php70
 > 这里只安装一部分常用的扩展，其他扩展可以自行安装
 ~~~
-yum --enablerepo=remi install php70 php70-php-gd php70-php-pdo php70-php-mysql php70-php-xml php70-php-mbstring
+yum --enablerepo=remi install php70 php70-php-fpm php70-php-gd php70-php-pdo php70-php-mysql \ 
+php70-php-xml php70-php-mbstring php70-php-phalcon
 cp /usr/bin/php70 /usr/bin/php
+cp /opt/remi/php70/root/usr/sbin/php-fpm /usr/bin/php-fpm
+~~~
+### 启动php-fpm
+~~~
+php-fpm
 ~~~
 ### 安装composer
 ~~~
@@ -75,4 +81,30 @@ mv composer.phar /usr/local/bin/composer
 ### 修改composer国内镜像
 ~~~
 composer config -g repo.packagist composer https://packagist.phpcomposer.com
+~~~
+### 使用composer安装一个小项目
+* 新建项目
+~~~
+cd /
+mkdir www
+cd www
+composer create-project limingxinleo/phalcon-project demo --prefer-dist
+~~~
+* 配置nginx
+> 把[demo.conf](http://7xrqhy.com1.z0.glb.clouddn.com/phalcon.conf)复制到conf.d中并修改文件
+~~~
+server_name  demo.cn;
+root   /www/demo/public;
+
+location / {
+    if (!-e $request_filename) {
+        rewrite "^/(.*)$" /index.php?_url=/$1 last;
+        #rewrite "^/(.*)$" /index.php/$1 last;
+    }
+}
+~~~
+* 访问你的域名 demo.cn
+> 当看到以下信息时，就代表可以正常使用了，因为此项目默认注入db服务，所以会显示下列错误！
+~~~
+SQLSTATE[HY000] [1049] Unknown database 'phalcon'
 ~~~
