@@ -48,7 +48,7 @@ mysql_secure_installation
 ### 安装php70
 > 这里只安装一部分常用的扩展，其他扩展可以自行安装
 ~~~
-yum --enablerepo=remi install php70 php70-php-gd php70-php-pdo php70-php-mysql
+yum --enablerepo=remi install php70 php70-php-gd php70-php-pdo php70-php-mysql php70-php-xml php70-php-mbstring
 cp /usr/bin/php70 /usr/bin/php
 ~~~
 ### 安装composer
