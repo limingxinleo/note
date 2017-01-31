@@ -90,7 +90,7 @@ include conf.d/*.conf;
 ~~~
 * 然后在同目录下增加conf.d文件夹
 * 并把[demo.conf](http://7xrqhy.com1.z0.glb.clouddn.com/phalcon.conf)复制到conf.d中
-* 修改文件
+* 修改文件 demo.conf
 ~~~
 server_name  demo.app;
 root   D:\phpStudy\WWW\lumen\public;

@@ -27,13 +27,88 @@ npm install --save-dev webpack
 
 * 编写webpack.config.js
 ~~~
+var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
-  entry:  __dirname + "/app/main.js",//已多次提及的唯一入口文件
-  output: {
-    path: __dirname + "/public",//打包后的文件存放的地方
-    filename: "bundle.js"//打包后输出文件的文件名
-  }
+    entry: {
+        main: __dirname + "/asset/main.js",
+        vendor: ["jquery", "bootstrap"]
+    },//已多次提及的唯一入口文件
+    output: {
+        path: __dirname + "/public",//打包后的文件存放的地方
+        filename: "[name].js"//打包后输出文件的文件名
+    },
+    module: {
+        loaders: [
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+            },
+            {
+                test: /\.scss$/,
+                loader: "style!css!sass"
+            },
+            {
+                test: /\.less$/,
+                loader: "style!css!less"
+            },
+            {
+                test: /\.(eot|woff|ttf|woff2)$/, loader: "file-loader"
+            },
+            {
+                test: /\.svg$/, loader: 'svg-loader'
+            },
+        ]
+    },
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            names: ['vendor']
+        }),
+        new ExtractTextPlugin("styles.css"),
+    ]
 }
+~~~
+* package.json 样例
+~~~
+{
+    "name": "phalcon-rbac",
+    "version": "1.0.0",
+    "description": "基于phalcon框架rbac设计的权限管理项目",
+    "main": "index.js",
+    "directories": {
+        "test": "tests"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://limingxinleo@github.com/limingxinleo/phalcon-rbac.git"
+    },
+    "keywords": [
+        "phalcon",
+        "rbac"
+    ],
+    "author": "limx",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/limingxinleo/phalcon-rbac/issues"
+    },
+    "homepage": "https://github.com/limingxinleo/phalcon-rbac#readme",
+    "devDependencies": {
+        "css-loader": "^0.26.1",
+        "extract-text-webpack-plugin": "^1.0.1",
+        "file-loader": "^0.9.0",
+        "style-loader": "^0.13.1",
+        "svg-loader": "0.0.2",
+        "webpack": "^1.14.0"
+    },
+    "dependencies": {
+        "bootstrap": "^3.3.7",
+        "jquery": "^2.2.4"
+    }
+}
+
 ~~~
 
 * 打包
