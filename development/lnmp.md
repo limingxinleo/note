@@ -115,3 +115,10 @@ location / {
 ~~~
 SQLSTATE[HY000] [1049] Unknown database 'phalcon'
 ~~~
+
+### 安装Redis
+~~~
+yum --enablerepo=remi install redis
+redis-server &
+关闭终端
+~~~
