@@ -61,7 +61,7 @@ mysql_secure_installation
 
 ~~~
 yum --enablerepo=remi install php70 php70-php-fpm php70-php-gd php70-php-pdo php70-php-mysql \ 
-php70-php-xml php70-php-mbstring php70-php-phalcon
+php70-php-xml php70-php-mbstring php70-php-phalcon php70-php-zip
 cp /usr/bin/php70 /usr/bin/php
 cp /opt/remi/php70/root/usr/sbin/php-fpm /usr/bin/php-fpm
 ~~~
