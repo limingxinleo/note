@@ -94,6 +94,7 @@ cd www
 composer create-project limingxinleo/phalcon-project demo --prefer-dist
 ~~~
 * 配置nginx
+
 > 把[demo.conf](http://7xrqhy.com1.z0.glb.clouddn.com/phalcon.conf)复制到conf.d中并修改文件
 
 ~~~
@@ -108,6 +109,7 @@ location / {
 }
 ~~~
 * 访问你的域名 demo.cn
+
 > 当看到以下信息时，就代表可以正常使用了，因为此项目默认注入db服务，所以会显示下列错误！
 
 ~~~
