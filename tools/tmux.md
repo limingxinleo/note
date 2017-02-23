@@ -43,4 +43,7 @@ Ctrl+b                  激活控制台；此时以下按键生效
   ├─ Ctrl+o             顺时针旋转当前窗口的面板
 ~~~
 
-ctrl+b 激活
+###命令行快捷键
+~~~
+tmux list-sessions      列出所有sessions
+~~~
