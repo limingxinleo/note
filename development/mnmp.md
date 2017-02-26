@@ -70,9 +70,17 @@ cd /usr/local/etc/nginx/servers
 server_name  demo.app;
 root   /Users/yourname/Apps/demo/public;
 ~~~
+* 重启nginx 启动php-fpm
+~~~
+sudo nginx -s reload
+sudo php-fpm
+~~~
 
 ### 修改hosts
 ~~~
 sudo vim /etc/hosts
 127.0.0.1 demo.app
 ~~~
+
+### 查看效果
+打开浏览器输入http://demo.app 即可看到效果
