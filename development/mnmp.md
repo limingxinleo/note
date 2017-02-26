@@ -25,7 +25,46 @@ php -v
 php-fpm -v
 ~~~
 
+### 安装composer
+~~~
+brew install composer
+~~~
+
+### 找到一个地方作为自己的工作站
+~~~
+cd ~
+mkdir Apps
+cd Apps
+composer create-project limingxinleo/phalcon-project demo --prefer-dist
+cd demo
+php run 
+~~~
+* 当看到以下信息 就代表安装无误了
+~~~
+Success: The Storage was successfully created. 
+~~~
+
 ### 安装Nginx
 ~~~
 brew install nginx
+sudo nginx
+~~~
+* 打开浏览器输入127.0.0.1:8080就能看到nginx的欢迎界面了
+
+### 配置Nginx
+~~~
+cd /usr/local/etc/nginx/servers
+~~~
+* 并把[demo.conf](http://7xrqhy.com1.z0.glb.clouddn.com/phalcon.conf)复制到当前文件夹中
+* 修改文件 demo.conf
+~~~
+server_name  demo.app;
+root   /Users/yourname/Apps/demo/public;
+
+location / {
+    if (!-e $request_filename) {
+        #rewrite "^/(.*)$" /index.php?_url=/$1 last;
+        rewrite "^/(.*)$" /index.php/$1 last;
+    }
+}
 ~~~
