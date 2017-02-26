@@ -11,7 +11,14 @@ ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 
 ~~~
 vim ~/.bash_profile
-export PATH=$PATH:/usr/local/bin:/usr/local/sbin
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+~~~
+
+> 如果使用的是zsh终端
+
+~~~
+vim ~/.zshrc
+source ~/.bash_profile
 ~~~
 
 ### 搜索
