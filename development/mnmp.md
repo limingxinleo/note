@@ -10,7 +10,6 @@ brew tap homebrew/versions
 brew tap homebrew/homebrew-php  
 
 brew install php70
-brew install php70-devel
 ~~~
 
 ### 安装部分扩展
