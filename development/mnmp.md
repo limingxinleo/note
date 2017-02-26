@@ -22,5 +22,10 @@ brew install php70-phalcon
 ### 验证是否正确安装
 ~~~
 php -v
-phpf-pm -v
+php-fpm -v
+~~~
+
+### 安装Nginx
+~~~
+brew install nginx
 ~~~
