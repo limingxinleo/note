@@ -25,6 +25,13 @@ php -v
 php-fpm -v
 ~~~
 
+### 配置php-fpm
+~~~
+vim /usr/local/etc/php/7.0/php-fpm.d/www.conf
+修改 user = yourname
+修改 group = staff
+~~~
+
 ### 安装composer
 ~~~
 brew install composer
