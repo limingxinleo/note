@@ -60,11 +60,4 @@ cd /usr/local/etc/nginx/servers
 ~~~
 server_name  demo.app;
 root   /Users/yourname/Apps/demo/public;
-
-location / {
-    if (!-e $request_filename) {
-        #rewrite "^/(.*)$" /index.php?_url=/$1 last;
-        rewrite "^/(.*)$" /index.php/$1 last;
-    }
-}
 ~~~
