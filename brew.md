@@ -3,6 +3,8 @@
 ### 安装
 ~~~
 ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+vim ~/.bash_profile
+  export PATH=$PATH:/usr/local/bin:/usr/local/sbin
 ~~~
 
 ### 搜索
