@@ -61,3 +61,9 @@ cd /usr/local/etc/nginx/servers
 server_name  demo.app;
 root   /Users/yourname/Apps/demo/public;
 ~~~
+
+### 修改hosts
+~~~
+sudo vim /etc/hosts
+127.0.0.1 demo.app
+~~~
