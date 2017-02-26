@@ -30,6 +30,8 @@ php-fpm -v
 vim /usr/local/etc/php/7.0/php-fpm.d/www.conf
 修改 user = yourname
 修改 group = staff
+vim /usr/local/etc/php/7.0/php-fpm.conf
+修改 daemonize = yes
 ~~~
 
 ### 安装composer
