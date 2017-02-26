@@ -3,8 +3,15 @@
 ### 安装
 ~~~
 ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+~~~
+
+### 修改bash_profile文件
+
+> 可以自行谷歌bash_profile等文件的作用
+
+~~~
 vim ~/.bash_profile
-  export PATH=$PATH:/usr/local/bin:/usr/local/sbin
+export PATH=$PATH:/usr/local/bin:/usr/local/sbin
 ~~~
 
 ### 搜索
