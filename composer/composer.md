@@ -11,3 +11,8 @@
 ~~~
 composer config -g repo.packagist composer https://packagist.phpcomposer.com
 ~~~
+
+## 优化自动加载索引
+~~~
+composer dump-autoload --optimize
+~~~
