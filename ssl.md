@@ -10,6 +10,9 @@ openssl req -newkey rsa:2048 -keyout yourname.key -out yourname.csr
 * 利用scr换取网站上的bundle.scr
 * 上传bundle.scr 和 yourname.key 到服务器
 
+### 不使用免费的SSL证书 自己生成证书
+[参考文章](http://www.tuicool.com/articles/BbmENr)
+
 ### 配置Nginx
 * 增加ssl的配置文件
 
