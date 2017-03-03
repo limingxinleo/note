@@ -9,7 +9,7 @@ brew tap homebrew/dupes
 brew tap homebrew/versions  
 brew tap homebrew/homebrew-php  
 
-brew install php70
+brew install php70 --with-homebrew-curl
 ~~~
 
 ### 安装部分扩展
