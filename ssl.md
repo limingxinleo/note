@@ -12,6 +12,78 @@ openssl req -newkey rsa:2048 -keyout yourname.key -out yourname.csr
 
 ### 不使用免费的SSL证书 自己生成证书
 [参考文章](http://www.tuicool.com/articles/BbmENr)
+* 为服务器端和客户端准备公钥、私钥
+~~~
+# 生成服务器端私钥
+openssl genrsa -out server.key 1024
+# 生成服务器端公钥
+openssl rsa -in server.key -pubout -out server.pem
+
+
+# 生成客户端私钥
+openssl genrsa -out client.key 1024
+# 生成客户端公钥
+openssl rsa -in client.key -pubout -out client.pem
+~~~
+
+* 生成 CA 证书
+~~~
+# 生成 CA 私钥
+openssl genrsa -out ca.key 1024
+# X.509 Certificate Signing Request (CSR) Management.
+openssl req -new -key ca.key -out ca.csr
+# X.509 Certificate Data Management.
+openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt
+~~~
+
+> 第二步会出现以下情况
+
+~~~
+Country Name (2 letter code) [AU]:CN
+State or Province Name (full name) [Some-State]:ShangHai
+Locality Name (eg, city) []:ShangHai
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Limx
+Organizational Unit Name (eg, section) []:
+Common Name (e.g. server FQDN or YOUR name) []:demo.cn
+Email Address []:
+~~~
+
+> 注意，这里的 Organization Name (eg, company) [Internet Widgits Pty Ltd]: 后面生成客户端和服务器端证书的时候也需要填写，不要写成一样的！！！可以随意写如：My CA, My Server, My Client。
+  
+> 然后 Common Name (e.g. server FQDN or YOUR name) []: 这一项，是最后可以访问的域名，我这里为了方便测试，写成 localhost ，如果是为了给我的网站生成证书，需要写成 barretlee.com 。
+
+> 再就是密码，不需要输入密码。输入密码的话，后面启动Nginx也需要输入密码。
+
+* 生成服务器端证书和客户端证书
+~~~
+# 服务器端需要向 CA 机构申请签名证书，在申请签名证书之前依然是创建自己的 CSR 文件
+openssl req -new -key server.key -out server.csr
+# 向自己的 CA 机构申请证书，签名过程需要 CA 的证书和私钥参与，最终颁发一个带有 CA 签名的证书
+openssl x509 -req -CA ca.crt -CAkey ca.key -CAcreateserial -in server.csr -out server.crt
+
+# client 端
+openssl req -new -key client.key -out client.csr
+# client 端到 CA 签名
+openssl x509 -req -CA ca.crt -CAkey ca.key -CAcreateserial -in client.csr -out client.crt
+~~~
+
+* 结构如下
+~~~
+├── ca.crt
+├── ca.csr
+├── ca.key
+├── ca.srl
+├── client.crt
+├── client.csr
+├── client.key
+├── client.pem
+├── server.crt
+├── server.csr
+├── server.key
+└── server.pem
+~~~
+
+> 配置server.key 和 server.crt 到服务端。客户端访问https协议时，携带自己的client.key 和 client.crt即可。
 
 ### 配置Nginx
 * 增加ssl的配置文件
