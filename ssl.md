@@ -44,13 +44,13 @@ State or Province Name (full name) [Some-State]:ShangHai
 Locality Name (eg, city) []:ShangHai
 Organization Name (eg, company) [Internet Widgits Pty Ltd]:Limx
 Organizational Unit Name (eg, section) []:
-Common Name (e.g. server FQDN or YOUR name) []:demo.cn
+Common Name (e.g. server FQDN or YOUR name) []:yourwebsite.com
 Email Address []:
 ~~~
 
 > 注意，这里的 Organization Name (eg, company) [Internet Widgits Pty Ltd]: 后面生成客户端和服务器端证书的时候也需要填写，不要写成一样的！！！可以随意写如：My CA, My Server, My Client。
   
-> 然后 Common Name (e.g. server FQDN or YOUR name) []: 这一项，是最后可以访问的域名，我这里为了方便测试，写成 localhost ，如果是为了给我的网站生成证书，需要写成 barretlee.com 。
+> 然后 Common Name (e.g. server FQDN or YOUR name) []: 这一项，是最后可以访问的域名，如果是为了给网站生成证书，需要写成 yourwebsite.com 。
 
 > 再就是密码，不需要输入密码。输入密码的话，后面启动Nginx也需要输入密码。
 
