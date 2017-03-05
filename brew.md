@@ -50,3 +50,8 @@ brew upgrade php70  升级所有可以升级的软件们
 ~~~
 brew cleanup        清理不需要的版本极其安装包缓存
 ~~~
+
+### 查看选项
+~~~
+brew options php70  清理不需要的版本极其安装包缓存
+~~~
