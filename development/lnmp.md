@@ -3,6 +3,7 @@
 ### 安装oh my zsh
 ~~~
 yum install zsh
+yum install git
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ~~~
 
@@ -60,15 +61,23 @@ mysql_secure_installation
 > 这里只安装一部分常用的扩展，其他扩展可以自行安装
 
 ~~~
-yum --enablerepo=remi install php70 php70-php-fpm php70-php-gd php70-php-pdo php70-php-mysql \ 
-php70-php-xml php70-php-mbstring php70-php-phalcon php70-php-zip
+yum --enablerepo=remi install php70 php70-php-fpm php70-php-gd php70-php-pdo php70-php-mysql php70-php-xml php70-php-mbstring php70-php-phalcon php70-php-zip
 cp /usr/bin/php70 /usr/bin/php
 cp /opt/remi/php70/root/usr/sbin/php-fpm /usr/bin/php-fpm
 ~~~
+
+### 修改php-fpm组合用户
+~~~
+vim /etc/opt/remi/php70/php-fpm.d/www.conf
+user = nginx
+group = nginx
+~~~
+
 ### 启动php-fpm
 ~~~
 php-fpm
 ~~~
+
 ### 安装composer
 ~~~
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
