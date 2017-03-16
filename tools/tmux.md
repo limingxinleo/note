@@ -45,5 +45,8 @@ Ctrl+b                  激活控制台；此时以下按键生效
 
 ###命令行快捷键
 ~~~
-tmux list-sessions      列出所有sessions
+tmux list-sessions          列出所有sessions
+tmux ls                     列出所有sessions
+tmux new -s $name           创建session
+tmux kill-session -t $name  删除指定session
 ~~~
