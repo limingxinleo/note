@@ -3,6 +3,14 @@
 ### 安装Homebrew
 * 自行查看brew.md
 
+### 安装oh my zsh
+~~~
+brew install zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+vim ~/.zshrc
+修改 ZSH_THEME="bira"
+~~~
+
 ### brew 安装php
 ~~~
 brew tap homebrew/dupes  
