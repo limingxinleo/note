@@ -39,7 +39,7 @@ $ git config --global user.email "limx@qq.com"
 cd ~/.ssh
 如果没有密钥则不会有此文件夹，有则备份删除 
 ~~~
-* 生存密钥
+* 生成密钥
 ~~~
 ssh-keygen -t rsa -C “limx@qq.com”
 ~~~
