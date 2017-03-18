@@ -34,4 +34,17 @@ $ git config --global user.name "limx"
 $ git config --global user.email "limx@qq.com"
 ~~~
 
-* 
+* 查看是否已经有了ssh密钥
+~~~
+cd ~/.ssh
+如果没有密钥则不会有此文件夹，有则备份删除 
+~~~
+* 生存密钥
+~~~
+ssh-keygen -t rsa -C “limx@qq.com”
+~~~
+* 添加密钥到ssh
+~~~
+ssh-add id_rsa
+~~~
+* 在github上添加ssh密钥，这要添加的是“id_rsa.pub”里面的公钥
