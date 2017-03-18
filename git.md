@@ -26,3 +26,12 @@ git push origin test:test           // 提交本地test分支作为远程的test
 * 发起pull request 从dev到原项目
 * 一旦对方merge项目
 * 更新本地master并推到自己的远程master仓库
+
+### git ssh 
+* 设置Git的user name和email
+~~~
+$ git config --global user.name "limx"
+$ git config --global user.email "limx@qq.com"
+~~~
+
+* 
