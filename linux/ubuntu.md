@@ -27,6 +27,10 @@ apt-cache search softname1 softname2 softname3……
 ~~~
 apt-get -f install
 ~~~
+查看需要升级的软件
+~~~
+apt list --upgradable
+~~~
 
 ### deb
 安装deb软件包 
