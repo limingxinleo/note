@@ -48,3 +48,46 @@ ssh-keygen -t rsa -C “limx@qq.com”
 ssh-add id_rsa
 ~~~
 * 在github上添加ssh密钥，这要添加的是“id_rsa.pub”里面的公钥
+
+### 新建仓库
+* 在github或者git.oschina.net创建仓库
+* 在本地新疆项目例如
+~~~
+composer create limingxinleo/phalcon-project　demo --prefer-dist
+~~~
+* 进入项目
+~~~
+cd demo
+~~~
+* 初始化仓库
+~~~
+git init
+~~~
+* 修改远程仓库
+~~~
+git remote add origin git@your.git.repo
+~~~
+* 暂存新代码
+~~~
+git add *
+~~~
+* 提交到本地
+~~~
+git commit -a -m "* INIT"
+~~~
+* 从远程拉取代码
+~~~
+git pull origin master
+~~~
+* 有冲突的话处理冲突
+~~~
+git add 冲突的文件
+~~~
+* 提交
+~~~
+git commit
+~~~
+* 提交到远程
+~~~
+git push --set-upstream origin master
+~~~
