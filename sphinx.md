@@ -25,6 +25,11 @@
 * 支持单字节编码与UTF-8编码;
 
 ## 使用
+### 安装
+~~~
+brew install sphinx --with-mysql
+~~~
+
 ### 复制sphinx配置到自己的文件夹
 * 我在mac环境下使用brew安装的sphinx，他的默认目录为/usr/local/Cellar/sphinx/2.2.11/etc。
 * 我在~/Applications/php文件夹下新建了.sphinx目录存放其配置
