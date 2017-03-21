@@ -36,7 +36,7 @@ brew install --env=std --with-mysql sphinx
 
 #### Centos
 ~~~
-yum --enablerepo=remi reinstall sphinx
+yum --enablerepo=remi install sphinx
 ~~~
 
 ### 复制sphinx配置到自己的文件夹
