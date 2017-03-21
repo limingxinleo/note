@@ -221,6 +221,8 @@ source phalcon
 		FROM test_sphinx 
 
 	sql_attr_uint		= id
+	sql_field_string 	= user_nicename
+    sql_field_string 	= signature
 }
 
 
