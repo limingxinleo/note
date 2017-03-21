@@ -55,3 +55,10 @@ brew cleanup        清理不需要的版本极其安装包缓存
 ~~~
 brew options php70  清理不需要的版本极其安装包缓存
 ~~~
+
+### 取消&建立关联
+~~~
+brew list
+brew unlink php70
+brew link php56
+~~~
