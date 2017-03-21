@@ -28,13 +28,13 @@
 ### 安装
 > php-sphinx扩展暂不支持php7.*。
 
-MAC
+#### MAC
 > brew安装sphinx有BUG，添加--env=std解决。  
 ~~~
 brew install --env=std --with-mysql sphinx
 ~~~
 
-Centos
+#### Centos
 ~~~
 yum --enablerepo=remi reinstall sphinx
 ~~~
