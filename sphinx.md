@@ -27,7 +27,7 @@
 ## 使用
 ### 安装
 ~~~
-brew install sphinx --with-mysql
+brew install --env=std --with-mysql sphinx
 ~~~
 
 ### 复制sphinx配置到自己的文件夹
