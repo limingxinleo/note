@@ -230,9 +230,11 @@ index phalcon_test_sphinx
 {
 	source			= phalcon
 	path			= /Users/limx/Applications/php/.sphinx/data/phalcon
-	#表示使用一元字符切分模式，从而得以对单个中文字符进行索引
+	# 表示使用一元字符切分模式，从而得以对单个中文字符进行索引
 	ngram_len       = 1 
-	#表示要进行一元字符切分模式的字符集
+	# 表示要进行一元字符切分模式的字符集
+	# A..Z->a..z, a..z 会导致英文单词也被一元切分，比如你搜索abc时，cba也能被搜索出来。
+	# 所以这里需要根据实际业务进行编辑
     ngram_chars     = U+3000..U+2FA1F, U+FF41..U+FF5A->a..z, U+FF21..U+FF3A->a..z, A..Z->a..z, a..z 
 }
 
