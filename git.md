@@ -99,3 +99,13 @@ git commit
 ~~~
 git push --set-upstream origin master
 ~~~
+
+### depth
+拉取最新一次commit提交
+~~~
+git clone --depth=1 https://github.com/limingxinleo/simple-subcontrollers.phalcon.git
+~~~
+拉取所有历史
+~~~
+git fetch --unshallow
+~~~
