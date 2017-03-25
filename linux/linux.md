@@ -25,3 +25,24 @@ lshw
 ~~~
 chmod [u|g|o][+|-|=][r|w|x] file
 ~~~
+
+### tail命令使用方法演示例子
+监视filename文件的尾部内容（默认10行，相当于增加参数 -n 10），刷新显示在屏幕上。退出，按下CTRL+C
+~~~
+tail -f filename
+~~~
+
+显示filename最后20行
+~~~
+tail -n 20 filename
+~~~
+
+显示filename前面20行
+~~~
+tail -n +20 filename
+~~~
+
+逆序显示filename最后10行
+~~~
+tail -r -n 10 filename
+~~~。
