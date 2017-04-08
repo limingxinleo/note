@@ -13,6 +13,7 @@ END;
 > 如果您指定了ON DUPLICATE KEY UPDATE，并且插入行后会导致在一个UNIQUE索引或PRIMARY KEY中出现重复值，则执行旧行UPDATE。
 > 例如，如果列a被定义为UNIQUE，并且包含值1，则以下两个语句具有相同的效果。
 > 如果行作为新记录被插入，则受影响行的值为1；如果原有的记录被更新，则受影响行的值为2。
+> 因为插入失败了，所以如果使用这种方法，自增主键会因为这个原因出现断层。
 
 ~~~
 mysql>INSERT INTO table (a,b,c) VALUES (1,2,3) ON DUPLICATE KEY UPDATE c=c+1;  
