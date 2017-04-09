@@ -45,4 +45,10 @@ tail -n +20 filename
 逆序显示filename最后10行
 ~~~
 tail -r -n 10 filename
-~~~。
+~~~
+
+### 查看进程
+查看cpu占用率排序的进程
+~~~
+ps H -eo user,pid,ppid,tid,time,%cpu,cmd --sort=%cpu
+~~~
