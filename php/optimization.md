@@ -12,6 +12,7 @@ Zend Engine v3.0.0, Copyright (c) 1998-2017 Zend Technologies
 以下测试都是在控制器中输出HELLO WORLD
 
 1.没有使用Zend OPcache时
+* laravel 5.4
 ~~~
 Webbench - Simple Web Benchmark 1.5
 Copyright (c) Radim Kolar 1997-2004, GPL Open Source Software.
@@ -28,6 +29,7 @@ Speed=1110 pages/min, 13987 bytes/sec.
 Requests: 141 susceed, 44 failed.
 ~~~
 
+* lumen 5.4
 ~~~
 Webbench - Simple Web Benchmark 1.5
 Copyright (c) Radim Kolar 1997-2004, GPL Open Source Software.
@@ -44,6 +46,7 @@ Speed=3552 pages/min, 11892 bytes/sec.
 Requests: 569 susceed, 23 failed.
 ~~~
 
+* phalcon
 ~~~
 Webbench - Simple Web Benchmark 1.5
 Copyright (c) Radim Kolar 1997-2004, GPL Open Source Software.
@@ -61,6 +64,7 @@ Requests: 1663 susceed, 79 failed.
 ~~~
 
 2.使用Zend OPcache时
+* laravel 5.4
 ~~~
 Webbench - Simple Web Benchmark 1.5
 Copyright (c) Radim Kolar 1997-2004, GPL Open Source Software.
@@ -77,6 +81,7 @@ Speed=6348 pages/min, 105046 bytes/sec.
 Requests: 1058 susceed, 0 failed.
 ~~~
 
+* lumen 5.4
 ~~~
 Webbench - Simple Web Benchmark 1.5
 Copyright (c) Radim Kolar 1997-2004, GPL Open Source Software.
@@ -93,6 +98,7 @@ Speed=15972 pages/min, 55698 bytes/sec.
 Requests: 2662 susceed, 0 failed.
 ~~~
 
+* phalcon
 ~~~
 Webbench - Simple Web Benchmark 1.5
 Copyright (c) Radim Kolar 1997-2004, GPL Open Source Software.
