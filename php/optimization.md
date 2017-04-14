@@ -9,7 +9,7 @@ Copyright (c) 1997-2017 The PHP Group
 Zend Engine v3.0.0, Copyright (c) 1998-2017 Zend Technologies
     with Zend OPcache v7.0.18, Copyright (c) 1999-2017, by Zend Technologies
 ~~~
-以下测试都是再控制器中输出HELLO WORLD
+以下测试都是在控制器中输出HELLO WORLD
 
 1.没有使用Zend OPcache时
 ~~~
