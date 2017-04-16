@@ -18,3 +18,14 @@ db.foo.help()               显示集合操作命令，同样有很多的命令�
 db.foo.find()               对于当前数据库中的foo集合进行数据查找（由于没有条件，会列出所有数据） 
 db.foo.find( { a : 1 } )    对于当前数据库中的foo集合进行查找，条件是数据中有一个属性叫a，且a的值为1
 ~~~
+
+3.添加管理员
+添加管理员
+~~~
+use admin
+db.createUser({user:"admin",pwd:"password",roles:["root"]})
+~~~
+添加管理员后需要认证后才能继续操作
+~~~
+db.auth("admin","password")
+~~~
