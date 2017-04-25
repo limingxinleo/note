@@ -1,17 +1,20 @@
 ## Nodejs 安装
 * 终端执行
 ~~~
-version='4.2.6'
+#!/usr/bin/env bash
+version='7.9.0'
 wget https://npm.taobao.org/mirrors/node/v${version}/node-v${version}-linux-x64.tar.gz
 tar xzf node-v${version}-linux-x64.tar.gz
-mv node-v${version}-linux-x64 /usr/local/nodejs
+mkdir -p /usr/local/nodejs/${version}
+cp -rf node-v${version}-linux-x64/* /usr/local/nodejs/${version}
 
-echo 'export NODEJS_HOME=/usr/local/nodejs' >> ~/.bash_profile
-echo 'export PATH=$PATH:$NODEJS_HOME/bin' >> ~/.bash_profile
-source ~/.bash_profile
+ln -sf /usr/local/nodejs/${version}/bin/node /usr/local/bin/node
+ln -sf /usr/local/nodejs/${version}/bin/npm /usr/local/bin/npm
 
 echo checking nodejs:
 node -v
 echo checking npm:
 npm -v
+# 设置镜像源
+npm config set registry=http://registry.npm.taobao.org
 ~~~
