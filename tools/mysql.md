@@ -1,5 +1,21 @@
 ## Mysql
 
+### 安装mysql 如果remi没有mysql源可以使用下列方法
+~~~
+[centos7]$ yum localinstall  http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm
+[centos7]$ yum install mysql-community-server
+[centos7]$ yum install mysql-community-devel
+[centos6]$ yum localinstall http://dev.mysql.com/get/mysql57-community-release-el6-8.noarch.rpm
+[centos6]$ yum install mysql-community-server
+[centos6]$ yum install mysql-community-devel
+$ service mysqld start
+$ grep 'temporary password' /var/log/mysqld.log
+
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'LoveYi@521';
+mysql> grant all on *.* to limx@'%' identified by 'LoveYi@521'
+~~~
+
+
 ### 主从同步
 mysql服务器的主从配置，这样可以实现读写分离，也可以在主库挂掉后从备用库中恢复
 
