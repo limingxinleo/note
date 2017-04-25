@@ -47,7 +47,7 @@ service nginx start
 ~~~
 * 访问你的网站就能看到nginx的欢迎页面了。
 
-### 安装mysql
+### 安装mariadb
 ~~~
 yum --enablerepo=remi install mariadb-server
 rpm -q mariadb mariadb-server
@@ -57,6 +57,23 @@ rpm -q mariadb mariadb-server
 systemctl start|stop mariadb（service mariadb start|stop）
 mysql_secure_installation
 ~~~
+
+### 安装mysql 如果remi没有mysql源可以使用下列方法
+~~~
+[centos7]$ yum localinstall  http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm
+[centos7]$ yum install mysql-community-server
+[centos7]$ yum install mysql-community-devel
+[centos6]$ yum localinstall http://dev.mysql.com/get/mysql57-community-release-el6-8.noarch.rpm
+[centos6]$ yum install mysql-community-server
+[centos6]$ yum install mysql-community-devel
+$ service mysqld start
+$ grep 'temporary password' /var/log/mysqld.log
+
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'LoveYi@521';
+mysql> grant all on *.* to limx@'%' identified by 'LoveYi@521'
+~~~
+
+
 ### 安装php70
 > 这里只安装一部分常用的扩展，其他扩展可以自行安装
 
