@@ -55,12 +55,16 @@ db.table.getIndexex()
 创建索引
 ~~~
 # 数字1表示username键的索引按升序存储，-1表示age键的索引按照降序方式存储。
-db.table.ensureIndex({"username":1})
-db.table.ensureIndex({"username":1, "age":-1})
+db.table.createIndex({"username":1})
+db.table.createIndex({"username":1, "age":-1})
 # 唯一索引
-db.table.ensureIndex({"userid":1},{"unique":true})
+db.table.createIndex({"userid":1},{"unique":true})
 ~~~
 删除索引
 ~~~
 db.table.dropIndex({"username":1})
+~~~
+设置超时时间
+~~~
+db.table.createIndex({"timerd":1}, {expireAfterSeconds: 10})
 ~~~
