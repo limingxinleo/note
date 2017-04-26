@@ -3,6 +3,11 @@
 ls | wc -w
 ~~~
 
+### 输出进程个数
+~~~
+ps -e | grep php-fpm | wc -l
+~~~
+
 ### zsh 安装
 * CentOS
 ~~~
