@@ -29,3 +29,20 @@ db.createUser({user:"admin",pwd:"password",roles:["root"]})
 ~~~
 db.auth("admin","password")
 ~~~
+
+### Mongo基本配置
+vim /usr/local/etc/mongod.conf
+~~~
+systemLog:
+  destination: file
+  path: /usr/local/var/log/mongodb/mongo.log
+  logAppend: true
+storage:
+  dbPath: /usr/local/var/mongodb
+net:
+  bindIp: 127.0.0.1
+~~~
+运行命令
+~~~
+mongod --config /usr/local/etc/mongod.conf --auth &
+~~~

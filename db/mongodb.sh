@@ -17,4 +17,4 @@ touch ${logspath}/mongodb.logs
 ln -sf /usr/local/mongodb/${version}/bin/mongod /usr/local/bin/mongod
 ln -sf /usr/local/mongodb/${version}/bin/mongo /usr/local/bin/mongo
 
-echo mongod --dbpath ${dbpath} --port 27017 --logpath ${logspath}/mongodb.logs --logappend & > ${startfile}
+echo mongod --dbpath ${dbpath} --port 27017 --logpath ${logspath}/mongodb.logs --logappend > ${startfile}
