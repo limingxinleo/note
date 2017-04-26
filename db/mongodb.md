@@ -46,3 +46,21 @@ net:
 ~~~
 mongod --config /usr/local/etc/mongod.conf --auth &
 ~~~
+
+### 索引
+查看索引
+~~~
+db.table.getIndexex()
+~~~
+创建索引
+~~~
+# 数字1表示username键的索引按升序存储，-1表示age键的索引按照降序方式存储。
+db.table.ensureIndex({"username":1})
+db.table.ensureIndex({"username":1, "age":-1})
+# 唯一索引
+db.table.ensureIndex({"userid":1},{"unique":true})
+~~~
+删除索引
+~~~
+db.table.dropIndex({"username":1})
+~~~
