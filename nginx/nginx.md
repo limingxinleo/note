@@ -24,3 +24,38 @@ events {
      # cat /proc/sys/fs/file-max
 }
 ~~~
+
+### Nginx rewrite
+~~~
+location ~* ^/weixin/ {
+    rewrite "^/weixin/(.*)$" http://weixin.phalcon.app/$1 last;
+}
+~~~
+
+### Nginx 代理
+> 当出现/phalcon/时进行代理
+
+~~~
+location /phalcon/ {
+    proxy_pass http://phalcon.phalcon.app/;
+}
+~~~
+> 所有的都代理
+
+~~~
+location / {
+    proxy_pass  http://phalcon.app;
+    proxy_set_header Host $host;
+    proxy_set_header  X-Real-IP  $remote_addr;
+    proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+}
+~~~
+
+### Nginx 负载均衡
+~~~
+upstream phalcon.app {
+    ip_hash;   #第一次配置负载用ip_hash来处理session，后期修改为session复制
+    server  s1.phalcon.app;
+    server  s2.phalcon.app;
+}
+~~~
