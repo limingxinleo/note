@@ -78,9 +78,15 @@ mysql> grant all on *.* to limx@'%' identified by 'LoveYi@521'
 > 这里只安装一部分常用的扩展，其他扩展可以自行安装
 
 ~~~
+#7.0
 yum --enablerepo=remi install php70 php70-php-fpm php70-php-gd php70-php-pdo php70-php-mysql php70-php-xml php70-php-mbstring php70-php-phalcon php70-php-zip
 cp /usr/bin/php70 /usr/bin/php
 cp /opt/remi/php70/root/usr/sbin/php-fpm /usr/bin/php-fpm
+
+#7.1
+yum --enablerepo=remi install php71 php71-php-fpm php71-php-gd php71-php-pdo php71-php-mysql php71-php-xml php71-php-mbstring php71-php-phalcon php71-php-zip
+cp /usr/bin/php71 /usr/bin/php
+cp /opt/remi/php71/root/usr/sbin/php-fpm /usr/bin/php-fpm
 ~~~
 
 ### 修改php-fpm组合用户
