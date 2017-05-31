@@ -31,6 +31,17 @@ lshw
 chmod [u|g|o][+|-|=][r|w|x] file
 ~~~
 
+### 切换用户
+~~~
+su nginx
+~~~
+正常情况下切换账号即可，但如果报错 This account is currently not available.则修改下面文件：
+~~~
+vim /etc/passwd
+修改 nginx:x:499:499:Nginx web server:/var/lib/nginx:/sbin/nologin
+为 nginx:x:499:499:Nginx web server:/var/lib/nginx:/bin/bash
+~~~
+
 ### tail命令使用方法演示例子
 监视filename文件的尾部内容（默认10行，相当于增加参数 -n 10），刷新显示在屏幕上。退出，按下CTRL+C
 ~~~
