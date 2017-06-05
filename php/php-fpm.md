@@ -41,3 +41,15 @@ php-fpm                 【需要完全重启】
 > 如果dm设置为static，那么其实只有pm.max_children这个参数生效。系统会开启参数设置数量的php-fpm进程。
 > 如果dm设置为dynamic，4个参数都生效。系统会在php-fpm运行开始时启动pm.start_servers个php-fpm进程，然后根据系统的需求动态在pm.min_spare_servers和pm.max_spare_servers之间调整php-fpm进程数。
 
+
+### php-fpm 命令
+~~~
+php-fpm 关闭：
+kill -INT `cat /usr/local/php/var/run/php-fpm.pid`
+php-fpm 重启：
+kill -USR2 `cat /usr/local/php/var/run/php-fpm.pid`
+查看php-fpm进程：
+ps aux | grep -c php-fpm
+查看php-fpm进程数：
+ps aux | grep -c php-fpm | wc -l
+~~~
