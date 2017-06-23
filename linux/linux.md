@@ -68,3 +68,9 @@ tail -r -n 10 filename
 ~~~
 ps H -eo user,pid,ppid,tid,time,%cpu,cmd --sort=%cpu
 ~~~
+
+### tar解压缩命令
+~~~
+.tar.gz     格式解压为          tar   -zxvf   xx.tar.gz
+.tar.bz2    格式解压为          tar   -jxvf   xx.tar.bz2
+~~~
