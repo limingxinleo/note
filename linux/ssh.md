@@ -2,7 +2,7 @@
 ### 免密码登录
 1.首先生成id_rsa 和 id_rsa.pub
 ~~~
-ssh-keygen -t rsa -C “limx@qq.com”
+ssh-keygen -t rsa -C "limx@qq.com"
 ~~~
 
 2.上传id_rsa.pub到服务器

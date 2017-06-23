@@ -80,3 +80,14 @@ Binlog_Do_DB: test
 Binlog_Ignore_DB: mysql
 ~~~
 > 可以在主机A中，做一些INSERT, UPDATE, DELETE 操作，看看主机B中，是否已经被修改
+
+### 千万级大表增加索引
+~~~
+create table tmp like paper_author;
+ALTER TABLE tmp ADD INDEX ( `PaperID` )
+insert into tmp(ooo，...)  select  ooo,... from paper_author
+Query OK, 35510600 rows affected (9 min 24.99 sec)
+Records: 35510600  Duplicates: 0  Warnings: 0
+RENAME TABLE paper_author TO tmp2, tmp to paper_author;
+drop table tmp2;
+~~~
