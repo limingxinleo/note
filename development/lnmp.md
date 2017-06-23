@@ -81,12 +81,12 @@ mysql> grant all on *.* to limx@'%' identified by 'LoveYi@521'
 #7.0
 yum --enablerepo=remi install php70 php70-php-fpm php70-php-gd php70-php-pdo php70-php-mysql php70-php-xml php70-php-mbstring php70-php-phalcon php70-php-zip
 cp /usr/bin/php70 /usr/bin/php
-cp /opt/remi/php70/root/usr/sbin/php-fpm /usr/bin/php-fpm
+cp /opt/remi/php70/root/usr/sbin/php-fpm /usr/sbin/php-fpm
 
 #7.1
 yum --enablerepo=remi install php71 php71-php-fpm php71-php-gd php71-php-pdo php71-php-mysql php71-php-xml php71-php-mbstring php71-php-phalcon php71-php-zip
 cp /usr/bin/php71 /usr/bin/php
-cp /opt/remi/php71/root/usr/sbin/php-fpm /usr/bin/php-fpm
+cp /opt/remi/php71/root/usr/sbin/php-fpm /usr/sbin/php-fpm
 ~~~
 
 ### 修改php-fpm组合用户
@@ -99,6 +99,8 @@ group = nginx
 ### 启动php-fpm
 ~~~
 php-fpm
+或者
+service php-fpm start
 ~~~
 
 ### 安装composer
