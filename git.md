@@ -49,7 +49,7 @@ cd ~/.ssh
 ~~~
 * 生成密钥
 ~~~
-ssh-keygen -t rsa -C “limx@qq.com”
+ssh-keygen -t rsa -C "limx@qq.com"
 ~~~
 * 添加密钥到ssh
 ~~~
