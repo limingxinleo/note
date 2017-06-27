@@ -100,6 +100,12 @@ user = nginx
 group = nginx
 ~~~
 
+### 修改php权限
+~~~
+cd /var/opt/remi/php71/lib/php
+chown -R root.nginx *
+~~~
+
 ### 启动php-fpm
 ~~~
 php-fpm
