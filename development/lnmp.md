@@ -113,6 +113,11 @@ php-fpm
 service php-fpm start
 ~~~
 
+### Reload php-fpm
+~~~
+kill -USR2 `cat /usr/local/var/run/php-fpm.pid`
+~~~
+
 ### 安装composer
 ~~~
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
