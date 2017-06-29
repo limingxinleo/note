@@ -109,3 +109,9 @@ git clone --depth=1 https://github.com/limingxinleo/simple-subcontrollers.phalco
 ~~~
 git fetch --unshallow
 ~~~
+
+### log
+查看某个文件的日志
+~~~
+git log -p file
+~~~
