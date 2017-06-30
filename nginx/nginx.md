@@ -88,3 +88,51 @@ server {
     ...
 }
 ~~~
+
+### Nginx Lua 执行顺序
+~~~
+init_by_lua            http
+set_by_lua             server, server if, location, location if
+rewrite_by_lua         http, server, location, location if
+access_by_lua          http, server, location, location if
+content_by_lua         location, location if
+header_filter_by_lua   http, server, location, location if
+body_filter_by_lua     http, server, location, location if
+log_by_lua             http, server, location, location if
+timer
+~~~
+
+### Nginx Lua 注释
+~~~
+init_by_lua:
+在nginx重新加载配置文件时，运行里面lua脚本，常用于全局变量的申请。
+例如lua_shared_dict共享内存的申请，只有当nginx重起后，共享内存数据才清空，这常用于统计。
+
+set_by_lua:
+设置一个变量，常用与计算一个逻辑，然后返回结果
+该阶段不能运行Output API、Control API、Subrequest API、Cosocket API
+
+rewrite_by_lua:
+在access阶段前运行，主要用于rewrite
+
+access_by_lua:
+主要用于访问控制，能收集到大部分变量，类似status需要在log阶段才有。
+这条指令运行于nginx access阶段的末尾，因此总是在 allow 和 deny 这样的指令之后运行，虽然它们同属 access 阶段。
+
+content_by_lua:
+阶段是所有请求处理阶段中最为重要的一个，运行在这个阶段的配置指令一般都肩负着生成内容（content）并输出HTTP响应。
+
+header_filter_by_lua:
+一般只用于设置Cookie和Headers等
+该阶段不能运行Output API、Control API、Subrequest API、Cosocket API
+
+body_filter_by_lua:
+一般会在一次请求中被调用多次, 因为这是实现基于 HTTP 1.1 chunked 编码的所谓“流式输出”的。
+该阶段不能运行Output API、Control API、Subrequest API、Cosocket API
+
+log_by_lua:
+该阶段总是运行在请求结束的时候，用于请求的后续操作，如在共享内存中进行统计数据,如果要高精确的数据统计，应该使用body_filter_by_lua。
+该阶段不能运行Output API、Control API、Subrequest API、Cosocket API
+
+timer:
+~~~
