@@ -2,7 +2,7 @@
 ### 安装
 MAC
 ~~~
-brew reinstall nginx-full --with-status --with-lua-module --with-redis-module --with-echo-module
+brew install nginx-full --with-status --with-lua-module --with-redis2-module --with-redis2-module
 ~~~
 
 ### Nginx 调优
@@ -141,3 +141,5 @@ log_by_lua:
 
 timer:
 ~~~
+
+
