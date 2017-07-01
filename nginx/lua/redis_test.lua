@@ -1,5 +1,4 @@
-package.path = "/Users/limx/.luarocks/share/lua/5.2/?.lua;/usr/local/Cellar/openresty/1.11.2.3/lualib/?.lua;"..package.path;
-package.cpath = "/Users/limx/.luarocks/lib/lua/5.2/?.so;/usr/local/Cellar/openresty/1.11.2.3/lualib/?.so;"..package.cpath;
+config = require "config";
 -- ngx.say(package.path);
 local redis = require('resty.redis');
 local client = redis:new();
