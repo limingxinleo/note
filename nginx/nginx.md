@@ -3,6 +3,7 @@
 MAC
 ~~~
 brew install nginx-full --with-status --with-lua-module --with-redis2-module --with-redis2-module
+brew install openresty
 ~~~
 
 ### Nginx 调优
@@ -141,5 +142,9 @@ log_by_lua:
 
 timer:
 ~~~
+
+### Nginx Lua Redis
+(https://openresty.org/cn/download.html)[https://openresty.org/cn/download.html]
+
 
 
