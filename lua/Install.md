@@ -7,7 +7,8 @@ luarocks install redis-lua --local
 
 Linux
 ~~~
-
+yum install lua lua-devel luajit luajit-devel luarocks
+luarocks install redis-lua
 ~~~
 
 ## 使用
