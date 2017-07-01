@@ -1,4 +1,5 @@
-config = require "config";
+package.path = "./?.lua;"..package.path;
+config = require("config");
 -- ngx.say(package.path);
 local redis = require('resty.redis');
 local client = redis:new();
