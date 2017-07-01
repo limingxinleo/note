@@ -1,4 +1,9 @@
 ## Nginx
+### 安装
+MAC
+~~~
+brew reinstall nginx-full --with-status --with-lua-module --with-redis-module --with-echo-module
+~~~
 
 ### Nginx 调优
 先查看一下机器的cpu合数 
