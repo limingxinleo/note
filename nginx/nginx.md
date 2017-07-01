@@ -5,7 +5,7 @@ MAC
 brew install nginx-full --with-status --with-lua-module --with-redis2-module --with-redis2-module
 brew install openresty
 ~~~
-Linux
+Linux 【增加lua扩展】
 (https://github.com/openresty/lua-nginx-module#installation)[https://github.com/openresty/lua-nginx-module#installation]
 ~~~
 yum install nginx
@@ -157,12 +157,6 @@ log_by_lua:
 
 timer:
 ~~~
-
-### Nginx Lua Redis
-安装直接查看官方文档
-(https://openresty.org/cn/download.html)[https://openresty.org/cn/download.html]
-
-
 
 
 
