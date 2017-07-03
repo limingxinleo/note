@@ -5,7 +5,7 @@
 -- Time: 下午6:11
 -- To change this template use File | Settings | File Templates.
 --
-package.path = "./?.lua;" .. package.path;
+package.path = "/Users/limx/Applications/lua/nginx/?.lua;" .. package.path;
 
 local config = require "config";
 local key = ngx.var.http_user_agent;
