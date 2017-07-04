@@ -6,6 +6,8 @@
 -- To change this template use File | Settings | File Templates.
 --
 
+package.path = "./?.lua;" .. package.path;
+
 local config = require("config");
 
 ngx.say("Hello World!");
