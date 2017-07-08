@@ -106,6 +106,12 @@ cd /var/opt/remi/php71/lib/php
 chown -R root.nginx *
 ~~~
 
+### php-fpm 后台启动
+~~~
+vim /etc/opt/remi/php71/php-fpm.conf
+daemonize = yes
+~~~
+
 ### 启动php-fpm
 ~~~
 php-fpm
@@ -116,6 +122,7 @@ service php-fpm start
 ### Reload php-fpm
 ~~~
 kill -USR2 `cat /usr/local/var/run/php-fpm.pid`
+kill -USR2 `cat /var/opt/remi/php71/run/php-fpm/php-fpm.pid`
 ~~~
 
 ### 安装composer
