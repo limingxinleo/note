@@ -41,6 +41,8 @@ php-fpm                 【需要完全重启】
 > 如果dm设置为static，那么其实只有pm.max_children这个参数生效。系统会开启参数设置数量的php-fpm进程。
 > 如果dm设置为dynamic，4个参数都生效。系统会在php-fpm运行开始时启动pm.start_servers个php-fpm进程，然后根据系统的需求动态在pm.min_spare_servers和pm.max_spare_servers之间调整php-fpm进程数。
 
+* pm.max_requests
+这个参数指定了一个php-fpm子进程执行多少次之后重启该进程。
 
 ### php-fpm 命令
 ~~~
