@@ -79,3 +79,8 @@ ps H -eo user,pid,ppid,tid,time,%cpu,cmd --sort=%cpu
 ~~~
 sed -i '1,nd' filename
 ~~~
+
+### 欢迎语
+~~~
+vim /etc/motd
+~~~
