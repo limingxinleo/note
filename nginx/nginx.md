@@ -175,5 +175,8 @@ timer:
 不填 前缀匹配　普通匹配
 ~~~
 
+### PATH_INFO
+(http://www.nginx.cn/426.html)[http://www.nginx.cn/426.html]
+
 
 
