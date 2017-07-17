@@ -1,4 +1,4 @@
-## JAVA环境
+## JAVA环境 Linux
 
 ### jdk jre jvm的区别
 ~~~
@@ -43,6 +43,27 @@ f. 大小写必须严格区分。
 ### 安装openjdk
 ~~~
 yum --enablerepo=remi install java-1.8.0-openjdk
+~~~
+
+
+## JAVA MAC
+~~~
+查询java
+
+brew cask search java
+查看版本信息
+
+brew cask info java
+从官网下载并安装 JDK 8
+
+brew cask install java
+需要安装 JDK 7 或者 JDK 6，可以使用homebrew-cask-versions：
+
+brew tap caskroom/versions
+brew cask install java6
+检查
+
+java -version
 ~~~
 
 
