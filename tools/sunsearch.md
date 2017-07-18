@@ -23,3 +23,8 @@ yum install bzip2
 ~~~
 yum install -y gcc gcc-c++
 ~~~
+
+### 依赖库
+~~~
+yum -y install bzip2 gcc gcc-c++ wget automake autoconf libtool make zlib-devel
+~~~
