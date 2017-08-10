@@ -11,6 +11,16 @@ yum install supervisor
 supervisord -c /etc/supervisord.conf
 ~~~
 
+### 命令
+~~~
+supervisord -c /etc/supervisord.conf，初始启动Supervisord，启动、管理配置中设置的进程。
+supervisorctl stop programxxx，停止某一个进程(programxxx)，programxxx为[program:blogdemon]里配置的值，这个示例就是blogdemon。
+supervisorctl start programxxx，启动某个进程
+supervisorctl restart programxxx，重启某个进程
+supervisorctl stop all，停止全部进程，注：start、restart、stop都不会载入最新的配置文件。
+supervisorctl reload，载入最新的配置文件，并按新的配置启动、管理所有进程。
+~~~
+
 ### Laravel 消息队列 使用
 ~~~
 [program:laravelQueue]
