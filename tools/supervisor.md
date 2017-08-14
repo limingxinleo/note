@@ -26,7 +26,7 @@ supervisorctl reload，载入最新的配置文件，并按新的配置启动、
 [program:laravelQueue]
 command                 = php artisan queue:work
 directory               = /path/to/app
-process_name            = %(program_name)s_%(process_num)s
+process_name            = %(process_num)s
 numprocs                = 6
 autostart               = true
 autorestart             = true
