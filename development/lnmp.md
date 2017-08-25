@@ -103,7 +103,8 @@ group = nginx
 ### 修改php权限
 ~~~
 cd /var/opt/remi/php71/lib/php
-chown -R root.nginx *
+# chown -R 用户:组 *
+chown -R root:nginx *
 ~~~
 
 ### php-fpm 后台启动
