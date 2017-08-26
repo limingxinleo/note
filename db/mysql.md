@@ -19,3 +19,13 @@ END;
 mysql>INSERT INTO table (a,b,c) VALUES (1,2,3) ON DUPLICATE KEY UPDATE c=c+1;  
 mysql>UPDATE table SET c=c+1 WHERE a=1;  
 ~~~
+
+### INT类型
+| 对象 | 区间 | 类型 | 返回 |
+| ---------- | ---------- | ---------- | -------- |
+| 人 | 0-150 | unsigned tinyint | 0 - 255 |
+| 龟 | 数百岁 | unsigned smallint | 0 - 65535 |
+| 恐龙化石 | 数千万年 | unsigned int | 0 - 约42.9亿 |
+| 太阳 | 50亿年 | unsigned bigint | 0 - 约10^19 |
+
+
