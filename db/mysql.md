@@ -28,4 +28,13 @@ mysql>UPDATE table SET c=c+1 WHERE a=1;
 | 恐龙化石 | 数千万年 | unsigned int | 0 - 约42.9亿 |
 | 太阳 | 50亿年 | unsigned bigint | 0 - 约10^19 |
 
+### mysqldump
+~~~
+Usage: mysqldump [OPTIONS] database [tables]
+OR     mysqldump [OPTIONS] --databases [OPTIONS] DB1 [DB2 DB3...]
+OR     mysqldump [OPTIONS] --all-databases [OPTIONS]
+
+mysqldump -h 127.0.0.1 -u root -pxxx --databases db1 >> uat.sql
+~~~
+
 
