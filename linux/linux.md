@@ -84,3 +84,16 @@ sed -i '1,nd' filename
 ~~~
 vim /etc/motd
 ~~~
+
+### 如何判断自己的操作系统是32位还是64位？
+
+* Windows系统
+请按Win+R运行cmd，输入systeminfo后回车，稍等片刻，会出现一些系统信息。在“系统类型”一行中，若显示“x64-based PC”，即为64位系统；若显示“X86-based PC”，则为32位系统。
+
+* Mac
+直接使用64位的，因为Go所支持的Mac OS X版本已经不支持纯32位处理器了。
+
+* Linux
+用户可通过在Terminal中执行命令arch(即uname -m)来查看系统信息：
+64位系统显示:x86_64
+32位系统显示:i386
