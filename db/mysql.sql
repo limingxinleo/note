@@ -13,4 +13,6 @@ NOT NULL DEFAULT '0' COMMENT '门店ID';
 
 ## 增加字段
 ALTER TABLE `table` ADD COLUMN `status` smallint(2) DEFAULT '1' COMMENT '状态';
+ALTER TABLE `table` ADD COLUMN `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '备注' AFTER `mobile`,
+ADD COLUMN `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '反馈类型' after `remark`;
 
