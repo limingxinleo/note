@@ -107,10 +107,11 @@ cd /var/opt/remi/php71/lib/php
 chown -R root:nginx *
 ~~~
 
-### php-fpm 后台启动
+### php-fpm 配置
 ~~~
 vim /etc/opt/remi/php71/php-fpm.conf
 daemonize = yes
+pid = /var/opt/remi/php71/run/php-fpm/php-fpm.pid
 ~~~
 
 ### 启动php-fpm
