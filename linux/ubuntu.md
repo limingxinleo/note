@@ -1,3 +1,24 @@
+### 增加ppa源
+使用ppa增加源:
+~~~
+$ sudo apt-get install python-software-properties
+$ sudo add-apt-repository ppa:ondrej/php
+$ sudo apt-get update
+$ sudo apt-get install -y php7.0 php7.0-mysql php7.0-curl php7.0-json php7.0-cgi
+
+然后可以查看php版本:
+php -v
+
+关于php5.4--php5.6版本
+$ sudo apt-get install python-software-properties
+$ sudo add-apt-repository ppa:ondrej/php
+$ sudo apt-get update
+$ sudo apt-get -y install php5.6 php5.6-mcrypt php5.6-mbstring php5.6-curl php5.6-cli php5.6-mysql php5.6-gd php5.6-intl php5.6-xsl php5.6-zip
+
+查看php7的扩展
+sudo apt-cache search php7-* 
+~~~
+
 ### apt-get 
 安装软件
 ~~~
