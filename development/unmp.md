@@ -39,5 +39,12 @@ redis-server &
 ## 安装Mysql
 ~~~
 sudo apt-get install mysql-server
+sudo service mysql start
 
+# 刷新权限
+FLUSH PRIVILEGES;
+
+# 外网访问
+vim /etc/mysql/mysql.conf.d/mysqld.cnf
+# bind-address            = 127.0.0.1
 ~~~
