@@ -1,17 +1,22 @@
 ## FastCGI Process Manage
 
 ### sock通信
-创建Socket文件
+修改php-fpm.conf
 ~~~
-cd /dev/shm
-touch PHP-fcgi.sock
-chown nginx.nginx php-fcgi.sock
-chmod 777 php-fcgi.sock
+listen = /run/php/php-fpm.sock
+listen.owner = nginx
+listen.group = nginx
+~~~
+
+重启php-fpm
+~~~
+killall php-fpm
+php-fpm
 ~~~
 
 修改配置
 ~~~
-fastcgi_pass            unix:/dev/shm/php-fcgi.sock;
+fastcgi_pass            unix:/run/php/php-fpm.sock;
 ~~~
 
 重启
