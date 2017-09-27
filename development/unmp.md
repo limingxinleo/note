@@ -29,3 +29,15 @@ user = xxx;
 user = xxx;
 group = xxx;
 ~~~
+
+## 安装Redis
+~~~
+sudo apt-get install redis-server
+redis-server &
+~~~
+
+## 安装Mysql
+~~~
+sudo apt-get install mysql-server
+
+~~~
