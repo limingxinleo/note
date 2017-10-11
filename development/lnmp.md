@@ -179,6 +179,10 @@ SQLSTATE[HY000] [1049] Unknown database 'phalcon'
 ### 安装Redis
 ~~~
 yum --enablerepo=remi install redis
-redis-server &
-关闭终端
+
+vim /etc/redis.conf
+requirepass yourpassword
+
+service redis-server start
 ~~~
+
