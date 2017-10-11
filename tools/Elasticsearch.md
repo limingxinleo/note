@@ -33,3 +33,27 @@ useradd elsearch -g elsearch
 ~~~
 curl http://localhost:9200/
 ~~~
+
+## Yum安装
+~~~
+# 下载并安装ES的yum公钥
+$ rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch
+# 配置ES的yum源
+$ vim /etc/yum.repos.d/elasticsearch.repo
+
+[elasticsearch-2.x]
+name=Elasticsearch repository for 2.x packages
+baseurl=http://packages.elastic.co/elasticsearch/2.x/centos
+gpgcheck=1
+gpgkey=http://packages.elastic.co/GPG-KEY-elasticsearch
+enabled=1
+
+$ yum makecache
+$ yum install elasticsearch
+
+$ service elasticsearch start
+
+$ vim /etc/elasticsearch/elasticsearch.yml
+http.port: 9200
+network.host: 0.0.0.0
+~~~
