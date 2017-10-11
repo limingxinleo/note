@@ -34,7 +34,7 @@ useradd elsearch -g elsearch
 curl http://localhost:9200/
 ~~~
 
-## Yum安装
+## Yum安装 ElasticSearch
 ~~~
 # 下载并安装ES的yum公钥
 $ rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch
@@ -56,4 +56,29 @@ $ service elasticsearch start
 $ vim /etc/elasticsearch/elasticsearch.yml
 http.port: 9200
 network.host: 0.0.0.0
+~~~
+
+## 安装Kibana
+~~~
+$ rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
+$ vim /etc/yum.repos.d/kibana.repo
+
+[kibana-5.x]
+name=Kibana repository for 5.x packages
+baseurl=https://artifacts.elastic.co/packages/5.x/yum
+gpgcheck=1
+gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
+enabled=1
+autorefresh=1
+type=rpm-md
+
+$ yum makecache
+$ yum install kibana
+
+$ service kibana start
+
+$ vim /etc/kibana/kibana.yml
+
+server.host: "0.0.0.0"
+
 ~~~
