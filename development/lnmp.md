@@ -119,6 +119,8 @@ pid = /var/opt/remi/php71/run/php-fpm/php-fpm.pid
 php-fpm
 或者
 service php-fpm start
+或者
+service php70-php-fpm start
 ~~~
 
 ### Reload php-fpm
