@@ -16,3 +16,7 @@ ALTER TABLE `table` ADD COLUMN `status` smallint(2) DEFAULT '1' COMMENT '状态'
 ALTER TABLE `table` ADD COLUMN `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '备注' AFTER `mobile`,
 ADD COLUMN `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '反馈类型' after `remark`;
 
+## 插入失败则更新
+## 这种方式更新，会使自增主键出现间隔
+INSERT INTO `user` (username,role_id) VALUES ('limx2',1) ON DUPLICATE KEY UPDATE role_id=role_id+1;
+
