@@ -20,4 +20,13 @@ sudo tee /etc/docker/daemon.json <<-'EOF'
 EOF
 sudo systemctl daemon-reload
 sudo systemctl restart docker
+
+# 安装Mysql
+docker pull mysql
+# Run
+docker run --name mysql --restart unless-stopped -p 3306:3306 -e MYSQL_ROOT_PASSWORD=910123 -d -v /mnt/mysql:/var/lib/mysql mysql
+# Stop
+docker stop mysql
+# Start
+docker start mysql
 ~~~
