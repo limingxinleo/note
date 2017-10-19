@@ -1,0 +1,18 @@
+[Unit]
+Description=Java Server
+After=network.target
+After=syslog.target
+
+[Service]
+Type=forking
+PIDFile=/app/xxx.pid
+Restart=always
+User=nginx
+Group=nginx
+
+ExecStart=/usr/bin/java java -jar xxx.jar -server -Xms2048m -Xmx2048m -Xmn400m -Xss256k -XX:PermSize=256m -XX:MaxPermSize=512m --spring.profiles.active=qa & echo $! > /app/xxx.pid
+ExecStop=/bin/kill $MAINPID
+ExecReload=/bin/kill -USR1 $MAINPID
+
+[Install]
+WantedBy=multi-user.target graphical.target
