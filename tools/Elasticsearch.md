@@ -82,3 +82,10 @@ $ vim /etc/kibana/kibana.yml
 server.host: "0.0.0.0"
 
 ~~~
+
+## Docker启动
+~~~
+docker run --name elasticsearch --restart unless-stopped -p 9200:9200 -p 9300:9300 \
+-v /mnt/elasticsearch/data:/usr/share/elasticsearch/data -e ES_JAVA_OPTS="-Xms128m -Xmx128m" \
+-e "discovery.type=single-node" -d elasticsearch
+~~~

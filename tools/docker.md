@@ -21,7 +21,7 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 
-# 安装Mysql
+# 安装
 docker pull mysql
 # Run
 docker run --name mysql --restart unless-stopped -p 3306:3306 -e MYSQL_ROOT_PASSWORD=910123 -d -v /mnt/mysql:/var/lib/mysql mysql
@@ -29,4 +29,8 @@ docker run --name mysql --restart unless-stopped -p 3306:3306 -e MYSQL_ROOT_PASS
 docker stop mysql
 # Start
 docker start mysql
+
+docker run --name elasticsearch --restart unless-stopped -p 9200:9200 -p 9300:9300 \
+-v /mnt/elasticsearch/data:/usr/share/elasticsearch/data -e ES_JAVA_OPTS="-Xms128m -Xmx128m" \
+-e "discovery.type=single-node" -d elasticsearch
 ~~~
