@@ -10,7 +10,10 @@ sh setup.sh
 安装完毕后建立软连接
 ln -s /opt/xunsearch/bin/xs-ctl.sh /usr/local/bin/xs-ctl
 
+# 开启
 xs-ctl -b inet start
+# 关闭
+xs-ctl -b inet stop
 ~~~
 
 ### 问题
