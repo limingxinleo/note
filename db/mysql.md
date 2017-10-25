@@ -37,4 +37,20 @@ OR     mysqldump [OPTIONS] --all-databases [OPTIONS]
 mysqldump -h 127.0.0.1 -u root -pxxx --databases db1 >> uat.sql
 ~~~
 
+### 字符型查询
+
+| 对象  | 类型 | 示例 |
+| ---------- | ---------- | -------- |
+| shop_no | string  | 0021 |
+
+~~~
+
+SELECT * FROM table WHERE shop_no = '0021'; // 能查到数据
+SELECT * FROM table WHERE shop_no = 0021; // 能查到数据
+SELECT * FROM table WHERE shop_no = 21; // 能查到数据
+SELECT * FROM table WHERE shop_no = '21'; // 不能查到数据
+
+~~~
+
+
 
