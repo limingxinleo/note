@@ -34,5 +34,5 @@ docker run --name elasticsearch --restart unless-stopped -p 9200:9200 -p 9300:93
 -v /mnt/elasticsearch/data:/usr/share/elasticsearch/data -e ES_JAVA_OPTS="-Xms128m -Xmx128m" \
 -e "discovery.type=single-node" -d elasticsearch
 
-docker run -p 6379:6379 -v /mnt/redis/data:/data  -d redis:3.2 redis-server --appendonly yes
+docker run --name mysql -p 6379:6379 -v /mnt/redis/data:/data  -d redis redis-server --appendonly yes
 ~~~
