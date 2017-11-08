@@ -1,7 +1,12 @@
 ### 国内镜像
-× 编辑~/.npmrc
+- 编辑~/.npmrc
 ~~~
 registry = https://registry.npm.taobao.org
+~~~
+
+- 配置修改
+~~~
+npm config set registry=http://registry.npm.taobao.org
 ~~~
 
 ### npm的镜像源管理工具
