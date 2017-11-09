@@ -206,17 +206,26 @@ stream {
 ~~~
 
 3. 编写配置 streams/demo.conf
+- max_conns=5 最大连接数
+- fail_timeout=30 在这个时间段中进行了多少次连接的尝试失败了，那么就认为是不可达了并标记不可达
+- max_fails=5 和上面是对应上的尝试失败次数。
+- backup 标记server为备用server
+- done 标记server不可用
+- slow_start=30 当server从不健康变成健康服务时，权重由0变为标准值的时间
+- zone [name] [size] 定义共享内存区域的名称和大小，该组存储组的配置和运行时状态是在进程之间共享的。
+
 ~~~
 upstream tcp_upstream_default {
-    server  127.0.0.1:12001;
-    server  127.0.0.1:12002;
+    zone upstream_dynamic 64k;
+    server  127.0.0.1:12001 weight=10 max_conns=4;
+    server  127.0.0.1:12002 weight=5 fail_timeout=30 max_fails=5;
 }
 
 server {
-    listen       		    12000;
-    proxy_connect_timeout 	5s;
-    proxy_timeout 		    30s;
-    proxy_pass          	tcp_upstream_default;
+    listen                      12000;
+    proxy_connect_timeout       5s;
+    proxy_timeout               30s;
+    proxy_pass                  tcp_upstream_default;
 }
 ~~~
 
