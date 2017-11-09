@@ -52,5 +52,12 @@ SELECT * FROM table WHERE shop_no = '21'; // 不能查到数据
 
 ~~~
 
+### 排序
+~~~
+SELECT * FROM table ORDER BY score DESC;
+如果表中score字段的重复率比较高，以上代码应该为一下SQL
+SELECT * FROM table ORDER BY score DESC, id DESC;
+~~~
+
 
 
