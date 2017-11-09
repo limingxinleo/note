@@ -183,6 +183,10 @@ timer:
 ~~~
 MAC:
 brew reinstall nginx-full --with-stream
+
+Linux:
+# yum源默认自带
+yum install nginx 
 ~~~
 
 2. 修改nginx.conf
