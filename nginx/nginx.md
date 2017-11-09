@@ -178,5 +178,43 @@ timer:
 ### PATH_INFO
 (http://www.nginx.cn/426.html)[http://www.nginx.cn/426.html]
 
+### TCP负载均衡
+1. 首先编译Nginx stream模块
+~~~
+MAC:
+brew reinstall nginx-full --with-stream
+~~~
+
+2. 修改nginx.conf
+~~~
+# 增加以下 具体配置放到同级streams下
+error_log  /Users/limx/Applications/runtime/nginx/error.log;
+
+stream {
+    log_format log_format_stream '$remote_addr [$time_local] '
+                 '$protocol $status $bytes_sent $bytes_received '
+                 '$session_time "$upstream_addr" '
+                 '"$upstream_bytes_sent" "$upstream_bytes_received" "$upstream_connect_time"';
+
+    access_log /Users/limx/Applications/runtime/nginx/tcp-access.log log_format_stream;
+    include streams/*.conf;
+}
+~~~
+
+3. 编写配置 streams/demo.conf
+~~~
+upstream tcp_upstream_default {
+    server  127.0.0.1:12001;
+    server  127.0.0.1:12002;
+}
+
+server {
+    listen       		    12000;
+    proxy_connect_timeout 	5s;
+    proxy_timeout 		    30s;
+    proxy_pass          	tcp_upstream_default;
+}
+~~~
+
 
 
