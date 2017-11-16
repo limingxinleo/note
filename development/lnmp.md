@@ -15,7 +15,7 @@ yum install vim
 ### 修改zsh主题
 ~~~
 vim /root/.zshrc
-修改 ZSH_THEME="bira"
+修改 ZSH_THEME="ys"
 ~~~
 
 ### 更换源Remi仓库
@@ -143,7 +143,7 @@ mv composer.phar /usr/local/bin/composer
 ~~~
 ### 修改composer国内镜像
 ~~~
-composer config -g repo.packagist composer https://packagist.phpcomposer.com
+composer config -g repo.packagist composer https://packagist.laravel-china.org
 ~~~
 ### 使用composer安装一个小项目
 * 新建项目
@@ -183,6 +183,6 @@ yum --enablerepo=remi install redis
 vim /etc/redis.conf
 requirepass yourpassword
 
-service redis-server start
+service redis start
 ~~~
 
