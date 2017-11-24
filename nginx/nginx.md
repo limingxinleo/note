@@ -276,5 +276,64 @@ $ nginx -V
 $ nginx -t
 ~~~
 
+* 配置 nginx.conf
+~~~
+rtmp {
+    include rtmp/*.conf;
+}
+~~~
+
+* 配置demo.conf
+vim rtmp/demo.conf
+~~~smartyconfig
+server {
+    listen 13001;
+    chunk_size 4096;
+    
+    application demo {
+        live on;
+        # record keyframes;
+        # record_path /tmp;
+        # record_max_size 128k;
+        # record_interval 30s;
+        # record_suffix .this.is.flv;
+        
+        # on_publish http://localhost:8080/publish;
+        # on_play http://localhost:8080/play;
+        # on_record_done http://localhost:8080/record_donw;
+    }
+}
+~~~
+
+* 配置http下rtmp_demo.conf
+~~~smartyconfig
+server {
+    listen 80;
+    server_name rtmp.demo.app;
+    
+    location /stat {
+        rtmp_stat all;
+        rtmp_stat_stylesheet stat.xsl;
+    }
+    
+    location /stat.xsl {
+        root /usr/local/share/rtmp-nginx-module;
+    }
+    
+    location / {
+        root /usr/local/share/rtmp-nginx-module/test/rtmp-publisher;
+    }
+}
+~~~
+
+* 直播测试
+~~~
+ffmpeg 模拟推流
+$ ffmpeg -re -i test.mp4 -f flv rtmp:127.0.0.1:13001/demo/test1
+mpv 模拟观看
+$ mpv rtmp://127.0.0.1:13001/demo/test1
+~~~
+
+
 
 
