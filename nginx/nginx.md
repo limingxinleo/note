@@ -290,7 +290,7 @@ server {
     listen 13001;
     chunk_size 4096;
     
-    application demo {
+    application rtmp {
         live on;
         # record keyframes;
         # record_path /tmp;
@@ -301,6 +301,17 @@ server {
         # on_publish http://localhost:8080/publish;
         # on_play http://localhost:8080/play;
         # on_record_done http://localhost:8080/record_donw;
+    }
+    
+    application hls {
+        live on;
+        hls on;
+        hls_path /Users/limx/Applications/runtime/rtmp/hls;
+        hls_fragment 10s;     #每个视频切片的时长。
+        hls_playlist_length 60s;  #总共可以回看的事件，这里设置的是1分钟。
+        #hls_continuous on; #连续模式。
+        #hls_cleanup on;    #对多余的切片进行删除。
+        #hls_nested on;     #嵌套模式。
     }
 }
 ~~~
@@ -320,18 +331,40 @@ server {
         root /usr/local/share/rtmp-nginx-module;
     }
     
+    location /hls {
+        types{
+            application/vnd.apple.mpegurl m3u8;
+            video/mp2t ts;
+        }
+        #alias /tmp/app;
+        root /Users/limx/Applications/runtime/rtmp;
+        expires -1;
+    }
+    
     location / {
         root /usr/local/share/rtmp-nginx-module/test/rtmp-publisher;
     }
 }
 ~~~
 
-* 直播测试
+* 直播测试 rtmp
 ~~~
 ffmpeg 模拟推流
-$ ffmpeg -re -i test.mp4 -f flv rtmp:127.0.0.1:13001/demo/test1
+$ ffmpeg -re -i test.mp4 -f flv rtmp:127.0.0.1:13001/rtmp/test1
 mpv 模拟观看
-$ mpv rtmp://127.0.0.1:13001/demo/test1
+$ mpv rtmp://127.0.0.1:13001/rtmp/test1
+~~~
+
+* 直播测试 hls
+~~~
+ffmpeg 模拟推流
+$ ffmpeg -re -i test.mp4 -f flv rtmp:127.0.0.1:13001/hls/test1
+
+H5
+<video autoplay webkit-playsinline>      
+    <source src="http://rtmp.demo.app/hls/test1.m3u8" type="application/vnd.apple.mpegurl" />      
+    <p class="warning">Your browser does not support HTML5 video.</p>   
+</video>
 ~~~
 
 
