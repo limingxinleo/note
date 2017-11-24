@@ -190,6 +190,8 @@ yum install nginx
 ~~~
 
 2. 修改nginx.conf
+> 低版本Nginx可能不支持stream下log_format
+
 ~~~
 # 增加以下 具体配置放到同级streams下
 error_log  /Users/limx/Applications/runtime/nginx/error.log;
@@ -217,7 +219,7 @@ stream {
 ~~~
 upstream tcp_upstream_default {
     zone upstream_dynamic 64k;
-    server  127.0.0.1:12001 weight=10 max_conns=4;
+    server  127.0.0.1:12001 weight=10;
     server  127.0.0.1:12002 weight=5 fail_timeout=30 max_fails=5;
 }
 
