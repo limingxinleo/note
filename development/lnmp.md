@@ -41,10 +41,26 @@ yum --enablerepo=remi install <package-name>
 ~~~
 
 ### 安装nginx
+* 修改Nginx源
+> 替换 “OS” 为 “rhel” 或 “centos”, depending on the distribution used, 
+> 替换 “OSRELEASE” 为 “6” 或 “7”, for 6.x or 7.x versions, respectively.
+
 ~~~
-yum --enablerepo=remi install nginx
+$ vim /etc/yum.repos.d/nginx.repo
+[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/OS/OSRELEASE/$basearch/
+gpgcheck=0
+enabled=1
+~~~
+
+* 安装
+~~~
+yum install nginx
+yum install nginx-all-modules
 service nginx start
 ~~~
+
 * 访问你的网站就能看到nginx的欢迎页面了。
 
 ### 安装mariadb
