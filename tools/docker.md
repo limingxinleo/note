@@ -9,6 +9,7 @@ docker inspect --format='{{.NetworkSettings.IPAddress}}' $CONTAINER_ID
 Centos
 ~~~
 yum install docker
+yum install docker-compose
 service docker start
 
 # 修改为国内镜像
@@ -53,7 +54,7 @@ If it's at a non-standard location, specify the URL with the DOCKER_HOST environ
 export DOCKER_HOST=/var/run/docker.sock
 ~~~
 
-#### 配置
+#### 配置docker-compose.yml
 1. Mysql
 ~~~yaml
 mysql:
