@@ -36,3 +36,58 @@ docker run --name elasticsearch --restart unless-stopped -p 9200:9200 -p 9300:93
 
 docker run --name redis --restart unless-stopped -p 6379:6379 -v /mnt/redis/data:/data  -d redis redis-server --appendonly yes
 ~~~
+
+
+### docker-compose
+
+#### 报错解决
+1. Couldn't connect to Docker daemon at http+docker://localunixsocket - is it running?
+~~~
+$ sudo docker-compose up -d
+
+ERROR: Couldn't connect to Docker daemon at http+docker://localunixsocket - is it running?
+
+If it's at a non-standard location, specify the URL with the DOCKER_HOST environment variable.
+
+# 解决：设置DOCKER_HOST，我的docker跑在sock上，所以按照如下设置
+export DOCKER_HOST=/var/run/docker.sock
+~~~
+
+#### 配置
+1. Mysql
+~~~yaml
+mysql:
+    image: mysql
+    environment:
+        MYSQL_ROOT_PASSWORD: 910123
+    ports:
+        - "3306:3306"
+    volumes:
+        - "/mnt/mysql:/var/lib/mysql"
+
+~~~
+
+2. Redis
+~~~yaml
+redis:
+    image: redis
+    ports:
+        - "6379:6379"
+    volumes:
+        - "/mnt/redis/data:/data"
+~~~
+
+3. elasticsearch
+~~~yaml
+elasticsearch:
+    image: elasticsearch
+    environment:
+        ES_JAVA_OPTS: "-Xms128m -Xmx128m"
+        discovery.type: "single-node"
+        network.host: "0.0.0.0"
+    ports:
+        - "9200:9200"
+        - "9300:9300"
+    volumes:
+        - "/mnt/elasticsearch/data:/usr/share/elasticsearch/data"
+~~~
