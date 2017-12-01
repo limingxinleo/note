@@ -106,7 +106,6 @@ kafka:
     environment:
         KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
         KAFKA_CREATE_TOPICS: "test:1:1"
-        KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     volumes:
         - /var/run/docker.sock:/var/run/docker.sock
 ~~~
