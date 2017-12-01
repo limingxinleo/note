@@ -92,3 +92,19 @@ elasticsearch:
     volumes:
         - "/mnt/elasticsearch/data:/usr/share/elasticsearch/data"
 ~~~
+
+4. kafka
+~~~yaml
+zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+        - "2181:2181"
+kafka:
+    image: wurstmeister/kafka
+    ports:
+        - "9092:9092"
+    environment:
+        KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
+        KAFKA_CREATE_TOPICS: "test:1:1"
+        KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+~~~
