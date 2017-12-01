@@ -8,6 +8,11 @@ ls | wc -w
 ps -e | grep php-fpm | wc -l
 ~~~
 
+### 某个端口是否被监听
+~~~
+lsof -i:8080
+~~~
+
 ### zsh 安装
 * CentOS
 ~~~
