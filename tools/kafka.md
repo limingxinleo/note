@@ -23,15 +23,15 @@ kafka:
 ## 使用
 - 查看所有已经创建好的topic
 ~~~
-kafka-topics --list --zookeeper localhost:2181
+kafka-topics.sh --list --zookeeper localhost:2181
 ~~~
 
 - 生产命令
 ~~~
-kafka-console-producer --broker-list localhost:9092 --topic test
+kafka-console-producer.sh --broker-list localhost:9092 --topic test
 ~~~
 
 - 消费命令
 ~~~
-kafka-console-consumer --bootstrap-server localhost:9092 --topic test1 --from-beginning
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
 ~~~
