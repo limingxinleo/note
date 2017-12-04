@@ -23,7 +23,7 @@ kafka:
 ## 使用
 - 查看所有已经创建好的topic
 ~~~
-kafka-topics.sh --list --zookeeper localhost:2181
+kafka-topics.sh --list --zookeeper zookeeper:2181
 ~~~
 
 - 生产命令
