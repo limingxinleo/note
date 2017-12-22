@@ -367,6 +367,20 @@ H5
 </video>
 ~~~
 
+### 静态资源配置
+~~~
+location ~ \.(gif|jpg|png|htm|html|css|js|flv|ico|swf)$ {
+    # proxy_pass http://appserver;
+    # proxy_redirect off;
+    # proxy_set_header Host $host;
+    # proxy_cache cache_one;
+    # proxy_cache_valid 200 302 1h;
+    # proxy_cache_valid 301 1d;
+    # proxy_cache_valid any 1m;
+    expires 30d;
+}
+~~~
+
 
 
 
