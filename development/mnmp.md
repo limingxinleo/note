@@ -69,6 +69,15 @@ sudo nginx
 * 打开浏览器输入127.0.0.1:8080就能看到nginx的欢迎界面了
 
 ### 配置Nginx
+* 修改nginx.conf
+~~~
+cd /usr/local/etc/nginx
+vim nginx.conf
+
+user limx staff; # user 用户 用户组
+~~~
+
+* 增加server配置
 ~~~
 cd /usr/local/etc/nginx/servers
 ~~~
