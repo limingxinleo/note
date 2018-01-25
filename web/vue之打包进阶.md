@@ -1,10 +1,3 @@
----
-title: vue-cli 打包vendor大如何处理
-date: 2018-01-25 15:16:46
-categories: "前端之巅"
-tags: '前端'
----
-
 ## vue-cli 打包vendor大如何处理
 
 在写admin的时候[项目地址](https://github.com/missxiaolin/vue-admin)

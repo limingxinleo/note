@@ -1,10 +1,3 @@
----
-title: vue 模块化开发(二)
-date: 2017-09-17 09:16:46
-categories: "前端之巅"
-tags: '前端'
----
-
 ## vue组件化开发
 
 better-scroll 是一个移动端滚动的解决方案，它是基于 iscroll 的重写，它和 iscroll 的主要区别在这里。better-scroll 也很强大，不仅可以做普通的滚动列表，还可以做轮播图、picker 等等。

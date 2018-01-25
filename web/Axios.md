@@ -1,10 +1,3 @@
----
-title: Axios
-date: 2017-12-01 15:16:46
-categories: "前端之巅"
-tags: '前端'
----
-
 ## 详解
 
 Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。

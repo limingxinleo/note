@@ -1,10 +1,3 @@
----
-title: require
-date: 2017-03-11 15:16:46
-categories: "前端之巅"
-tags: '前端'
----
-
 ### 原始写法
 
 ~~~

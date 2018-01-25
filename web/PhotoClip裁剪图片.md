@@ -1,10 +1,3 @@
----
-title: PhotoClip裁剪图片
-date: 2017-03-29 9:16:46
-categories: "前端之巅"
-tags: 'php'
----
-
 ### PhotoClip裁剪图片
 
 下载地址[PhotoClip裁剪图片](https://github.com/baijunjie/PhotoClip.js)

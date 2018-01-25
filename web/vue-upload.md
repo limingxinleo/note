@@ -1,10 +1,3 @@
----
-title: vue上传图片
-date: 2017-08-15 15:16:46
-categories: "前端之巅"
-tags: '前端'
----
-
 [vue-core-image-upload](https://github.com/Vanthink-UED/vue-core-image-upload)
 
 

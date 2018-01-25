@@ -1,10 +1,3 @@
----
-title: Swiper
-date: 2017-03-11 15:16:46
-categories: "前端之巅"
-tags: '前端'
----
-
 ### Swiper框架[可达到效果](http://www.weikecj.cn/template.jsp)
 
 - Swiper是纯javascript打造的滑动特效插件，面向手机、 平板电脑等移动终端。

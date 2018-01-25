@@ -1,10 +1,3 @@
----
-title: 移动端user-scalable=no失效
-date: 2017-12-27 15:16:46
-categories: "前端之巅"
-tags: '前端'
----
-
 ## 移动端某些浏览器禁止双指缩放(user-scalable=no)失效的解决方案
 
 ### 做移动端开发，给页面头部添加了meta标签，并添加了user-scalable=no属性禁止双指或双击放大：

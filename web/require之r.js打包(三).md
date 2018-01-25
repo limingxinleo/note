@@ -1,10 +1,3 @@
----
-title: requirejs压缩工具r.js打包（三）
-date: 2017-09-13 10:22:22
-categories: "前端之巅"
-tags: '前端'
----
-
 ## npm
 
 - npm 全名为Node Package Manager，是Node.js 的套件（package）管理工具，类似Perl 的ppm 或PHP 的PEAR 等。安装npm 后，使用npm install module name 指令即可安装新套件，维护管理套件的工作会更加轻松。
