@@ -96,14 +96,14 @@ mysql> grant all on *.* to limx@'%' identified by 'LoveYi@521'
 ~~~
 #7.0
 yum --enablerepo=remi install php70 php70-php-fpm php70-php-gd php70-php-pdo php70-php-mysql php70-php-xml php70-php-mbstring php70-php-phalcon php70-php-zip php70-php-opcache
-yum --enablerepo=remi install php70-php-redis php70-php-swoole
+yum --enablerepo=remi install php70-php-redis php70-php-swoole php70-php-process
 
 ln -s /usr/bin/php70 /usr/local/bin/php
 ln -s /opt/remi/php70/root/sbin/php-fpm /usr/local/sbin/php-fpm
 
 #7.1
 yum --enablerepo=remi install php71 php71-php-fpm php71-php-gd php71-php-pdo php71-php-mysql php71-php-xml php71-php-mbstring php71-php-phalcon php71-php-zip php71-php-opcache
-yum --enablerepo=remi install php71-php-redis php71-php-swoole
+yum --enablerepo=remi install php71-php-redis php71-php-swoole php71-php-process
 
 ln -s /usr/bin/php71 /usr/local/bin/php
 ln -s /opt/remi/php71/root/sbin/php-fpm /usr/local/sbin/php-fpm
