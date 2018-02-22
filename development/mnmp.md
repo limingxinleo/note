@@ -20,7 +20,7 @@ brew install php70 --with-homebrew-curl
 
 ### 安装部分扩展
 ~~~
-brew install php70-swoole php70-redis php70-phalcon php70-opcache
+brew install php70-swoole php70-redis php70-phalcon php70-opcache php70-mongodb
 ~~~
 
 ### 验证是否正确安装
