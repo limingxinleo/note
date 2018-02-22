@@ -12,9 +12,7 @@ vim ~/.zshrc
 ~~~
 
 ### brew 安装php
-~~~
-brew tap homebrew/dupes  
-brew tap homebrew/versions  
+~~~ 
 brew tap homebrew/homebrew-php  
 
 brew install php70 --with-homebrew-curl
