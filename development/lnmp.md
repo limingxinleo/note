@@ -86,7 +86,8 @@ $ service mysqld start
 $ grep 'temporary password' /var/log/mysqld.log
 
 mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'LoveYi@521';
-mysql> grant all on *.* to limx@'%' identified by 'LoveYi@521'
+mysql> grant all on *.* to limx@'%' identified by 'LoveYi@521';
+mysql> FLUSH PRIVILEGES;
 ~~~
 
 
