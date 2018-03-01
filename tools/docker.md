@@ -39,6 +39,10 @@ docker run --name elasticsearch --restart unless-stopped -p 9200:9200 -p 9300:93
 -e "discovery.type=single-node" -d elasticsearch
 
 docker run --name redis --restart unless-stopped -p 6379:6379 -v /mnt/redis/data:/data  -d redis redis-server --appendonly yes
+
+# jenkins
+chown -R 1000:1000 /mnt/jenkins/
+docker run --restart unless-stopped -p 8080:8080 -p 50000:50000 --name jenkins -v /mnt/jenkins:/var/jenkins_home -d jenkins
 ~~~
 
 
@@ -114,4 +118,16 @@ kafka:
         KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
     volumes:
         - /var/run/docker.sock:/var/run/docker.sock
+~~~
+
+5. jenkins
+~~~yaml
+jenkins:
+    image: jenkins
+    restart: unless-stopped
+    ports:
+        - "8080:8080"
+        - "50000:50000"
+    volumes:
+        - /Users/limx/runtime/jenkins:/var/jenkins_home
 ~~~
