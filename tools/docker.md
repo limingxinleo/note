@@ -5,6 +5,11 @@
 docker inspect --format='{{.NetworkSettings.IPAddress}}' $CONTAINER_ID
 ~~~
 
+### 进入容器
+~~~
+docker exec -it name /bin/bash
+~~~
+
 
 ### Linux 安装
 [阿里云国内镜像](https://cr.console.aliyun.com/?spm=5176.2020520152.210.d103.5dbcab35Pfdw0h#/accelerator)
@@ -41,8 +46,17 @@ docker run --name elasticsearch --restart unless-stopped -p 9200:9200 -p 9300:93
 docker run --name redis --restart unless-stopped -p 6379:6379 -v /mnt/redis/data:/data  -d redis redis-server --appendonly yes
 
 # jenkins
+docker pull jenkins
 chown -R 1000:1000 /mnt/jenkins/
 docker run --restart unless-stopped -p 8080:8080 -p 50000:50000 --name jenkins -v /mnt/jenkins:/var/jenkins_home -d jenkins
+
+# jenkins php
+$ docker pull limingxinleo/jenkins-php-docker
+$ useradd jenkins
+$ chown -R jenkins:jenkins /mnt/jenkins/
+$ docker run --restart unless-stopped -p 8080:8080 -p 50000:50000 --name jenkins \
+-e "PATH=/home/jenkins/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" \
+-v "/mnt/jenkins:/var/jenkins_home" -d limingxinleo/jenkins-php-docker
 ~~~
 
 
