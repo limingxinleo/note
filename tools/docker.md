@@ -10,6 +10,13 @@ docker inspect --format='{{.NetworkSettings.IPAddress}}' $CONTAINER_ID
 docker exec -it name /bin/bash
 ~~~
 
+### 映射
+~~~
+# --link选项的值的格式为：想要链接到的容器的名字:为想要链接到的容器取的内部别名。别名可以任意取，主要用于网络配置的解析。
+--link db:db
+# 宿主机端口:容器内部端口
+-p 9200:9200
+~~~
 
 ### Linux 安装
 [阿里云国内镜像](https://cr.console.aliyun.com/?spm=5176.2020520152.210.d103.5dbcab35Pfdw0h#/accelerator)
