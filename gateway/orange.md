@@ -7,6 +7,10 @@
 ~~~
 git clone https://github.com/forkgroup/docker-orange.git
 cd docker-orange
+# 修改Mysql Columes映射
+vim docker-compose.yml 
+# 修改是否第一次构建
+vim Dockerfile
 # 启动脚本
 docker-compose up
 ~~~
