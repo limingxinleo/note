@@ -10,7 +10,7 @@ cd docker-orange
 # 修改Mysql Columes映射
 vim docker-compose.yml 
 # 修改是否第一次构建
-vim Dockerfile
+vim docker-entrypoint.sh
 # 启动脚本
 docker-compose up
 ~~~
