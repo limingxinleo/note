@@ -14,6 +14,8 @@ $ createdb kong -O kong -E UTF8 -e
 
 ### GUI
 [konga](https://github.com/pantsel/konga)
+[CLI](https://github.com/limingxinleo/kong-phalcon)
+
 ~~~
 git clone https://github.com/pantsel/konga.git
 cd konga
