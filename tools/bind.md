@@ -49,4 +49,8 @@ service named reload
 vim /etc/resolv.conf
 增加以下代码
 nameserver your_dns_ip
+
+# 测试
+# 在客户端服务器上 ping以下
+ping test.coding.xin
 ~~~
