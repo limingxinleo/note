@@ -381,6 +381,17 @@ location ~ \.(gif|jpg|png|htm|html|css|js|flv|ico|swf)$ {
 }
 ~~~
 
+### 错误页面
+~~~smartyconfig
+server {
+    error_page 413 = @d413;
+    location @d413 {
+        default_type application/json;
+        return 200 '{"status":"error","result":{"error_msg":"内容太长了","error_code":""}}';
+    }
+}
+~~~
+
 
 
 
