@@ -59,8 +59,16 @@ expect eof
 ~~~bash
 #!/bin/sh
 ipAddress=172.17.167.38
-  ssh -tt  root@$ipAddress -p 22  << remotessh
+ssh -tt root@$ipAddress -p 22  << remotessh
   source /shell/backup.sh
   exit
 remotessh
+~~~
+
+~~~bash
+#!/usr/bin/env bash
+ssh -i /var/jenkins_home/.ssh/id_rsa -tt root@172.17.0.1 "cd /www/limx/el-user && \
+git pull && \
+composer update --no-dev --prefer-dist -o && \
+service el.user restart"
 ~~~
