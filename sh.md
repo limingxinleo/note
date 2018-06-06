@@ -54,3 +54,13 @@ expect #
 send "exit\n"
 expect eof
 ~~~
+
+### 登录服务器并执行脚本
+~~~bash
+#!/bin/sh
+ipAddress=172.17.167.38
+  ssh -tt  root@$ipAddress -p 22  << remotessh
+  source /shell/backup.sh
+  exit
+remotessh
+~~~
