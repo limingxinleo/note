@@ -108,3 +108,9 @@ vim /etc/motd
 echo $PATH
 可以看到所有的PATH目录，脚本加载顺序便是按照这个顺序，逐个查找，一旦找到，则运行
 ~~~
+
+### 杀掉某些进程
+~~~
+# 进程名假设为 swoft
+ps aux | grep swoft | awk '{print $2}' | xargs kill -9
+~~~
