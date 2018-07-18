@@ -95,40 +95,35 @@ mysql> FLUSH PRIVILEGES;
 > 这里只安装一部分常用的扩展，其他扩展可以自行安装
 
 ~~~
-#7.0
-yum --enablerepo=remi install php70 php70-php-fpm php70-php-gd php70-php-pdo php70-php-mysql php70-php-xml php70-php-mbstring php70-php-phalcon php70-php-zip php70-php-opcache
-yum --enablerepo=remi install php70-php-redis php70-php-pecl-swoole2 php70-php-process
+#7.2
+yum --enablerepo=remi install php72 php72-php-devel php72-php-fpm php72-php-gd php72-php-pdo php72-php-mysql php72-php-xml php72-php-mbstring php72-php-phalcon php72-php-zip php72-php-opcache
+yum --enablerepo=remi install php72-php-redis php72-php-pecl-swoole2 php72-php-process php72-php-pecl-mongodb
 
-ln -s /usr/bin/php70 /usr/local/bin/php
-ln -s /opt/remi/php70/root/sbin/php-fpm /usr/local/sbin/php-fpm
-
-#7.1
-yum --enablerepo=remi install php71 php71-php-fpm php71-php-gd php71-php-pdo php71-php-mysql php71-php-xml php71-php-mbstring php71-php-phalcon php71-php-zip php71-php-opcache
-yum --enablerepo=remi install php71-php-redis php71-php-pecl-swoole2 php71-php-process php71-php-pecl-mongodb
-
-ln -s /usr/bin/php71 /usr/local/bin/php
-ln -s /opt/remi/php71/root/sbin/php-fpm /usr/local/sbin/php-fpm
+ln -s /usr/bin/php72 /usr/local/bin/php
+ln -s /opt/remi/php72/root/bin/phpize /usr/local/bin/phpize
+ln -s /opt/remi/php72/root/bin/php-config /usr/local/bin/php-config
+ln -s /opt/remi/php72/root/sbin/php-fpm /usr/local/sbin/php-fpm
 ~~~
 
 ### 修改php-fpm组合用户
 ~~~
-vim /etc/opt/remi/php70/php-fpm.d/www.conf
+vim /etc/opt/remi/php72/php-fpm.d/www.conf
 user = nginx
 group = nginx
 ~~~
 
 ### 修改php权限
 ~~~
-cd /var/opt/remi/php71/lib/php
+cd /var/opt/remi/php72/lib/php
 # chown -R 用户:组 *
 chown -R root:nginx *
 ~~~
 
 ### php-fpm 配置
 ~~~
-vim /etc/opt/remi/php71/php-fpm.conf
+vim /etc/opt/remi/php72/php-fpm.conf
 daemonize = yes
-pid = /var/opt/remi/php71/run/php-fpm/php-fpm.pid
+pid = /var/opt/remi/php72/run/php-fpm/php-fpm.pid
 ~~~
 
 ### 启动php-fpm
@@ -137,13 +132,13 @@ php-fpm
 或者
 service php-fpm start
 或者
-service php70-php-fpm start
+service php72-php-fpm start
 ~~~
 
 ### Reload php-fpm
 ~~~
 kill -USR2 `cat /usr/local/var/run/php-fpm.pid`
-kill -USR2 `cat /var/opt/remi/php71/run/php-fpm/php-fpm.pid`
+kill -USR2 `cat /var/opt/remi/php72/run/php-fpm/php-fpm.pid`
 ~~~
 
 ### 安装composer
