@@ -59,6 +59,8 @@ enabled=1
 yum install nginx
 yum install nginx-all-modules
 service nginx start
+# 开机自启动
+systemctl enable nginx.service
 ~~~
 
 * 访问你的网站就能看到nginx的欢迎页面了。
@@ -91,7 +93,7 @@ mysql> FLUSH PRIVILEGES;
 ~~~
 
 
-### 安装php70
+### 安装php72
 > 这里只安装一部分常用的扩展，其他扩展可以自行安装
 
 ~~~
@@ -99,9 +101,9 @@ mysql> FLUSH PRIVILEGES;
 yum --enablerepo=remi install php72 php72-php-devel php72-php-fpm php72-php-gd php72-php-pdo php72-php-mysql php72-php-xml php72-php-mbstring php72-php-phalcon php72-php-zip php72-php-opcache
 yum --enablerepo=remi install php72-php-redis php72-php-pecl-swoole4 php72-php-process php72-php-pecl-mongodb
 
-ln -s /usr/bin/php72 /usr/local/bin/php
-ln -s /opt/remi/php72/root/bin/phpize /usr/local/bin/phpize
-ln -s /opt/remi/php72/root/bin/php-config /usr/local/bin/php-config
+ln -s /usr/bin/php72 /usr/local/bin/php && \
+ln -s /opt/remi/php72/root/bin/phpize /usr/local/bin/phpize && \
+ln -s /opt/remi/php72/root/bin/php-config /usr/local/bin/php-config && \
 ln -s /opt/remi/php72/root/sbin/php-fpm /usr/local/sbin/php-fpm
 ~~~
 
@@ -133,6 +135,8 @@ php-fpm
 service php-fpm start
 或者
 service php72-php-fpm start
+# 开机自启动
+systemctl enable php72-php-fpm.service
 ~~~
 
 ### Reload php-fpm
