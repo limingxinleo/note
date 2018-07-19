@@ -34,3 +34,13 @@ Are you sure you want to continue connecting (yes/no)? yes
 将 StrictHostKeyChecking ask 修改为 StrictHostKeyChecking no 并删除前面的注释符
 这个选项会自动的把 想要登录的机器的SSH pub key 添加到 /root/.ssh/know_hosts 中。
 ~~~
+
+### 非root账号登录
+~~~
+su - www
+ssh-keygen
+# 将Jenkins的key添加到这里
+vim echo yourpubkey ~/.ssh/authorized_keys
+# 调整权限，否则免登会失效
+chmod g-w ~/.ssh/authorized_keys
+~~~
