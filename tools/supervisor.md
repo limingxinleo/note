@@ -54,3 +54,23 @@ directory               = /_html/html/phalcon/demo
 process_name            = %(program_name)s
 user                    = nginx
 ~~~
+
+### swoft使用示例
+~~~
+[group:swoft]
+programs=swoft_queue
+
+;通用消息队列脚本
+[program:swoft_queue]
+command = bin/swoft queue:handle
+autorestart = true
+redirect_stderr = true
+stopsignal = QUIT
+stdout_logfile = /data/logs/supervisor-swoft-queue.log
+stdout_logfile_maxbytes = 500MB
+stdout_logfile_backups = 5
+stdout_capture_maxbytes = 1MB
+stdout_events_enabled = false
+loglevel = warn
+user = www
+~~~
