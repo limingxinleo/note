@@ -97,3 +97,9 @@ sudo vim /etc/hosts
 
 ### 查看效果
 打开浏览器输入http://demo.app 即可看到效果
+
+### 编译Swoole示例
+~~~
+./configure --enable-async-redis --enable-mysqlnd --enable-openssl --enable-http2 --with-openssl-dir=/usr/local/Cellar/openssl@1.1/1.1.0
+make
+~~~
