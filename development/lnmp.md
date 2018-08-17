@@ -99,7 +99,7 @@ mysql> FLUSH PRIVILEGES;
 ~~~
 #7.2
 yum --enablerepo=remi install php72 php72-php-devel php72-php-fpm php72-php-gd php72-php-pdo php72-php-mysql php72-php-xml php72-php-mbstring php72-php-phalcon php72-php-zip php72-php-opcache
-yum --enablerepo=remi install php72-php-redis php72-php-pecl-swoole4 php72-php-process php72-php-pecl-mongodb
+yum --enablerepo=remi install php72-php-redis php72-php-pecl-swoole4 php72-php-process php72-php-pecl-mongodb php72-php-bcmath
 
 ln -s /usr/bin/php72 /usr/local/bin/php && \
 ln -s /opt/remi/php72/root/bin/phpize /usr/local/bin/phpize && \
