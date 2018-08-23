@@ -392,6 +392,20 @@ server {
 }
 ~~~
 
+### access日志常用格式
+~~~
+log_format  main  '$remote_addr - $remote_user [$time_local] '
+      'fwf[$http_x_forwarded_for] tip[$http_true_client_ip] '
+      '[$upstream_addr] [$upstream_response_time] [$request_time] '
+      '$http_host "$request" '
+      '"$status" $body_bytes_sent "$http_referer" '
+      '"$http_accept_language" "$http_user_agent" ';
+~~~
 
-
+### error日志格式
+~~~
+YYYY/MM/DD HH:MM:SS [LEVEL] PID#TID: *CID MESSAGE
+# 对应正则
+(\d+\/\d+\/\d+\s\S+)\s\[(\w+)\]\s(\d+)#(\d+):\s\*(\d+)\s(.*)
+~~~
 
