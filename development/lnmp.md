@@ -77,18 +77,27 @@ mysql_secure_installation
 ~~~
 
 ### 安装mysql 如果remi没有mysql源可以使用下列方法
+
+配置源
 ~~~
-[centos7]$ yum localinstall  http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm
-[centos7]$ yum install mysql-community-server
-[centos7]$ yum install mysql-community-devel
-[centos6]$ yum localinstall http://dev.mysql.com/get/mysql57-community-release-el6-8.noarch.rpm
-[centos6]$ yum install mysql-community-server
-[centos6]$ yum install mysql-community-devel
+$ vim /etc/yum.repos.d/mysql57.repo
+
+[mysql57-community]
+name=MySQL 5.7 Community Server
+baseurl=http://repo.mysql.com/yum/mysql-5.7-community/el/7/$basearch/
+enabled=1
+gpgcheck=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+~~~
+
+安装
+~~~
+$ yum install mysql-community-server
 $ service mysqld start
 $ grep 'temporary password' /var/log/mysqld.log
 
-mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'LoveYi@521';
-mysql> grant all on *.* to limx@'%' identified by 'LoveYi@521';
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'Swoft@521';
+mysql> grant all on *.* to limx@'%' identified by 'Swoft@521';
 mysql> FLUSH PRIVILEGES;
 ~~~
 
