@@ -116,6 +116,8 @@ ln -s /opt/remi/php72/root/bin/php-config /usr/local/bin/php-config && \
 ln -s /opt/remi/php72/root/sbin/php-fpm /usr/local/sbin/php-fpm
 ~~~
 
+> swoole 自己编译安装时，需要gcc版本高于5.
+
 ### 修改php-fpm组合用户
 ~~~
 vim /etc/opt/remi/php72/php-fpm.d/www.conf
