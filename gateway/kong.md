@@ -15,22 +15,23 @@ $ createdb kong -O kong -E UTF8 -e
 ### GUI
 [konga](https://github.com/pantsel/konga)
 [CLI](https://github.com/limingxinleo/kong-phalcon)
+[dashboard](https://github.com/PGBI/kong-dashboard)
 
 ~~~
-git clone https://github.com/pantsel/konga.git
-cd konga
-npm install
-npm start (npm run production)
+docker run -d --name kong-dashboard --rm -p 8080:8080 pgbi/kong-dashboard start \
+  --kong-url http://kong:8001 \
+  --basic-auth user1=password1 user2=password2
 ~~~
 
 ### Centos 安装
 ~~~
 wget https://bintray.com/kong/kong-community-edition-rpm/rpm -O bintray-kong-kong-community-edition-rpm.repo
 # 修改baseurl为 baseurl=https://kong.bintray.com/kong-community-edition-rpm/centos/7
+vim bintray-kong-kong-community-edition-rpm.repo
 mv bintray-kong-kong-community-edition-rpm.repo /etc/yum.repos.d/
 yum install epel-release
 yum install kong-community-edition
-cp /etc/kong/kong.conf.defaul /etc/kong/kong.conf
+cp /etc/kong/kong.conf.default /etc/kong/kong.conf
 
 # 安装PostgreSQL
 yum install https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-7-x86_64/pgdg-centos10-10-2.noarch.rpm
@@ -47,9 +48,16 @@ local   all             all                                     trust
 host    all             all             127.0.0.1/32            trust
 host    all             all             ::1/128                 trust
 
+# 重启数据库
+systemctl start postgresql-10
+
 # 启动Kong
 kong migrations up -c /etc/kong/kong.conf
 kong start -c /etc/kong/kong.conf
+
+# 当局域网使用postgresql，连不上时
+vim /var/lib/pgsql/10/data/postgresql.conf
+listen_addresses = '*'
 ~~~
 
 ### MAC使用
