@@ -17,9 +17,10 @@ LABEL maintainer="limx <limingxin@swoft.org>" version="1.0"
 # ---------- env settings ----------
 ##
 ENV HIREDIS_VERSION=0.13.3 \
-    SWOOLE_VERSION=4.2.5 \
+    SWOOLE_VERSION=4.2.6 \
     MONGO_VERSION=1.5.2 \
     CPHALCON_VERSION=3.4.1 \
+    SWOFT_DOCKER=true \
     #  install and remove building packages
     PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7-dev php7-pear pkgconf re2c pcre-dev zlib-dev"
 
@@ -63,7 +64,7 @@ RUN set -ex \
         && ( \
             cd swoole \
             && phpize \
-            && ./configure --enable-async-redis --enable-mysqlnd --enable-openssl \
+            && ./configure --enable-mysqlnd --enable-openssl \
             && make -j$(nproc) && make install \
         ) \
         && rm -r swoole \
@@ -79,14 +80,18 @@ RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
     && composer self-update --clean-backups
 
-COPY . /opt/www/swoft
+COPY . /opt/www
 
-WORKDIR /opt/www/swoft
+WORKDIR /opt/www
 
 RUN composer install --no-dev \
     && composer dump-autoload -o \
-    && php /opt/www/swoft/bin/swoft app:init
+    && php /opt/www/bin/swoft app:init
+
+RUN touch /opt/www/runtime/logs/swoft.log /opt/www/runtime/logs/error.log \
+    && ln -sf /dev/stdout /opt/www/runtime/logs/swoft.log \
+    && ln -sf /dev/stderr /opt/www/runtime/logs/error.log
 
 EXPOSE 8080 8099
 
-ENTRYPOINT ["php", "/opt/www/swoft/bin/swoft", "start"]
+ENTRYPOINT ["php", "/opt/www/bin/swoft", "start"]
