@@ -20,7 +20,7 @@ ENV HIREDIS_VERSION=0.13.3 \
     SWOOLE_VERSION=4.2.6 \
     MONGO_VERSION=1.5.2 \
     CPHALCON_VERSION=3.4.1 \
-    SWOFT_DOCKER=true \
+    DOCKER_ENVIRONMENT=true \
     #  install and remove building packages
     PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7-dev php7-pear pkgconf re2c pcre-dev zlib-dev"
 
@@ -36,7 +36,7 @@ RUN set -ex \
         && ls -alh \
         && apk update \
         # for swoole extension libaio linux-headers
-        && apk add --no-cache libstdc++ openssl php7-xml php7-pcntl git bash \
+        && apk add --no-cache libstdc++ openssl php7-xml php7-pcntl php7-gd git bash \
         && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev \
         # php extension: mongodb
         && pecl install mongodb.tgz \
@@ -87,10 +87,6 @@ WORKDIR /opt/www
 RUN composer install --no-dev \
     && composer dump-autoload -o \
     && php /opt/www/bin/swoft app:init
-
-RUN touch /opt/www/runtime/logs/swoft.log /opt/www/runtime/logs/error.log \
-    && ln -sf /dev/stdout /opt/www/runtime/logs/swoft.log \
-    && ln -sf /dev/stderr /opt/www/runtime/logs/error.log
 
 EXPOSE 8080 8099
 
