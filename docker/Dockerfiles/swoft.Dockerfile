@@ -17,8 +17,7 @@ LABEL maintainer="limx <limingxin@swoft.org>" version="1.0"
 # ---------- env settings ----------
 ##
 ENV HIREDIS_VERSION=0.13.3 \
-    SWOOLE_VERSION=4.2.6 \
-    MONGO_VERSION=1.5.2 \
+    SWOOLE_VERSION=4.2.7 \
     CPHALCON_VERSION=3.4.1 \
     DOCKER_ENVIRONMENT=true \
     #  install and remove building packages
@@ -31,19 +30,15 @@ RUN set -ex \
         && cd /tmp \
         && curl -SL "https://github.com/redis/hiredis/archive/v${HIREDIS_VERSION}.tar.gz" -o hiredis.tar.gz \
         && curl -SL "https://github.com/swoole/swoole-src/archive/v${SWOOLE_VERSION}.tar.gz" -o swoole.tar.gz \
-        && curl -SL "http://pecl.php.net/get/mongodb-${MONGO_VERSION}.tgz" -o mongodb.tgz \
         && curl -SL "https://github.com/phalcon/cphalcon/archive/v${CPHALCON_VERSION}.zip" -o cphalcon.zip \
         && ls -alh \
         && apk update \
         # for swoole extension libaio linux-headers
-        && apk add --no-cache libstdc++ openssl php7-xml php7-pcntl php7-gd git bash \
+        && apk add --no-cache libstdc++ openssl php7-xml php7-xmlreader php7-xmlwriter php7-pcntl php7-gd git bash \
         && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev \
-        # php extension: mongodb
-        && pecl install mongodb.tgz \
-        && echo "extension=mongodb.so" > /etc/php7/conf.d/mongodb.ini \
         # php extension: phalcon
         && cd /tmp \
-        && unzip cphalcon.zip \
+        && unzip -q cphalcon.zip \
         && rm cphalcon.zip \
         && ( \
             cd cphalcon-${CPHALCON_VERSION}/build \
@@ -65,11 +60,12 @@ RUN set -ex \
             cd swoole \
             && phpize \
             && ./configure --enable-mysqlnd --enable-openssl \
-            && make -j$(nproc) && make install \
+            && make -s -j$(nproc) && make install \
         ) \
         && rm -r swoole \
         && echo "extension=swoole.so" > /etc/php7/conf.d/swoole.ini \
         && php -v \
+        && php -m \
         # ---------- clear works ----------
         && apk del .build-deps \
         && rm -rf /var/cache/apk/* /tmp/* /usr/share/man \
