@@ -12,3 +12,8 @@ docker exec -it name /bin/bash
 # 宿主机端口:容器内部端口
 -p 9200:9200
 ~~~
+
+## RabbitMQ
+~~~
+docker run -d --restart=always --name rabbitmq -p 4369:4369 -p 5672:5672 -p 15672:15672 -p 25672:25672 -v /opt/lib/rabbitmq:/var/lib/rabbitmq rabbitmq:management-alpine
+~~~
