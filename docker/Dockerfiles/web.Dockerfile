@@ -12,7 +12,7 @@ WORKDIR /usr/src/build
 RUN yarn \
     && yarn run build \
     && rm -rf /usr/local/share/.cache/yarn \
-    && mv /usr/src/build/build /usr/src/app/dist \
+    && mv /usr/src/build/dist /usr/src/app/dist \
     && mv /usr/src/build/index.js /usr/src/app \
     && rm -rf /usr/src/build
 WORKDIR /usr/src/app
