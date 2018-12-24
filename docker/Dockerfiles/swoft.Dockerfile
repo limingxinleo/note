@@ -25,16 +25,14 @@ RUN set -ex \
     && apk update \
     # for swoole extension libaio linux-headers
     && apk add --no-cache libstdc++ openssl php7-xml php7-xmlreader php7-xmlwriter php7-pcntl git bash \
-    && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev
+    && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev \
 
-# download
-RUN set -ex \
+    # download
     && cd /tmp \
     && curl -SL "https://github.com/swoole/swoole-src/archive/v${SWOOLE_VERSION}.tar.gz" -o swoole.tar.gz \
-    && ls -alh
+    && ls -alh \
 
-# php extension:swoole
-RUN set -ex \
+    # php extension:swoole
     && cd /tmp \
     && mkdir -p swoole \
     && tar -xf swoole.tar.gz -C swoole --strip-components=1 \
@@ -44,17 +42,15 @@ RUN set -ex \
         && ./configure --enable-mysqlnd --enable-openssl \
         && make -s -j$(nproc) && make install \
     ) \
-    && echo "extension=swoole.so" > /etc/php7/conf.d/swoole.ini
+    && echo "extension=swoole.so" > /etc/php7/conf.d/swoole.ini \
 
-# install composer
-RUN set -ex \
+    # install composer
     && cd /tmp \
     && curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
-    && composer self-update --clean-backups
+    && composer self-update --clean-backups \
 
-# clear
-RUN set -ex \
+    # clear
     && php -v \
     && php -m \
     # ---------- clear works ----------
