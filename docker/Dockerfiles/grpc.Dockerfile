@@ -58,6 +58,7 @@ RUN set -ex \
         && make && make install \
         && echo "extension=grpc.so" > /etc/php7/conf.d/grpc.ini \
     ) \
+    && rm -rf /usr/local/bin/grpc* \
 
     # install composer
     && cd /tmp \
