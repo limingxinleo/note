@@ -22,7 +22,7 @@ docker run -d --restart=always --name rabbitmq -p 4369:4369 -p 5672:5672 -p 1567
 ~~~
 docker run --rm -d --name elasticsearch -p 9200:9200 -p 9300:9300 \
 -v /mnt/elasticsearch/data:/usr/share/elasticsearch/data -e ES_JAVA_OPTS="-Xms512m -Xmx512m" \
--e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:5.5.3
+-e "discovery.type=single-node" elasticsearch:5-alpine
 ~~~
 
 ## 给用户权限
