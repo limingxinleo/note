@@ -17,3 +17,9 @@ docker exec -it name /bin/bash
 ~~~
 docker run -d --restart=always --name rabbitmq -p 4369:4369 -p 5672:5672 -p 15672:15672 -p 25672:25672 -v /opt/lib/rabbitmq:/var/lib/rabbitmq rabbitmq:management-alpine
 ~~~
+
+## 给用户权限
+给user用户docker权限
+~~~
+sudo usermod -aG docker user
+~~~
