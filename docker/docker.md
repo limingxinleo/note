@@ -30,3 +30,9 @@ docker run --rm -d --name elasticsearch -p 9200:9200 -p 9300:9300 \
 ~~~
 sudo usermod -aG docker user
 ~~~
+
+## gitlab-runner发布时显示无权限
+~~~
+su gitlab-runner
+docker login ...
+~~~
