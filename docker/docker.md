@@ -36,3 +36,8 @@ sudo usermod -aG docker user
 su gitlab-runner
 docker login ...
 ~~~
+
+## Docker 定时清理容器
+~~~
+docker system prune -a -f
+~~~
