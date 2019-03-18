@@ -1,5 +1,15 @@
 # GITLAB
 
+## 安装
+~~~
+sudo docker run --detach --hostname gitlab.xxx.cn \
+--publish 443:443 --publish 80:80 --publish 422:22 \
+--name gitlab --restart always --volume /srv/gitlab/config:/etc/gitlab \
+--volume /srv/gitlab/logs:/var/log/gitlab \
+--volume /srv/gitlab/data:/var/opt/gitlab \
+gitlab/gitlab-ce:latest
+~~~
+
 ## gitlab-runner发布时显示无权限
 ~~~
 su gitlab-runner
