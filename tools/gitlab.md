@@ -2,7 +2,7 @@
 
 ## 安装
 ~~~
-sudo docker run --detach --hostname gitlab.xxx.cn \
+sudo docker run -d --hostname gitlab.xxx.cn \
 --publish 443:443 --publish 80:80 --publish 422:22 \
 --name gitlab --restart always --volume /srv/gitlab/config:/etc/gitlab \
 --volume /srv/gitlab/logs:/var/log/gitlab \
