@@ -1,6 +1,6 @@
-## PostgreSQL
+# PostgreSQL
 
-### 使用
+## 使用
 ~~~
 # 显示所有数据库
 \l
@@ -8,7 +8,7 @@
 
 ~~~
 
-### MAC安装
+## MAC安装
 ~~~
 # 安装
 brew install postgresql
@@ -26,7 +26,7 @@ createdb dbname -O username -E UTF8 -e
 psql -U username -d dbname -h 127.0.0.1
 ~~~
 
-### Centos安装
+## Centos安装
 ~~~
 yum install https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-7-x86_64/pgdg-centos10-10-2.noarch.rpm
 yum install postgresql10-server

@@ -1,6 +1,6 @@
-## MongoDB
+# MongoDB
 
-### MongoDB 基本命令
+## MongoDB 基本命令
 1.进入mongodb数据库
 ~~~
 $ mongo
@@ -30,7 +30,7 @@ db.createUser({user:"admin",pwd:"password",roles:["root"]})
 db.auth("admin","password")
 ~~~
 
-### Mongo基本配置
+## Mongo基本配置
 vim /usr/local/etc/mongod.conf
 ~~~
 systemLog:
@@ -47,7 +47,7 @@ net:
 mongod --config /usr/local/etc/mongod.conf --auth &
 ~~~
 
-### 索引
+## 索引
 查看索引
 ~~~
 db.table.getIndexex()
@@ -69,7 +69,7 @@ db.table.dropIndex({"username":1})
 db.table.createIndex({"timerd":1}, {expireAfterSeconds: 10})
 ~~~
 
-### 参数说明
+## 参数说明
 
 基本配置
 ~~~
