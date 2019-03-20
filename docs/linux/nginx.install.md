@@ -1,4 +1,4 @@
-### 一、安装nginx时必须先安装相应的编译工具
+## 一、安装nginx时必须先安装相应的编译工具
 ~~~
 yum -y install gcc gcc-c++ autoconf automake
 yum -y install zlib zlib-devel openssl openssl-devel pcre-devel
@@ -13,7 +13,7 @@ id nginx
 * openssl:nginx提供ssl功能
 * pcre:支持地址重写rewrite功能
 
-### 二、编译安装
+## 二、编译安装
 * tar -zxvf nginx.tar.gz
 * cd nginx
 * configure

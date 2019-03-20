@@ -8,4 +8,8 @@
 
 - 数据库: [mysql](database/mysql.md) | [redis](database/redis.md) | [postgreSQL](database/postgreSQL.md) | [mongodb](database/mongodb.md)
 
+- 网关: [kong](gateway/kong.md) | [orange](gateway/orange.md) | [nginx](gateway/nginx.md)
+
+- Linux: [常用命令](linux/linux.md)
+
 

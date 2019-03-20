@@ -1,18 +1,18 @@
-## Kong Gateway
+# Kong Gateway
 
 [官网](https://getkong.org)
 
-### 新建PostgreSQL 用户
+## 新建PostgreSQL 用户
 ~~~
 postgres=# CREATE USER kong;　　//默认具有LOGIN属性
 ~~~
 
-### 新建数据库
+## 新建数据库
 ~~~
 $ createdb kong -O kong -E UTF8 -e
 ~~~
 
-### GUI
+## GUI
 [konga](https://github.com/pantsel/konga)
 [CLI](https://github.com/limingxinleo/kong-phalcon)
 [dashboard](https://github.com/PGBI/kong-dashboard)
@@ -23,7 +23,7 @@ docker run -d --name kong-dashboard --rm -p 8080:8080 pgbi/kong-dashboard start 
   --basic-auth user1=password1 user2=password2
 ~~~
 
-### Centos 安装
+## Centos 安装
 ~~~
 wget https://bintray.com/kong/kong-community-edition-rpm/rpm -O bintray-kong-kong-community-edition-rpm.repo
 # 修改baseurl为 baseurl=https://kong.bintray.com/kong-community-edition-rpm/centos/7
@@ -60,7 +60,7 @@ vim /var/lib/pgsql/10/data/postgresql.conf
 listen_addresses = '*'
 ~~~
 
-### MAC使用
+## MAC使用
 当默认安装了nginx时，会出现使用冲突。只要自用nginx与openresty用的nginx在端口上没有冲突，就可以按照下面方法来做
 ~~~
 # 启动我们自己的nginx
