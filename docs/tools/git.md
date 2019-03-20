@@ -1,21 +1,21 @@
-### GIT 保存用户名密码到本地
+## GIT 保存用户名密码到本地
 ~~~
 git config --global credential.helper store
 ~~~
 
-### GIT 保存姓名和邮箱
+## GIT 保存姓名和邮箱
 ~~~
 git config --global user.name [username]
 git config --global user.email [email]
 ~~~
 
-### 提交到远程仓库
+## 提交到远程仓库
 ~~~
 git push origin test:master         // 提交本地test分支作为远程的master分支
 git push origin test:test           // 提交本地test分支作为远程的test分支
 ~~~
 
-### git stash
+## git stash
 ~~~
 git stash: 备份当前的工作区的内容，从最近的一次提交中读取相关内容，让工作区保证和上次提交的内容一致。同时，将当前的工作区内容保存到Git栈中。
 git stash pop: 从Git栈中读取最近一次保存的内容，恢复工作区的相关内容。由于可能存在多个Stash的内容，所以用栈来管理，pop会从最近的一个stash中读取内容并恢复。
@@ -23,7 +23,7 @@ git stash list: 显示Git栈内的所有备份，可以利用这个列表来决�
 git stash clear: 清空Git栈。此时使用gitg等图形化工具会发现，原来stash的哪些节点都消失了。
 ~~~
 
-### github pull request使用方法
+## github pull request使用方法
 * fork 原项目
 * 把fork的项目克隆到本地
 * 新建分支dev
@@ -35,7 +35,7 @@ git stash clear: 清空Git栈。此时使用gitg等图形化工具会发现，�
 * 一旦对方merge项目
 * 更新本地master并推到自己的远程master仓库
 
-### git ssh 
+## git ssh 
 * 设置Git的user name和email
 ~~~
 $ git config --global user.name "limx"
@@ -57,7 +57,7 @@ ssh-add id_rsa
 ~~~
 * 在github上添加ssh密钥，这要添加的是“id_rsa.pub”里面的公钥
 
-### 新建仓库
+## 新建仓库
 * 在github或者git.oschina.net创建仓库
 * 在本地新疆项目例如
 ~~~
@@ -100,7 +100,7 @@ git commit
 git push --set-upstream origin master
 ~~~
 
-### depth
+## depth
 拉取最新一次commit提交
 ~~~
 git clone --depth=1 https://github.com/limingxinleo/simple-subcontrollers.phalcon.git
@@ -110,7 +110,7 @@ git clone --depth=1 https://github.com/limingxinleo/simple-subcontrollers.phalco
 git fetch --unshallow
 ~~~
 
-### log
+## log
 查看某个文件的日志
 ~~~
 git log -p file

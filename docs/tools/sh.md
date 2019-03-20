@@ -1,5 +1,5 @@
-## shell
-### 利用expect 登录服务器
+# shell
+## 利用expect 登录服务器
 ~~~
 #!/usr/bin/expect -f
 
@@ -25,7 +25,7 @@ expect eof
 
 ~~~
 
-### 登录服务器后执行操作
+## 登录服务器后执行操作
 ~~~
 #!/usr/bin/expect -f
 
@@ -55,7 +55,7 @@ send "exit\n"
 expect eof
 ~~~
 
-### 登录服务器并执行脚本
+## 登录服务器并执行脚本
 ~~~bash
 #!/bin/sh
 ipAddress=172.17.167.38

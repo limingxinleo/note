@@ -16,3 +16,6 @@
 - [xunsearch](tools/xunsearch.md) 
 - [zip](tools/zip)
 - [ssl](tools/ssl.md)
+- [git](tools/git.md)
+- [sh](tools/sh.md)
+- [rsa](tools/rsa.md)

@@ -1,6 +1,3 @@
 # note
-好脑袋不如烂笔头
 
-过年休假10天，啥也没写！！！
-
-
+[https://limingxinleo.github.io/note/](https://limingxinleo.github.io/note/)
