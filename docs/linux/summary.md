@@ -1,1 +1,7 @@
 - [常用命令](linux/linux.md)
+- [常用命令](linux/linux.md)
+- [常用命令](linux/linux.md)
+- [常用命令](linux/linux.md)
+- [常用命令](linux/linux.md)
+- [常用命令](linux/linux.md)
+- [常用命令](linux/linux.md)

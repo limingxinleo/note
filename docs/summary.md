@@ -5,3 +5,4 @@
 - [网关](gateway/summary.md)
 - [Linux](linux/summary.md)
 - [常用工具](tools/summary.md)
+- [错误集锦](error/error.md)
