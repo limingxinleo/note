@@ -4,7 +4,7 @@
 
 - Docker: [Docker](docker/docker.md)
 
-- PHP: [composer](php/composer.md) | [satis](php/satis.md)
+- PHP: [composer](php/composer.md) | [satis](php/satis.md) | [nginx&apache](php/nginx&apache.md) | [opcache](php/opcache.md) | [PHP调优](php/optimization.md) | [pecl](php/pecl.md) | [php-fpm](php/php-fpm.md) | [信号](php/signal.md)
 
 - 数据库: [mysql](database/mysql.md) | [redis](database/redis.md) | [postgreSQL](database/postgreSQL.md) | [mongodb](database/mongodb.md)
 

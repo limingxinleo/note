@@ -1,6 +1,6 @@
-## FastCGI Process Manage
+# FastCGI Process Manage
 
-### sock通信
+## sock通信
 修改php-fpm.conf
 ~~~
 listen = /run/php/php-fpm.sock
@@ -25,7 +25,7 @@ nginx -s reload
 php-fpm                 【需要完全重启】
 ~~~
 
-### php-fpm调优
+## php-fpm调优
 > php-fpm进程池开启进程有两种方式，一种是static，直接开启指定数量的php-fpm进程，不再增加或者减少。
 > 另一种则是dynamic，开始时开启一定数量的php-fpm进程，当请求量变大时，动态的增加php-fpm进程数到上限，当空闲时自动释放空闲的进程数到一个下限。
 
@@ -49,7 +49,7 @@ php-fpm                 【需要完全重启】
 * pm.max_requests
 这个参数指定了一个php-fpm子进程执行多少次之后重启该进程。
 
-### php-fpm 命令
+## php-fpm 命令
 ~~~
 php-fpm 关闭：
 kill -INT `cat /usr/local/php/var/run/php-fpm.pid`
