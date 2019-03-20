@@ -1,6 +1,6 @@
-## sudo
+# sudo
 
-### 子账户sudo免密码
+## 子账户sudo免密码
 ~~~
 $ chmod u+w /etc/sudoers
 $ vim /etc/sudoers

@@ -1,6 +1,6 @@
-## gcc
+# gcc
 
-### 升级gcc版本
+## 升级gcc版本
 
 ~~~bash
 #!/bin/bash

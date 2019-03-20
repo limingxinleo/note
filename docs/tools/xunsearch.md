@@ -16,7 +16,7 @@ xs-ctl -b inet start
 xs-ctl -b inet stop
 ~~~
 
-### 问题
+## 问题
 1. bzip2: Cannot exec: No such file or directory
 ~~~
 yum install bzip2
@@ -27,7 +27,7 @@ yum install bzip2
 yum install -y gcc gcc-c++
 ~~~
 
-### 依赖库
+## 依赖库
 ~~~
 yum -y install bzip2 gcc gcc-c++ wget automake autoconf libtool make zlib-devel
 ~~~

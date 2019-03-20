@@ -1,6 +1,6 @@
-## Consul
+# Consul
 
-### 安装
+## 安装
 
 [官网安装](https://www.consul.io/downloads.html)
 
@@ -41,7 +41,7 @@ stdout_events_enabled = false
 loglevel = warn
 ~~~
 
-# 11.11.111.111 为以上server的内网IP
+## 11.11.111.111 为以上server的内网IP
 
 ~~~
 [group:consul]

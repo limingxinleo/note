@@ -1,6 +1,6 @@
-## sonar
+# sonar
 
-### 使用
+## 使用
 ~~~
 sonar-scanner \
   -Dsonar.projectKey=projectKey \
