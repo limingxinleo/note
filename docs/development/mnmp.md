@@ -1,9 +1,9 @@
-## MAC 下搭建php开发环境
+# MAC 下搭建php开发环境
 
-### 安装Homebrew
+## 安装Homebrew
 * 自行查看brew.md
 
-### 安装oh my zsh
+## 安装oh my zsh
 ~~~
 brew install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -11,60 +11,49 @@ vim ~/.zshrc
 修改 ZSH_THEME="bira"
 ~~~
 
-### brew 安装php
+## brew 安装php
 ~~~ 
-brew tap homebrew/homebrew-php  
-
-brew install php70 --with-homebrew-curl
+brew install php@7.2
 ~~~
 
-### 安装部分扩展
-~~~
-brew install php70-swoole php70-redis php70-phalcon php70-opcache php70-mongodb
-~~~
-
-### 验证是否正确安装
+## 验证是否正确安装
 ~~~
 php -v
 php-fpm -v
 ~~~
 
-### 配置php-fpm
+## 配置php-fpm
 ~~~
-vim /usr/local/etc/php/7.0/php-fpm.d/www.conf
+vim /usr/local/etc/php/7.2/php-fpm.d/www.conf
 修改 user = yourname
 修改 group = staff
-vim /usr/local/etc/php/7.0/php-fpm.conf
+vim /usr/local/etc/php/7.2/php-fpm.conf
 修改 daemonize = yes
 ~~~
 
-### 安装composer
+## 安装composer
 ~~~
 brew install composer
+# 切换国内源
+composer config -g repo.packagist composer https://packagist.laravel-china.org
 ~~~
 
-### 找到一个地方作为自己的工作站
+## 找到一个地方作为自己的工作站
 ~~~
 cd ~
 mkdir Apps
 cd Apps
-composer create-project limingxinleo/phalcon-project demo --prefer-dist
-cd demo
-php run 
-~~~
-* 当看到以下信息 就代表安装无误了
-~~~
-Success: The Storage was successfully created. 
+composer create-project laravel/laravel demo --prefer-dist
 ~~~
 
-### 安装Nginx
+## 安装Nginx
 ~~~
 brew install nginx
 sudo nginx
 ~~~
 * 打开浏览器输入127.0.0.1:8080就能看到nginx的欢迎界面了
 
-### 配置Nginx
+## 配置Nginx
 * 修改nginx.conf
 ~~~
 cd /usr/local/etc/nginx
@@ -89,16 +78,16 @@ sudo nginx -s reload
 sudo php-fpm
 ~~~
 
-### 修改hosts
+## 修改hosts
 ~~~
 sudo vim /etc/hosts
 127.0.0.1 demo.app
 ~~~
 
-### 查看效果
+## 查看效果
 打开浏览器输入http://demo.app 即可看到效果
 
-### 编译Swoole示例
+## 编译Swoole示例
 ~~~
 ./configure --enable-async-redis --enable-mysqlnd --enable-openssl --enable-http2 --with-openssl-dir=/usr/local/Cellar/openssl@1.1/1.1.1
 make

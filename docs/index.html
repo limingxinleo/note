@@ -12,10 +12,20 @@
   <div id="app"></div>
   <script>
     window.$docsify = {
-      name: '',
-      repo: ''
+      name: 'Note',
+      loadSidebar: 'summary.md',
+      autoHeader: true,
+      loadNavbar: true,
+      mergeNavbar: true,
+      themeColor: '#3F51B5',
+      auto2top: true,
+      subMaxLevel: 2,
+      alias: {
+        // '/.*/summary.md': '/summary.md'
+      }
     }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="//unpkg.com/prismjs/components/prism-php.min.js"></script>
 </body>
 </html>

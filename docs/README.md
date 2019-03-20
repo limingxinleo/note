@@ -1,6 +1,9 @@
-# note
-好脑袋不如烂笔头
+# 编程笔记
 
-过年休假10天，啥也没写！！！
+## 环境搭建
+
+- [Docker](development/docker.md)
+- [LNMP](development/lnmp.md)
+- [MNMP](development/mnmp.md)
 
 

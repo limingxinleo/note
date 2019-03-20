@@ -1,24 +1,24 @@
-## Linux(CentOS) Nginx Mysql PHP 环境搭建
+# Linux(CentOS) Nginx Mysql PHP 环境搭建
 
-### 安装oh my zsh
+## 安装oh my zsh
 ~~~
 yum install zsh
 yum install git
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ~~~
 
-### 安装vim
+## 安装vim
 ~~~
 yum install vim
 ~~~
 
-### 修改zsh主题
+## 修改zsh主题
 ~~~
 vim /root/.zshrc
 修改 ZSH_THEME="ys"
 ~~~
 
-### 更换源Remi仓库
+## 更换源Remi仓库
 ~~~
 sudo rpm --import https://rpms.remirepo.net/RPM-GPG-KEY-remi
 sudo rpm -ivh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
@@ -31,16 +31,16 @@ sudo rpm -ivh https://mirrors.tuna.tsinghua.edu.cn/remi/enterprise/remi-release-
 yum repolist disabled | grep remi
 ~~~
 
-### 安装
+## 安装
 > 如上所述，最好保持禁用REMI仓库，只有在需要的时候再启用。
 
-#### 搜索安装Remi仓库中的包
+### 搜索安装Remi仓库中的包
 ~~~
 yum --enablerepo=remi search <keyword>
 yum --enablerepo=remi install <package-name>
 ~~~
 
-### 安装nginx
+## 安装nginx
 * 修改Nginx源
 > 替换 “OS” 为 “rhel” 或 “centos”, depending on the distribution used, 
 > 替换 “OSRELEASE” 为 “6” 或 “7”, for 6.x or 7.x versions, respectively.
@@ -65,18 +65,18 @@ systemctl enable nginx.service
 
 * 访问你的网站就能看到nginx的欢迎页面了。
 
-### 安装mariadb
+## 安装mariadb
 ~~~
 yum --enablerepo=remi install mariadb-server
 rpm -q mariadb mariadb-server
 ~~~
-### 启动配置mysql
+## 启动配置mysql
 ~~~
 systemctl start|stop mariadb（service mariadb start|stop）
 mysql_secure_installation
 ~~~
 
-### 安装mysql 如果remi没有mysql源可以使用下列方法
+## 安装mysql 如果remi没有mysql源可以使用下列方法
 
 配置源
 ~~~
@@ -102,7 +102,7 @@ mysql> FLUSH PRIVILEGES;
 ~~~
 
 
-### 安装php72
+## 安装php72
 > 这里只安装一部分常用的扩展，其他扩展可以自行安装
 
 ~~~
@@ -116,7 +116,7 @@ ln -s /opt/remi/php72/root/bin/php-config /usr/local/bin/php-config && \
 ln -s /opt/remi/php72/root/sbin/php-fpm /usr/local/sbin/php-fpm
 ~~~
 
-### 手动编译swoole
+## 手动编译swoole
 ~~~bash
 yum install libnghttp2-devel openssl-devel hiredis-devel
 
@@ -128,28 +128,28 @@ phpize
 make
 ~~~
 
-### 修改php-fpm组合用户
+## 修改php-fpm组合用户
 ~~~
 vim /etc/opt/remi/php72/php-fpm.d/www.conf
 user = nginx
 group = nginx
 ~~~
 
-### 修改php权限
+## 修改php权限
 ~~~
 cd /var/opt/remi/php72/lib/php
 # chown -R 用户:组 *
 chown -R root:nginx *
 ~~~
 
-### php-fpm 配置
+## php-fpm 配置
 ~~~
 vim /etc/opt/remi/php72/php-fpm.conf
 daemonize = yes
 pid = /var/opt/remi/php72/run/php-fpm/php-fpm.pid
 ~~~
 
-### 启动php-fpm
+## 启动php-fpm
 ~~~
 php-fpm
 或者
@@ -160,13 +160,13 @@ service php72-php-fpm start
 systemctl enable php72-php-fpm.service
 ~~~
 
-### Reload php-fpm
+## Reload php-fpm
 ~~~
 kill -USR2 `cat /usr/local/var/run/php-fpm.pid`
 kill -USR2 `cat /var/opt/remi/php72/run/php-fpm/php-fpm.pid`
 ~~~
 
-### 安装composer
+## 安装composer
 ~~~
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php composer-setup.php
@@ -178,11 +178,11 @@ php -r "unlink('composer-setup.php');"
 ~~~
 mv composer.phar /usr/local/bin/composer
 ~~~
-### 修改composer国内镜像
+## 修改composer国内镜像
 ~~~
 composer config -g repo.packagist composer https://packagist.laravel-china.org
 ~~~
-### 使用composer安装一个小项目
+## 使用composer安装一个小项目
 * 新建项目
 ~~~
 cd /
@@ -213,7 +213,7 @@ location / {
 SQLSTATE[HY000] [1049] Unknown database 'phalcon'
 ~~~
 
-### 安装Redis
+## 安装Redis
 ~~~
 yum --enablerepo=remi install redis
 
