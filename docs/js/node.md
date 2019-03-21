@@ -1,8 +1,8 @@
 ## Nodejs 安装
 * 终端执行
-~~~
+```sh
 #!/usr/bin/env bash
-version='7.9.0'
+version='8.10.0'
 wget https://npm.taobao.org/mirrors/node/v${version}/node-v${version}-linux-x64.tar.gz
 tar xzf node-v${version}-linux-x64.tar.gz
 mkdir -p /usr/local/nodejs/${version}
@@ -17,4 +17,4 @@ echo checking npm:
 npm -v
 # 设置镜像源
 npm config set registry=http://registry.npm.taobao.org
-~~~
+```
