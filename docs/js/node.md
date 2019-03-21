@@ -1,5 +1,4 @@
 ## Nodejs 安装
-* 终端执行
 ```sh
 #!/usr/bin/env bash
 version='8.10.0'
