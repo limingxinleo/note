@@ -19,3 +19,5 @@
 - [git](tools/git.md)
 - [sh](tools/sh.md)
 - [rsa](tools/rsa.md)
+- [lua](tools/lua.md)
+- [brew](tools/brew.md)
