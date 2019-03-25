@@ -36,3 +36,11 @@ fs.file-max = 999999
 net.ipv4.tcp_fin_timeout = 30
 ner.ipv4.tcp_keepalive_time = 600
 ```
+
+## Docker Swarm TCP超时
+
+```
+net.ipv4.tcp_keepalive_time = 600
+net.ipv4.tcp_keepalive_intvl = 30
+net.ipv4.tcp_keepalive_probes = 10
+```
