@@ -10,7 +10,7 @@
 
 - 网关: [kong](gateway/kong.md) | [orange](gateway/orange.md) | [nginx](gateway/nginx.md) | [openresty](gateway/openresty.md)
 
-- Linux: [常用命令](linux/linux.md)
+- Linux: [常用命令](linux/linux.md) | [常用命令](linux/linux.md) | [proc](linux/proc.md) | [remi](linux/remi.md) | [ssh](linux/ssh.md) | [tcp](linux/tcp.md) | [ubuntu](linux/ubuntu.md)
 
 - 常用工具: [BIND DNS解析服务](tools/bind.md) | [consul](tools/consul) | [Elasticsearch](tools/Elasticsearch.md) | [figlet](tools/figlet.md) | [gcc](tools/gcc.md) | [gitlab](tools/gitlab.md) | [kafka](tools/kafka.md) | [rtorrent](tools/rtorrent.md) | [sonar](tools/sonar.md) | [sphinx](tools/sphinx.md) | [sudo](tools/sudo.md) | [supervisor](tools/supervisor.md) | [sync](tools/sync.md) | [tmux](tools/tmux.md) | [vim](tools/vim.md) | [xunsearch](tools/xunsearch.md) | [zip](tools/zip) | [ssl](tools/ssl.md) | [git](tools/git.md) | [sh](tools/sh.md) | [rsa](tools/rsa.md) | [lua](tools/lua.md) | [brew](tools/brew.md)
 
