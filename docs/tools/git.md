@@ -115,3 +115,9 @@ git fetch --unshallow
 ~~~
 git log -p file
 ~~~
+
+## submodule
+初始化
+```
+git submodule add ../http-rpc.git submodules/http-rpc
+```
