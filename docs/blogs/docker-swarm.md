@@ -60,6 +60,19 @@ $ docker swarm join-token worker
 $ docker swarm join --token <token> ip:2377
 ```
 
+## 安装 Portainer
+
+[protainer](https://github.com/portainer/portainer)
+
+```
+docker service create \
+    --name portainer \
+    --publish 9000:9000 \
+    --replicas=1 \
+    --constraint 'node.role == manager' \
+    --mount type=bind,src=//path/on/host/data,dst=/data \
+    portainer/portainer
+```
 
 
 
