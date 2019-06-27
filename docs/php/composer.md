@@ -9,8 +9,8 @@
 ~~~
 ## Composer 配置国内镜像
 ~~~
-# phpcomposer
-composer config -g repo.packagist composer https://packagist.phpcomposer.com
+# 华为云
+composer config -g repo.packagist composer https://repo.huaweicloud.com/repository/php
 # laravel学院
 composer config -g repo.packagist composer https://packagist.laravel-china.org
 # default
