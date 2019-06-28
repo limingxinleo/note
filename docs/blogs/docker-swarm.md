@@ -92,7 +92,7 @@ docker service create \
     --publish 9000:9000 \
     --replicas=1 \
     --constraint 'node.role == manager' \
-    --mount type=bind,src=//path/on/host/data,dst=/data \
+    --mount type=volume,src=portainer_data,dst=/data \
     portainer/portainer
 ```
 
