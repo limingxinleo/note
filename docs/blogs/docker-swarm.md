@@ -68,9 +68,22 @@ shell
 
 ## 初始化 Swarm 集群
 
+初始化集群
 ```
-# 初始化集群
 $ docker swarm init
+```
+
+创建自定义 Overlay 网络
+```
+docker network create \
+--driver overlay \
+--subnet 10.0.0.0/24 \
+--opt encrypted \
+default-network
+```
+
+加入集群
+```
 # 显示manager节点的TOKEN
 $ docker swarm join-token manager
 # 加入manager节点到集群
@@ -84,7 +97,7 @@ $ docker swarm join --token <token> ip:2377
 
 ## 安装 Portainer
 
-[protainer](https://github.com/portainer/portainer)
+[Portainer](https://github.com/portainer/portainer)
 
 ```
 docker service create \
@@ -93,8 +106,10 @@ docker service create \
     --replicas=1 \
     --constraint 'node.role == manager' \
     --mount type=volume,src=portainer_data,dst=/data \
+    --mount type=bind,src=//var/run/docker.sock,dst=/var/run/docker.sock \
     portainer/portainer
 ```
+
 
 
 
