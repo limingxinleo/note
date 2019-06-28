@@ -61,7 +61,7 @@ xxxxx
 Please enter the gitlab-ci description for this runner:
 xxx
 Please enter the gitlab-ci tags for this runner (comma separated):
-test-vpc
+builder
 Please enter the executor: docker-ssh, shell, docker+machine, docker-ssh+machine, docker, parallels, ssh, virtualbox, kubernetes:
 shell
 ```
