@@ -15,13 +15,13 @@ curl -sSL https://get.daocloud.io/docker | sh
 首先我们修改一下端口号，把 `22` 端口让出来给 `gitlab` 使用。
 
 ```
-$vim /etc/ssh/sshd_config
+$ vim /etc/ssh/sshd_config
 
 # 默认 Port 改为 2222
 Port 2222
 
 # 重启服务
-$systemctl restart sshd.service
+$ systemctl restart sshd.service
 ```
 
 重新登录机器
@@ -52,7 +52,7 @@ gitlab/gitlab-ce:latest
 ### 注册 gitlab-runner
 
 ```
-$ gitlab-runner register
+$ gitlab-runner register --clone-url http://内网ip/
 
 Please enter the gitlab-ci coordinator URL (e.g. https://gitlab.com/):
 http://gitlab.xxx.cc/
@@ -203,6 +203,22 @@ REDIS_DB=0
 
 ```
 curl http://127.0.0.1:9501/
+```
+
+## 意外情况
+
+### fatal: git fetch-pack: expected shallow list
+
+这种情况是 `gitlab-runner` 使用的 `git` 版本过低，更新 `git` 版本即可。
+
+```
+$ curl https://setup.ius.io | sh
+$ yum remove -y git
+$ yum -y install git2u
+$ git version
+
+# 重新安装 gitlab-runner 并重新注册 gitlab-runner
+$ yum install gitlab-runner
 ```
 
 
