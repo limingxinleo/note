@@ -1,5 +1,7 @@
 # Docker Swarm集群搭建教程
 
+[最新文档](https://doc.hyperf.io/#/zh/docker-swarm)
+
 现阶段，Docker容器技术已经相当成熟，就算是中小型公司也可以基于 Gitlab、Aliyun镜像服务、Docker Swarm 轻松搭建自己的 Docker集群服务。
 
 ## 安装 Docker
@@ -220,8 +222,3 @@ $ git version
 # 重新安装 gitlab-runner 并重新注册 gitlab-runner
 $ yum install gitlab-runner
 ```
-
-
-
-
-
