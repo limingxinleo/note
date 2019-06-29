@@ -1,7 +1,5 @@
 # Docker Swarm集群搭建教程
 
-[最新文档](https://doc.hyperf.io/#/zh/docker-swarm)
-
 现阶段，Docker容器技术已经相当成熟，就算是中小型公司也可以基于 Gitlab、Aliyun镜像服务、Docker Swarm 轻松搭建自己的 Docker集群服务。
 
 ## 安装 Docker
@@ -14,7 +12,7 @@ curl -sSL https://get.daocloud.io/docker | sh
 
 ### 安装Gitlab
 
-首先我们修改一下端口号，把 `22` 端口让出来给 `gitlab` 使用。
+首先我们修改一下端口号，把 `sshd` 服务的 `22` 端口改为 `2222`，让 `gitlab` 可以使用 `22` 端口。
 
 ```
 $ vim /etc/ssh/sshd_config
@@ -49,7 +47,21 @@ gitlab/gitlab-ce:latest
 
 [官方地址](https://docs.gitlab.com/runner/install/linux-repository.html)
 
-> 后续完善DEMO
+以 `CentOS` 为例
+
+```
+curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.rpm.sh | sudo bash
+yum install gitlab-runner
+```
+
+当然，可以用 `curl https://setup.ius.io | sh` 命令，更新为最新的 `git` 源，然后直接使用 yum 安装 git 和 gitlab-runner。
+
+```
+$ curl https://setup.ius.io | sh
+$ yum -y install git2u
+$ git version
+$ yum install gitlab-runner
+```
 
 ### 注册 gitlab-runner
 
