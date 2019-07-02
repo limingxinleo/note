@@ -13,6 +13,8 @@
 composer config -g repo.packagist composer https://repo.huaweicloud.com/repository/php
 # laravel学院
 composer config -g repo.packagist composer https://packagist.laravel-china.org
+# 腾讯云
+composer config -g repo.packagist composer https://mirrors.cloud.tencent.com/composer
 # default
 composer config -g repo.packagist composer https://packagist.org
 ~~~
