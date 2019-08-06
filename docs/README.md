@@ -8,6 +8,8 @@
 
 - 数据库: [mysql](database/mysql.md) | [redis](database/redis.md) | [postgreSQL](database/postgreSQL.md) | [mongodb](database/mongodb.md)
 
+- 配置中心: [ETCD](config/etcd.md)
+
 - 网关: [kong](gateway/kong.md) | [orange](gateway/orange.md) | [nginx](gateway/nginx.md) | [openresty](gateway/openresty.md)
 
 - Linux: [常用命令](linux/linux.md) | [常用命令](linux/linux.md) | [proc](linux/proc.md) | [remi](linux/remi.md) | [ssh](linux/ssh.md) | [tcp](linux/tcp.md) | [ubuntu](linux/ubuntu.md)
