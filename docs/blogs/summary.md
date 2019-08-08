@@ -1,4 +1,5 @@
-- 2019-09
+- 2019-08
+- [如何缩小对象体积](blogs/generate)
 - [Tesseract 图片识别](blogs/tesseract)
 
 - 2019-07
