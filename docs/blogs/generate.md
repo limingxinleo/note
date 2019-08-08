@@ -4,7 +4,7 @@
 
 所以，接下来，我们来实现一个逻辑，来处理这个问题。
 
-相关 PR [#356](https://github.com/hyperf-cloud/hyperf/pull/356)
+相关 PR [#356](https://github.com/hyperf-cloud/hyperf/pull/356) [#359](https://github.com/hyperf-cloud/hyperf/pull/359)
 
 ## 定义 Interface
 
