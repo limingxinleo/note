@@ -34,7 +34,7 @@
 net.ipv4.tcp_tw_reuse = 1
 fs.file-max = 999999
 net.ipv4.tcp_fin_timeout = 30
-ner.ipv4.tcp_keepalive_time = 600
+net.ipv4.tcp_keepalive_time = 600
 ```
 
 ## Docker Swarm TCP超时
