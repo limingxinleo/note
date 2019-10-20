@@ -1,5 +1,7 @@
 # 技术选型
 
+[note-book](https://github.com/besthird/note-book)
+
 ## 后端选型
 
 1. [overtrue/wechat](https://github.com/overtrue/wechat) 微信SDK

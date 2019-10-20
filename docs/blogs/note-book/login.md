@@ -1,5 +1,7 @@
 # 登录模块
 
+[note-book](https://github.com/besthird/note-book)
+
 `Uniapp` 支持打包成各种小程序，但我们暂时只支持 微信小程序，所以代码设计中，暂不考虑其他情况。
 
 ## 创建用户表
