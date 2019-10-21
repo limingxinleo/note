@@ -142,7 +142,7 @@ git push origin master
 ```
 
 
-## 最后就是可耻的要 star 了
+## 写在最后
 
 [Hyperf](https://github.com/hyperf-cloud/hyperf)
 
