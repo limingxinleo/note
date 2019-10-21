@@ -9,6 +9,9 @@
 - 2019-09
 - [基于Redis的订阅与发布](blogs/demo-redis-subscribe)
 
+- 2019-10
+- [如何制作适合自己的骨架包](blogs/create-skeketon)
+
 - Hyperf系列-记事本
   - [技术选型](blogs/note-book/environment)
   - [登录模块](blogs/note-book/login)
