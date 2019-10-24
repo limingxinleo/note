@@ -1,4 +1,4 @@
-# EasySwoole 框架加入 HyperfCommand
+# EasySwoole 框架接入 HyperfCommand
 
 [仓库地址](https://github.com/Aquarmini/easyswoole-demo)
 
@@ -72,7 +72,7 @@ success
 
 接下来，让我们开始改造一部分代码，给 EasySwoole 插上 Hyperf 的 Command。
 
-EasySwoole 运行模式十分简单，所有的命令都保存再 `CommandContainer` 中，所以我们大可以修改入口文件，把其中的命令全部查出来，动态翻译成 `HyperfCommand`，然后直接运行 `HyperfCommand` 就可以了。
+EasySwoole 运行模式十分简单，所有的命令都保存在 `CommandContainer` 中，所以我们大可以修改入口文件，把其中的命令全部查出来，动态翻译成 `HyperfCommand`，然后直接运行 `HyperfCommand` 就可以了。
 
 为了不与 `easyswoole` 命令行冲突，我们新建一个 `hyperf` 好了。
 
