@@ -13,6 +13,7 @@
 - [如何制作适合自己的骨架包](blogs/create-skeketon)
 - [es接入hyperf/command](blogs/easyswoole-command)
 - [权限控制](blogs/auth-control)
+- [如何优雅的打包前端代码](blogs/how-to-build-frontend-package)
 
 - Hyperf系列-记事本
   - [技术选型](blogs/note-book/environment)
