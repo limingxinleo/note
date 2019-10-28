@@ -6,13 +6,13 @@
 
 ## Hyperf In Docker
 
-作为 `Hyperf` 框架的作者之一，强烈安利大家使用 `Docker`，现在 `Docker集群` 技术已经十分成熟，`K8s` 强势领跑，深受一线企业的厚爱，而`Swarm` 使用简单，绝对是中小型企业的首选。
+作为 `Hyperf` 框架作者之一，强烈安利大家使用 `Docker`，现在 `Docker集群` 技术已经十分成熟，`K8s` 强势领跑，深受一线企业的厚爱，而`Swarm` 使用简单，绝对是中小型企业的首选。
 
 但今天，并不是讲 `Hyperf` 在 `Docker` 中的应用，而是 `前端` 如何在 `Docker` 中进行打包，并与 `Hyperf` 进行通信。
 
 ## 打包
 
-我们下面以 `VUE` 为例。这里提供一个 [vue-docker-demo](https://github.com/Aquarmini/vue-docker-demo)
+我们下面以 `VUE` 为例。这里提供一个仓库 [vue-docker-demo](https://github.com/Aquarmini/vue-docker-demo)，供大家测试。
 
 首先我们使用 `vue` 脚手架初始化一个项目。
 
@@ -169,9 +169,13 @@ export default {
             msg: String
         },
         async mounted() {
-            var data = await request.request('GET', '/', { name: "limx" });
+            var data = await request.request('GET', '/user/1');
             // eslint-disable-next-line no-console
             console.log(data);
+
+            var res = await request.request('POST', '/user/1', { name: "limx" });
+            // eslint-disable-next-line no-console
+            console.log(res);
         }
     }
 </script>
