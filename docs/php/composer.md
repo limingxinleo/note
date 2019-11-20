@@ -19,6 +19,8 @@ composer config -g repo.packagist composer https://packagist.laravel-china.org
 composer config -g repo.packagist composer https://mirrors.cloud.tencent.com/composer
 # default
 composer config -g repo.packagist composer https://packagist.org
+# 中国镜像
+composer config -g repos.packagist composer https://php.cnpkg.org
 ~~~
 
 ## 优化自动加载索引
