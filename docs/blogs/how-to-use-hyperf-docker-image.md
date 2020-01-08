@@ -1,6 +1,6 @@
 # 如何使用 Hyperf Docker 镜像
 
-如果你用的是 `Hyperf` 框架，这篇文章你打可以跳过，因为官方提供的骨架包，已经集成了相应的 `Dockerfile` 和 `Gitlab CI/CD` 配置。
+如果你用的是 `Hyperf` 框架，这篇文章你大可以跳过，因为官方提供的骨架包，已经集成了相应的 `Dockerfile` 和 `Gitlab CI/CD` 配置。
 
 今天，我们主要来说一下，非 `Hyperf` 框架，如何使用 `Hyperf` 的官方镜像。
 
@@ -139,7 +139,7 @@ curl http://127.0.0.1:9501/
 
 `Hyperf` 框架需要重写 `go` 和 `defer` 方法，所以需要设置 `swoole.use_shortname = 'Off'`，而 `IMI` 等其他框架可能并没有这个要求，反而，框架内部可能用到了 `go` 和 `defer` 方法。所以我们的 `Dockerfile` 必须修改为开启状态。
 
-我们以 `Hyperf` 项目默认的 `Dockerfile` 为基础，只需要增加 `"swoole.use_shortname = 'ON'";` 到 `99_overrides.ini` 中，并修改启动命令即可。
+我们以 `Hyperf` 项目默认的 `Dockerfile` 为基础，只需要增加 `"swoole.use_shortname = 'On'";` 到 `99_overrides.ini` 中，并修改启动命令即可。
 
 ```Dockerfile
 # Default Dockerfile
