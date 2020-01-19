@@ -18,3 +18,6 @@
 - Hyperf系列-记事本
   - [技术选型](blogs/note-book/environment)
   - [登录模块](blogs/note-book/login)
+
+- 2020-01
+- [如何灵活使用 Hyperf dependencies 配置](blogs/how-to-use-dependencies)
