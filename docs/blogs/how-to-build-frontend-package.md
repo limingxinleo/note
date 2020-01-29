@@ -197,6 +197,10 @@ server {
     proxy_set_header    X-Real-PORT         $remote_port;
     proxy_set_header    X-Forwarded-For     $proxy_add_x_forwarded_for;
 
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+    
     location /api/ {
         proxy_pass  http://biz-skeleton:9501/;
     }
