@@ -23,4 +23,4 @@
 - [如何灵活使用 Hyperf dependencies 配置](blogs/how-to-use-dependencies)
 
 - 2020-04
-- [如何减少Hyperf框架的扫描时间](blogs/how-to-optimize-scan-time)
+- [如何减少 Hyperf 框架的扫描时间](blogs/how-to-optimize-scan-time)
