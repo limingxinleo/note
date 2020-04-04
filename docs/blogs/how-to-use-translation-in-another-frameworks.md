@@ -1,6 +1,6 @@
 # 如何在其他框架中使用 Hyperf 国际化组件
 
-前段时间有同学在群里提问，如果在其他框架里引用 `Hyperf` 国际化组件，并提供了对应的 [ISSUE](https://github.com/hyperf/hyperf/issues/1485)
+前段时间有同学在群里提问，如何在其他框架里引用 `Hyperf` 国际化组件，并提供了对应的 [ISSUE](https://github.com/hyperf/hyperf/issues/1485)
 
 `Issue` 中的错误其实很简单，就是 `Hyperf\Utils\ApplicationContext` 中没有存入对应的 `Container`，为了更方便的接入 `Hyperf` 其他的组件，`Hyperf` 官方提供了一个新的组件 [hyperf/pimple](https://github.com/hyperf-cloud/pimple-integration)。
 
