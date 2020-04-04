@@ -1,13 +1,9 @@
-- 2019-08
-- [如何缩小对象体积](blogs/generate)
-- [Tesseract 图片识别](blogs/tesseract)
+- 2020-04
+- [如何再其他框架中使用 Hyperf 国际化组件](blogs/how-to-use-translation-in-another-frameworks)
+- [如何减少 Hyperf 框架的扫描时间](blogs/how-to-optimize-scan-time)
 
-- 2019-07
-- [Docker Swarm集群搭建教程](blogs/docker-swarm)
-- [DaoCloud Devops搭建教程](blogs/daocloud)
-
-- 2019-09
-- [基于Redis的订阅与发布](blogs/demo-redis-subscribe)
+- 2020-01
+- [如何灵活使用 Hyperf dependencies 配置](blogs/how-to-use-dependencies)
 
 - 2019-10
 - [如何制作适合自己的骨架包](blogs/create-skeketon)
@@ -15,12 +11,13 @@
 - [权限控制](blogs/auth-control)
 - [如何优雅的打包前端代码](blogs/how-to-build-frontend-package)
 
-- Hyperf系列-记事本
-  - [技术选型](blogs/note-book/environment)
-  - [登录模块](blogs/note-book/login)
+- 2019-09
+- [基于Redis的订阅与发布](blogs/demo-redis-subscribe)
 
-- 2020-01
-- [如何灵活使用 Hyperf dependencies 配置](blogs/how-to-use-dependencies)
+- 2019-07
+- [Docker Swarm集群搭建教程](blogs/docker-swarm)
+- [DaoCloud Devops搭建教程](blogs/daocloud)
 
-- 2020-04
-- [如何减少 Hyperf 框架的扫描时间](blogs/how-to-optimize-scan-time)
+- 2019-08
+- [如何缩小对象体积](blogs/generate)
+- [Tesseract 图片识别](blogs/tesseract)
