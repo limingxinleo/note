@@ -10,15 +10,17 @@
 
 因为 `EasySwoole` 的容器组件暂时并没有实现 `PSR11` 规范，所以无法直接使用。
 
-1. 首先引入相关组件
+- 首先引入相关组件
 
 ```
-composer create "hyperf/pimple:1.1.*"
+composer require "hyperf/pimple:1.1.*"
 composer require "hyperf/translation:1.1.*"
 composer require "hyperf/config:1.1.*"
 ```
 
-2. 添加 国际化相关的 Provider
+- 添加 国际化相关的 Provider
+
+TranslatorLoaderProvider
 
 ```php
 <?php
@@ -48,6 +50,8 @@ class TranslatorLoaderProvider implements ProviderInterface
     }
 }
 ```
+
+TranslatorProvider
 
 ```php
 <?php
@@ -84,7 +88,7 @@ class TranslatorProvider implements ProviderInterface
 
 ```
 
-3. `EasySwoole` 事件注册器在 `EasySwooleEvent.php` 中，所以我们需要在 `initialize()` 中初始化我们的容器和国际化组件。
+- `EasySwoole` 事件注册器在 `EasySwooleEvent.php` 中，所以我们需要在 `initialize()` 中初始化我们的容器和国际化组件。
 
 > 以下 Config 组件，可以自行封装，这里方便起见直接配置。
 
@@ -120,7 +124,7 @@ class EasySwooleEvent implements Event
 }
 ```
 
-4. 修改控制器，使用国际化组件
+- 修改控制器，使用国际化组件
 
 ```php
 <?php
@@ -142,7 +146,7 @@ class Index extends Controller
         $translator = $container->get(TranslatorInterface::class);
 
         $data = [
-            'id' => $translator->trans('message.hello', ['name' => 'Hyperf']),
+            'message' => $translator->trans('message.hello', ['name' => 'Hyperf']),
         ];
 
         $this->response()->write(Json::encode($data));
@@ -151,7 +155,7 @@ class Index extends Controller
 
 ```
 
-5. 添加国际化配置
+- 添加国际化配置
 
 ```php
 // storage/languages/en/message.php
@@ -165,11 +169,11 @@ return [
 ];
 ```
 
-6. 测试
+- 测试
 
 ```
 $ curl http://127.0.0.1:9501/
-{"id":"你好 Hyperf"}
+{"message":"你好 Hyperf"}
 ```
 
 ## 写在最后
