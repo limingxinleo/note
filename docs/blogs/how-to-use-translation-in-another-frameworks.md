@@ -106,13 +106,18 @@ use EasySwoole\Http\Response;
 use Hyperf\Config\Config;
 use Hyperf\Contract\ConfigInterface;
 use Hyperf\Pimple\ContainerFactory;
+use App\Provider\TranslatorProvider;
+use App\Provider\TranslatorLoaderProvider;
 
 class EasySwooleEvent implements Event
 {
     public static function initialize()
     {
         date_default_timezone_set('Asia/Shanghai');
-        $container = (new ContainerFactory())();
+        $container = (new ContainerFactory([
+            TranslatorProvider::class,
+            TranslatorLoaderProvider::class,
+        ]))();
         $container->set(ConfigInterface::class, new Config([
             'translation' => [
                 'locale' => 'zh_CN',
