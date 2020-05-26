@@ -2,9 +2,9 @@
 
 在使用 `Hyperf1.1` 的小伙伴们，通常都会碰到这么一个问题，那就是协程上下文数据拷贝的问题。
 
-比如我实现了一个 `Listener`，在监听 SQL 的同时，会把当前请求的一部分数据记录下来。比如 Request 中的 Uri，当出现慢查的时候，就可以精确定位到是哪个路由。
+比如我实现了一个 `Listener`，在监听 `SQL` 的同时，会把当前请求的路由数据记录下来。当出现慢查的时候，就可以精确定位到是哪个路由。
 
-但当你以以下方式执行 SQL 时，可能就会出现一些问题。
+但当你以以下方式执行 `SQL` 时，可能就会出现这个错误 `TypeError:Return value of Hyperf\HttpServer\Request::getRequest() must implement interface Psr\Http\Message\ServerRequestInterface, null returned`
 
 ```php
 <?php
@@ -14,7 +14,7 @@ go(function(){
 })
 ```
 
-当然，你可以自己实现 `go` 方法，然后在 composer 加载之前提前加载这个文件。
+当然，你可以自己实现 `go` 方法，然后在 `composer` 加载之前提前加载这个文件。例如
 
 ```
 // 包含 go 方法的实现
@@ -23,11 +23,11 @@ require BASE_PATH . '/config/bootstrap.php';
 require BASE_PATH . '/vendor/autoload.php';
 ```
 
-但框架中直接使用 `Coroutine::create` 来创建协程就没有办法了，比如 `Parallel` 和 `Concurrent` 等待
+但框架中直接使用 `Coroutine::create` 来创建协程就没有办法了，比如 `Parallel` 和 `Concurrent` 等等
 
 ## ClassMap 功能
 
-而在 Hyperf2.0 版本中，框架实现了基于 `composer class map` 的替换功能，你可以自己实现 `Hyperf\Utils\Coroutine`，框架会帮你替换掉原来的 `Hyperf\Utils\Coroutine`。
+而在 `Hyperf2.0` 版本中，框架实现了基于 `composer class map` 的替换功能，你可以自己实现 `Hyperf\Utils\Coroutine`，而框架会自动帮你替换掉原来的 `Hyperf\Utils\Coroutine`。
 
 ```php
 <?php
@@ -157,7 +157,7 @@ Stack trace:
 #8 {main}
 ```
 
-当我们配置了 ClassMap 后
+当我们配置了 `ClassMap` 后，结果就正常了。
 
 ```
 $ curl http://127.0.0.1:9501/\?user\=Hyperf
