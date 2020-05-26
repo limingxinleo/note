@@ -21,3 +21,6 @@
 - 2019-08
 - [如何缩小对象体积](blogs/generate)
 - [Tesseract 图片识别](blogs/tesseract)
+
+- 2020-05
+- [Hyperf2.0早知道 - ClassMap](blogs/hyperf2.0-class-map)
