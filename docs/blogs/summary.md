@@ -1,3 +1,9 @@
+- 2020-05
+- [如何单机部署 Hyperf 项目](blogs/hyperf-deploy)
+
+- 2020-05
+- [Hyperf2.0早知道 - ClassMap](blogs/hyperf2.0-class-map)
+
 - 2020-04
 - [如何再其他框架中使用 Hyperf 国际化组件](blogs/how-to-use-translation-in-another-frameworks)
 - [如何减少 Hyperf 框架的扫描时间](blogs/how-to-optimize-scan-time)
@@ -21,6 +27,3 @@
 - 2019-08
 - [如何缩小对象体积](blogs/generate)
 - [Tesseract 图片识别](blogs/tesseract)
-
-- 2020-05
-- [Hyperf2.0早知道 - ClassMap](blogs/hyperf2.0-class-map)
