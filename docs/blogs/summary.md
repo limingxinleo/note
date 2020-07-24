@@ -1,3 +1,6 @@
+- 2020-07
+- [如何在 Hyperf 框架中使用 SwooleCompiler](blogs/how-to-use-swoole-compiler.md)
+
 - 2020-05
 - [如何单机部署 Hyperf 项目](blogs/hyperf-deploy)
 
