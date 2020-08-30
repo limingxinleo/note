@@ -1,4 +1,4 @@
-# Laravel里的那些坑-Optional
+# Laravel里的那些坑 - Optional
 
 [Github仓库](https://github.com/Aquarmini/bugs-laravel-optional)
 
