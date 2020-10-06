@@ -1,3 +1,6 @@
+- 2020-10
+- [如何在 GitHub 上支持你喜欢的项目](blogs/how-to-support-favorite-project.md)
+
 - 2020-08
 - [如何使用 GitHub Workflows 打包 Docker 镜像](blogs/how-to-use-workflows-build-docker-image.md)
 - [Laravel里的那些坑-Optional](blogs/laravel-optional.md)
