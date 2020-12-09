@@ -5,7 +5,7 @@
 在继续往下看前，请小伙伴大体了解一下 `Nginx` 的 `Upstream` 配置和 `Docker` 的基本使用方法。
 
 > 以下 legal_api 为项目名
-> 
+
 ## 配置 Nginx
 
 ```
