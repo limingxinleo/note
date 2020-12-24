@@ -1,6 +1,7 @@
 - 2020-12
 - [如何快速释放DB连接](blogs/coroutine-waiter.md)
 - [如何定制 gen:model 命令](blogs/gen-model-visitor.md)
+- [如何解决Laravel与Jet的冲突](blogs/laravel-jet.md)
 
 - 2020-10
 - [如何在 GitHub 上支持你喜欢的项目](blogs/how-to-support-favorite-project.md)
