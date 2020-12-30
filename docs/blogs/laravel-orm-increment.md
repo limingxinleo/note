@@ -8,7 +8,7 @@ Laravel v5.4.18 中的一个提交，导致的 BUG，因为添加了错误的单
 
 ## BUG 重现
 
-- increment extra 后再进行 save 操作，会执行两句SQL
+### 1. increment extra 后再进行 save 操作，会执行两句SQL
 
 我们先写一段没有 extra 数据的代码，进行测试
 
@@ -49,7 +49,7 @@ update `user_ext` set `str` = ?, `user_ext`.`updated_at` = ? where `id` = ?
 
 且第二段和第三段 SQL 中，str 的值是一致的。这个问题的主要原因，便是 extra 里的数据不会被同步到 original 中，就导致第二次 save 计算 dirty 的时候，出现了BUG。
 
-- getChanges 表现不一致
+### 2. getChanges 表现不一致
 
 经过第一个 BUG 的重现，那么第二个问题也就很容易想到了，就是 getChanges 方法。
 
