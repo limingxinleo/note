@@ -1,4 +1,4 @@
-# 小心 Laravel 中的 `Model::increment`
+# 小心 Laravel 中的 Model::increment
 
 Laravel v5.4.18 中的一个提交，导致的 BUG，因为添加了错误的单测，导致没办法轻易修改，这里提醒大家，使用时需要谨慎，以免采坑。
 
