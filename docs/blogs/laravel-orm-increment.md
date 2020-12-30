@@ -126,6 +126,8 @@ array:2 [▼
 ]
 ```
 
+可见两次 getChanges 中，str 的值是一致的。
+
 > save 的时候会把 updated_at 算进来，而 `increment` 的时候是不会算 `updated_at`，这里至少行为一致，可以作为后续的优化项。
 
 输出的 SQL 如下
