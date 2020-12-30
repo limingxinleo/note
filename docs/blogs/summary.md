@@ -3,6 +3,7 @@
 - [如何定制 gen:model 命令](blogs/gen-model-visitor.md)
 - [如何解决Laravel与Jet的冲突](blogs/laravel-jet.md)
 - [如何区别本地和线上环境，针对不同环境发布服务到 Consul](blogs/service-governance-listener.md)
+- [小心 Laravel 中的 Model::increment](blogs/laravel-orm-increment.md)
 
 - 2020-10
 - [如何在 GitHub 上支持你喜欢的项目](blogs/how-to-support-favorite-project.md)
