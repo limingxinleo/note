@@ -101,7 +101,7 @@ Hello World.
 ```
 
 第一个查询的 SQL 是 select * from `test` where `uid` = 1 and `type` = 0
-而后来的查询却是 select * from `test` where `uid` = 1 and `type` = 0
+而后来的查询却是 select * from `test` where `uid` = 1 and `type` = 1
 
 当然，你可能认为这并没有什么，但如果你的 `SQL` 是更新操作呢，又如果你的 `user_id` 不幸放到了后面呢？那岂不是所有的用户都可以改改自己的接口入参，修改到别人的数据？
 
