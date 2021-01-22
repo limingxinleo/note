@@ -1,4 +1,4 @@
-# Laravel 的一处安全隐患
+# Laravel Bindings 的一处安全隐患
 
 相关 PR 如下
 
