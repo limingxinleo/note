@@ -21,7 +21,7 @@ composer require limingxinleo/happy-join-hyperf --dev
 
 当我们将仓库 push 到 Github 之后，就可以被自动识别，如下图所示
 
-![](https://user-images.githubusercontent.com/16648551/106448170-5bff8100-64bd-11eb-9f93-c7712e41577f.png)
+![](http://cdn-music.lmx0536.cn/106448170-5bff8100-64bd-11eb-9f93-c7712e41577f.png)
 
 ## 第一个嗨化的组件
 
