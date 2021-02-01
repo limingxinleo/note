@@ -42,7 +42,7 @@ composer require limingxinleo/happy-join-hyperf --dev
 我希望所有嗨化的组件可以尽量遵守以下规则：
 
 1. 保留原组件的 `LICENSE`
-2. 保留原组件命名空间
+2. 尽量保留原组件命名空间
 3. 依赖 `happy-join-hyperf` 组件，方便 `Github` 识别
 4. `READMD.md` 中写明白与原组件的区别
 5. 保持一个可以持续开源的心态，为自己的组件负责，严禁当 `甩手掌柜`
