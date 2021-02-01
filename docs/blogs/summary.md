@@ -1,4 +1,7 @@
-- 2020-01
+- 2021-02
+- [组件嗨化计划](blogs/happy-join-hyperf.md)
+
+- 2021-01
 - [如何让 Hyperf 只启动一个服务](blogs/how-to-start-one-server-for-hyperf.md)
 - [Laravel Bindings 的一处安全隐患](blogs/laravel-bindings-limit.md)
 
