@@ -239,13 +239,9 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-run(function () use ($max) {
+run(function () {
     $client = new \Multiplex\Socket\Client('127.0.0.1', 9601);
-    for ($i = 0; $i < $max; ++$i) {
-        go(function () use ($client, $channel) {
-            $client->request('World.');
-        });
-    }
+    $client->request('World.');
 });
 ```
 
