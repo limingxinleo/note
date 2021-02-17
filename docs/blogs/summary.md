@@ -2,6 +2,7 @@
 - [组件嗨化计划](blogs/happy-join-hyperf.md)
 - [如何基于 Channel 实现多路复用](blogs/multiplexing-connections.md)
 - [如何在 Hyperf 框架中使用门面](blogs/how-to-use-facade-in-hyperf.md)
+- [基于 Channel 实现的多路复用 RPC 组件](blogs/rpc-multiplex.md)
 
 - 2021-01
 - [如何让 Hyperf 只启动一个服务](blogs/how-to-start-one-server-for-hyperf.md)
