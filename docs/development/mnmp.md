@@ -93,6 +93,6 @@ sudo vim /etc/hosts
 
 ## 编译Swoole示例
 ```
-./configure --enable-mysqlnd --enable-openssl --enable-http2 --with-openssl-dir=/usr/local/Cellar/openssl@1.1/1.1.1
+./configure --enable-openssl --enable-http2 --enable-swoole-curl --enable-swoole-json --with-openssl-dir=/usr/local/Cellar/openssl@1.1/1.1.1k
 make
 ```
