@@ -1,3 +1,6 @@
+- 2021-05
+- [程序设计之单一入口原则](blogs/code-design-single-input.md)
+
 - 2021-02
 - [组件嗨化计划](blogs/happy-join-hyperf.md)
 - [如何基于 Channel 实现多路复用](blogs/multiplexing-connections.md)
