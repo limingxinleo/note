@@ -44,3 +44,39 @@ vim echo yourpubkey ~/.ssh/authorized_keys
 # 调整权限，否则免登会失效
 chmod g-w ~/.ssh/authorized_keys
 ~~~
+
+### Tunnel
+
+> ```
+> SSH的的Port Forward，中文可以称为端口转发，是SSH的一项非常重要的功能。它可以建立一条安全的SSH通道，并把任意的TCP连接放到这条通道中。下面仔细就仔细讨论SSH的这种非常有用的功能。SSH Tunnel有三种，分别是本地Local（ssh -NfL），远程Remote（ssh -NfR），动态Dynamic（ssh -NfD）。（含义参考man ssh）说明：在我们举例说...
+> ```
+
+SSH Tunnel有三种，分别是本地Local（ssh -NfL），远程Remote（ssh -NfR），动态Dynamic（ssh -NfD）。
+
+说明：在我们举例说明用法之前，先假设你有一台SSH机器，它的IP是a.b.c.d。
+
+- 本地 Local 模式
+
+  ```bash
+  # ssh -NfL <local host>:<local port>:<remote host>:<remote port> <SSH hostname>
+  ssh -NfL 127.0.0.1:1234:www.google.com:80 root@a.b.c.d
+  ```
+
+  这样当你本地访问  127.0.0.1:1234 时，就会自动转发到 www.google.com:80
+
+  ***比如说你在本地访问不了某个网络服务（如www.google.com），而有一台机器（如：a.b.c.d）可以，那么你就可以通过这台机器来访问。***
+
+- 远程Remote
+
+  ```bash
+  # ssh -R <local port>:<remote host>:<remote port> <SSH hostname>
+  #在需要被访问的内网机器上运行： 
+  ssh -NfR 1234:localhost:22 root@a.b.c.d
+  
+  #登录到a.b.c.d机器，使用如下命令连接内网机器：
+  ssh -p 1234 localhost
+  ```
+
+  > 需要注意的是上下两个命令里的localhost不是同一台。这时你会发现自己已经连上最开始命令里的localhost机器了，也就是执行“ssh -NfR”的那台机器。
+
+  ***比如当你下班回家后就访问不了公司内网的机器了，遇到这种情况可以事先在公司内网的机器上执行远程Tunnel，连上一台公司外网的机器，等你下班回家后 就可以通过公司外网的机器去访问公司内网的机器了。***
