@@ -6,7 +6,7 @@
 
 ```shell
 curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash
-echo ~/.phpenv/bin
+cd ~/.phpenv/bin
 sudo ln -s $PWD/phpenv /usr/local/bin/phpenv
 ```
 
