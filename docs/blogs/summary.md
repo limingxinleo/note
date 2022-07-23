@@ -1,3 +1,6 @@
+- 2022-07
+- [Build PHP by Micro](blogs/build-php-by-micro.md)
+
 - 2021-10
 - [Golang Dockerfiles](blogs/go-docker-example.md)
 
