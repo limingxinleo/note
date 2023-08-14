@@ -22,7 +22,21 @@
       subMaxLevel: 2,
       alias: {
         // '/.*/summary.md': '/summary.md'
-      }
+      },
+      plugins: [
+        function (hook, vm) {
+          hook.afterEach(function (html) {
+            const bottom = [
+              '<br/>',
+              '<div style="text-align: center">' +
+              '<a href="https://beian.miit.gov.cn/" target="_blank">鲁ICP备15029214号</a>' +
+              '</div>'
+            ].join('');
+
+            return html + bottom
+          })
+        }
+      ]
     }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
