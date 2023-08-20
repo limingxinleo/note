@@ -552,3 +552,36 @@ return [
 ```
 
 SWOOLE_PROCESS 模式这里笔者是不推荐的，就不做赘述了。
+
+
+## 使用异常监听器
+
+笔者发现，有些小伙伴不配置这个监听器，就会导致一些很奇怪的问题。尤其是 `PDO` 方面的问题尤为突出，从 `PHP8` 开始，`PDO` 实例销毁时，如果当时已经断连，会抛出 `WARN` 级别的错误。
+
+但是此错误无法被默认捕获，所以就会导致 `PDO` 无法重连。所以我们需要配置这个监听器，让各种奇怪错误可以被捕获。
+
+https://github.com/hyperf/biz-skeleton/blob/master/config/autoload/listeners.php#L13
+
+```php
+<?php
+
+declare(strict_types=1);
+
+return [
+    Hyperf\ExceptionHandler\Listener\ErrorExceptionHandler::class,
+];
+
+```
+
+当然，此种情况也会引起其他问题。比如以下代码
+
+```php
+<?php
+
+$arr=[];
+var_dump($arr['id']);
+```
+
+在没有配置监听器的时候，会出现一个 `NOTICE` 警告，实际输出结果是 null
+
+而配置监听器后，则会抛出错误，所以尽量在添加此监听器时，可以跑一遍全量的测试，避免此种问题。
