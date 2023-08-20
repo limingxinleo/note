@@ -308,4 +308,247 @@ return [
 
 框架提供了一个非常简单的 `Stdout` 日志类，但实际在使用时，是万万无法满足我们实际需要的，这就需要通过配置 `dependencies.php` 做到轻松替换原实例的功能。
 
+https://github.com/hyperf/biz-skeleton/blob/master/app/Kernel/Log/LoggerFactory.php
 
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Kernel\Log;
+
+use Hyperf\Logger\LoggerFactory as HyperfLoggerFactory;
+use Psr\Container\ContainerInterface;
+
+class LoggerFactory
+{
+    public function __invoke(ContainerInterface $container)
+    {
+        return $container->get(HyperfLoggerFactory::class)->make();
+    }
+}
+
+```
+
+https://github.com/hyperf/biz-skeleton/blob/master/config/autoload/dependencies.php#L13
+
+```php
+<?php
+
+declare(strict_types=1);
+
+return [
+    Hyperf\Contract\StdoutLoggerInterface::class => App\Kernel\Log\LoggerFactory::class,
+];
+
+```
+
+接下来测试下，就能看到我们所有的默认日志输出，都被 `Monolog` 接管。
+
+当然，有时候我们其实是想将一个请求里的日志，都关联起来，并且子协程也可以进行关联，我们通过组合 `协程复制` 和 `Monolog` 轻松的达成这个效果。
+
+首先我们创建一个 `AppendRequestIdProcessor`
+
+https://github.com/hyperf/biz-skeleton/blob/master/app/Kernel/Log/AppendRequestIdProcessor.php
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Kernel\Log;
+
+use Hyperf\Context\Context;
+use Hyperf\Coroutine\Coroutine;
+use Monolog\LogRecord;
+use Monolog\Processor\ProcessorInterface;
+
+class AppendRequestIdProcessor implements ProcessorInterface
+{
+    public const REQUEST_ID = 'log.request.id';
+
+    public function __invoke(array|LogRecord $record)
+    {
+        $record['extra']['request_id'] = Context::getOrSet(self::REQUEST_ID, uniqid());
+        $record['extra']['coroutine_id'] = Coroutine::id();
+        return $record;
+    }
+}
+
+```
+
+接下来修改我们的 `logger` 配置。
+
+https://github.com/hyperf/biz-skeleton/blob/master/config/autoload/logger.php#L33
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use App\Kernel\Log;
+
+return [
+    'default' => [
+        'handler' => [
+            'class' => Monolog\Handler\StreamHandler::class,
+            'constructor' => [
+                'stream' => BASE_PATH . '/runtime/logs/hyperf.log',
+                'level' => Monolog\Logger::INFO,
+            ],
+        ],
+        'formatter' => [
+            'class' => Monolog\Formatter\LineFormatter::class,
+            'constructor' => [
+                'format' => null,
+                'dateFormat' => 'Y-m-d H:i:s',
+                'allowInlineLineBreaks' => true,
+            ],
+        ],
+        'processors' => [
+            [
+                'class' => Log\AppendRequestIdProcessor::class,
+            ],
+        ],
+    ],
+];
+
+```
+
+接下来再重新测试，就可以看到我们每一条日志后面，都会有一条对应的 `request_id`。
+
+但，子协程还是无法进行关联，所以我们只需要重写 `Coroutine` 类，将 `REQUEST_ID` 复制到子协程即可，此代码上述已经表现出来，可以翻上去查看。
+
+## 使用协程风格服务
+
+`Hyperf` 支持 `Swoole` 异步风格 和 `Swoole` 协程风格，在实际运行模式上，都是支持协程的，而 `Hyperf` 是配置式的，所以使用时，并没有区别。
+
+> 当我们使用 异步风格 `SWOOLE_BASE` 模式时，如果只设置一个进程数，也没有其他自定义进程，则会只启动一个进程，实际允许结果与 协程 风格一致。
+
+所以对于 `Swoole` 引擎，一共有三种模式，分别是
+
+- 协程风格
+- 异步风格
+  - SWOOLE_BASE
+  - SWOOLE_PROCESS
+
+### 协程风格
+
+https://github.com/hyperf/biz-skeleton/blob/master/config/autoload/server.php#L18
+
+我们只需要设置 `type` 为 `Hyperf\Server\CoroutineServer::class` 时，即可开启协程风格。这种方式因为只启动一个进程，所以对于 `K8s` `Swarm` 等更加友好，也不会因为自定义进程重启，导致**协程死锁**等现象的出现。 
+
+> 协程风格只会启动一个进程，所有的自定义进程都会降级成协程进行处理。
+
+```php
+<?php
+
+declare(strict_types=1);
+/**
+ * This file is part of Hyperf.
+ *
+ * @link     https://www.hyperf.io
+ * @document https://hyperf.wiki
+ * @contact  group@hyperf.io
+ * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+ */
+use Hyperf\Engine\Constant\SocketType;
+use Hyperf\Server\Event;
+use Hyperf\Server\Server;
+
+return [
+    'mode' => SWOOLE_BASE,
+    'type' => Hyperf\Server\CoroutineServer::class,
+    'servers' => [
+        [
+            'name' => 'http',
+            'type' => Server::SERVER_HTTP,
+            'host' => '0.0.0.0',
+            'port' => 9501,
+            'sock_type' => SocketType::TCP,
+            'callbacks' => [
+                Event::ON_REQUEST => [Hyperf\HttpServer\Server::class, 'onRequest'],
+            ],
+        ],
+    ],
+    'settings' => [
+        'enable_coroutine' => true,
+        'worker_num' => 4,
+        'pid_file' => BASE_PATH . '/runtime/hyperf.pid',
+        'open_tcp_nodelay' => true,
+        'max_coroutine' => 100000,
+        'open_http2_protocol' => true,
+        'max_request' => 0,
+        'socket_buffer_size' => 2 * 1024 * 1024,
+        'package_max_length' => 2 * 1024 * 1024,
+    ],
+    'callbacks' => [
+        Event::ON_BEFORE_START => [Hyperf\Framework\Bootstrap\ServerStartCallback::class, 'beforeStart'],
+        Event::ON_WORKER_START => [Hyperf\Framework\Bootstrap\WorkerStartCallback::class, 'onWorkerStart'],
+        Event::ON_PIPE_MESSAGE => [Hyperf\Framework\Bootstrap\PipeMessageCallback::class, 'onPipeMessage'],
+        Event::ON_WORKER_EXIT => [Hyperf\Framework\Bootstrap\WorkerExitCallback::class, 'onWorkerExit'],
+    ],
+];
+
+```
+
+### 异步风格 - SWOOLE_BASE
+
+我们不设置 `type` 只设置 `mode` 即可。这种运行模式，启动的 `worker` 进程数是按照配置 `settings.worker_num` 设置的数量启动进程，如果我们设置了 `settings.max_request` 的话，
+
+当单一 `worker` 进程处理到足够的请求后，便会重启子进程，因为通常一个项目，迭代到后期，已经不是单纯的处理 `HTTP` 服务，所以，一旦处理不好，导致协程不会自动退出，都会导致进程被主进程强杀。
+
+所以，我建议在尽量可以的情况下，将这个配置设置为 `0`，当然，一定要处理好**内存泄漏**的问题。
+
+```php
+<?php
+
+declare(strict_types=1);
+/**
+ * This file is part of Hyperf.
+ *
+ * @link     https://www.hyperf.io
+ * @document https://hyperf.wiki
+ * @contact  group@hyperf.io
+ * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+ */
+use Hyperf\Engine\Constant\SocketType;
+use Hyperf\Server\Event;
+use Hyperf\Server\Server;
+
+return [
+    'mode' => SWOOLE_BASE,
+    'servers' => [
+        [
+            'name' => 'http',
+            'type' => Server::SERVER_HTTP,
+            'host' => '0.0.0.0',
+            'port' => 9501,
+            'sock_type' => SocketType::TCP,
+            'callbacks' => [
+                Event::ON_REQUEST => [Hyperf\HttpServer\Server::class, 'onRequest'],
+            ],
+        ],
+    ],
+    'settings' => [
+        'enable_coroutine' => true,
+        'worker_num' => 4,
+        'pid_file' => BASE_PATH . '/runtime/hyperf.pid',
+        'open_tcp_nodelay' => true,
+        'max_coroutine' => 100000,
+        'open_http2_protocol' => true,
+        'max_request' => 0,
+        'socket_buffer_size' => 2 * 1024 * 1024,
+        'package_max_length' => 2 * 1024 * 1024,
+    ],
+    'callbacks' => [
+        Event::ON_BEFORE_START => [Hyperf\Framework\Bootstrap\ServerStartCallback::class, 'beforeStart'],
+        Event::ON_WORKER_START => [Hyperf\Framework\Bootstrap\WorkerStartCallback::class, 'onWorkerStart'],
+        Event::ON_PIPE_MESSAGE => [Hyperf\Framework\Bootstrap\PipeMessageCallback::class, 'onPipeMessage'],
+        Event::ON_WORKER_EXIT => [Hyperf\Framework\Bootstrap\WorkerExitCallback::class, 'onWorkerExit'],
+    ],
+];
+
+```
+
+SWOOLE_PROCESS 模式这里笔者是不推荐的，就不做赘述了。
