@@ -508,4 +508,132 @@ class Http
 4. 最后一步，只需要把所有 Laravel 的组件，替换成 Hyperf 相关组件即可。
 
 
-### 
+### 启动 vbot 模块
+
+1. 我们实现一个监听器，可以在服务启动时，自动开启 vbot 服务
+
+```php
+<?php
+
+declare(strict_types=1);
+/**
+ * This file is part of Hyperf.
+ *
+ * @link     https://www.hyperf.io
+ * @document https://hyperf.wiki
+ * @contact  group@hyperf.io
+ * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+ */
+
+namespace App\Listener;
+
+use Hanson\Vbot\Foundation\Vbot;
+use Hyperf\Collection\Collection;
+use Hyperf\Contract\StdoutLoggerInterface;
+use Hyperf\Event\Annotation\Listener;
+use Hyperf\Event\Contract\ListenerInterface;
+use Hyperf\Server\Event\MainCoroutineServerStart;
+use Psr\Container\ContainerInterface;
+use Throwable;
+
+#[Listener]
+class BootVbotListener implements ListenerInterface
+{
+    public function __construct(protected ContainerInterface $container)
+    {
+    }
+
+    public function listen(): array
+    {
+        return [
+            MainCoroutineServerStart::class,
+        ];
+    }
+
+    public function process(object $event): void
+    {
+        go(function () {
+            $pimple = new Vbot([]);
+            $pimple->messageHandler->setHandler(fn (Collection $message) => var_dump($message));
+
+            $max = 10;
+            while ($max-- > 0) {
+                try {
+                    $pimple->server->serve();
+                } catch (Throwable $exception) {
+                    di()->get(StdoutLoggerInterface::class)->error((string) $exception);
+                    sleep(10);
+                }
+            }
+
+            di()->get(StdoutLoggerInterface::class)->error('微信机器人已停止，请重启服务');
+        });
+    }
+}
+
+```
+
+接下来启动服务，我们就可以看到终端处会输出一个二维码，使用我们的微信扫码后，即可登录，然后使用其他微信向这个微信发送一条消息，就可以看到消息被正常输出了。
+
+2. 完善自动回复
+
+```php
+<?php
+
+declare(strict_types=1);
+/**
+ * This file is part of Hyperf.
+ *
+ * @link     https://www.hyperf.io
+ * @document https://hyperf.wiki
+ * @contact  group@hyperf.io
+ * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+ */
+
+namespace App\Service;
+
+use Han\Utils\Service;
+use Hanson\Vbot\Message\Text;
+use Hyperf\Codec\Json;
+use Hyperf\Collection\Collection;
+use Hyperf\Logger\LoggerFactory;
+use Throwable;
+
+class VbotService extends Service
+{
+    public function handle(Collection $message): void
+    {
+        di()->get(LoggerFactory::class)->get('vbot.message')->info(Json::encode($message->toArray()));
+
+        try {
+            match ($message->get('type')) {
+                Text::TYPE => $this->handleText($message),
+                default => null
+            };
+        } catch (Throwable $exception) {
+            $this->logger->error((string) $exception);
+        }
+    }
+
+    /**
+     * 接受到消息.
+     */
+    public function handleText(Collection $message): void
+    {
+        $content = trim($message['message']);
+        $isAt = $message['isAt'];
+        $fromType = $message['fromType'];
+        if (! $isAt || $fromType !== Text::FROM_TYPE_GROUP) {
+            return;
+        }
+
+        $reply = sprintf('「%s：%s」', $message['sender']['NickName'], $content) . PHP_EOL
+            . '- - - - - - - - - - - - - - -' . PHP_EOL
+            . '我收到了你的消息';
+
+        Text::send($message['from']['UserName'], $reply);
+    }
+}
+
+```
+
