@@ -4,8 +4,8 @@
 
 今天，做一回 API 搬运工，借用 Swoole AI 来玩一下。
 
-众所周知，微信是没有机器人的，所以我们需要借助一些其他手段，比如这个项目 [vbot](https://github.com/Hanson/vbot) ，不过此项目对 PHP8 支持并不友好，所以我对其进行了 Hyperf 适配，
-大家可以去看一下这个项目 [vbot](https://github.com/Gemini-D/vbot)
+众所周知，微信是没有机器人的，所以我们需要借助一些其他手段，比如这个项目 [Hanson/vbot](https://github.com/Hanson/vbot) ，不过此项目对 PHP8 支持并不友好，所以我对其进行了 Hyperf 适配，
+大家可以去看一下这个项目 [Gemini-D/vbot](https://github.com/Gemini-D/vbot)
 
 ## 准备工作
 
@@ -136,7 +136,7 @@ class SimpleCache
 
 2. 更换配置模块
 
-我们看一看到 `vbot` 模式使用的是 `Illuminate\Config\Repository`，我们直接按照其实现的 API 重新实现了一个配置类。
+我们可以看到 `vbot` 模式使用的是 `Illuminate\Config\Repository`，我们直接按照其实现的 API 重新实现了一个配置类。
 
 ```php
 <?php
@@ -823,6 +823,8 @@ class OSSClient extends Service
         $this->client->uploader->put($this->bucket, $object, $fp, [
             'timeout' => 10,
         ]);
+        
+        fclose($fp);
 
         return sprintf('https://%s.oss-cn-hangzhou.aliyuncs.com/%s', $this->bucket, ltrim($object, '\/'));
     }
@@ -935,5 +937,7 @@ class BootVbotListener implements ListenerInterface
 }
 
 ```
+
+最后，终于可以愉快的玩耍了。
 
 
