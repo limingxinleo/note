@@ -507,7 +507,6 @@ class Http
 
 4. 最后一步，只需要把所有 Laravel 的组件，替换成 Hyperf 相关组件即可。
 
-
 ### 启动 vbot 模块
 
 1. 我们实现一个监听器，可以在服务启动时，自动开启 vbot 服务
@@ -516,14 +515,6 @@ class Http
 <?php
 
 declare(strict_types=1);
-/**
- * This file is part of Hyperf.
- *
- * @link     https://www.hyperf.io
- * @document https://hyperf.wiki
- * @contact  group@hyperf.io
- * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
- */
 
 namespace App\Listener;
 
@@ -581,14 +572,6 @@ class BootVbotListener implements ListenerInterface
 <?php
 
 declare(strict_types=1);
-/**
- * This file is part of Hyperf.
- *
- * @link     https://www.hyperf.io
- * @document https://hyperf.wiki
- * @contact  group@hyperf.io
- * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
- */
 
 namespace App\Service;
 
@@ -620,7 +603,7 @@ class VbotService extends Service
      */
     public function handleText(Collection $message): void
     {
-        $content = trim($message['message']);
+        $content = trim($message['pure']);
         $isAt = $message['isAt'];
         $fromType = $message['fromType'];
         if (! $isAt || $fromType !== Text::FROM_TYPE_GROUP) {
@@ -636,4 +619,127 @@ class VbotService extends Service
 }
 
 ```
+
+### 接入 AI 模块
+
+[Swoole AI](https://chat.swoole.com/#/api)
+
+我们先去 https://business.swoole.com/page/login?invite=11850&from=chatgpt 注册一个账号，然后买一点 `Tokens`，然后生成`秘钥`。
+
+1. 增加配置 `config/autoload/open_api.php`
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use function Hyperf\Support\env;
+
+return [
+    'default' => [
+        'key' => env('OPEN_AI_KEY'),
+    ],
+];
+
+```
+
+2. 代码实现
+
+这里只做一个简单接口调用。
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Service;
+
+use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
+use Han\Utils\Service;
+use Hyperf\Codec\Json;
+use Hyperf\Config\Annotation\Value;
+
+class OpenAiService extends Service
+{
+    #[Value(key: 'open_ai.default.key')]
+    protected string $key;
+
+    public function send(string $content): string
+    {
+        $client = new Client([
+            'base_uri' => 'https://chat.swoole.com',
+        ]);
+
+        $res = $client->post('/v1/chat/completions', [
+            RequestOptions::JSON => [
+                'model' => 'qwen-v1',
+                'messages' => [
+                    [
+                        'role' => 'user', 'content' => $content,
+                    ],
+                ],
+            ],
+            RequestOptions::HEADERS => [
+                'Authorization' => "Bearer {$this->key}",
+            ],
+        ]);
+
+        $result = Json::decode((string) $res->getBody());
+
+        return $result['data']['choices'][1]['message']['content'] ?? '我不知道，别问我';
+    }
+}
+
+```
+
+3. 接下来修改 vbot 调用方法
+
+> 删除其他无关代码
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Service;
+
+use Han\Utils\Service;
+use Hanson\Vbot\Message\Text;
+use Hyperf\Codec\Json;
+use Hyperf\Collection\Collection;
+use Hyperf\Logger\LoggerFactory;
+use Throwable;
+
+class VbotService extends Service
+{
+    /**
+     * 接受到消息.
+     */
+    public function handleText(Collection $message): void
+    {
+        $content = trim($message['pure']);
+        $isAt = $message['isAt'];
+        $fromType = $message['fromType'];
+        if (! $isAt || $fromType !== Text::FROM_TYPE_GROUP) {
+            return;
+        }
+
+        try {
+            $result = di()->get(OpenAiService::class)->send($content);
+        } catch (Throwable $exception) {
+            $this->logger->error((string) $exception);
+            $result = '我不知道，别问我';
+        }
+
+        $reply = sprintf('「%s：%s」', $message['sender']['NickName'], $content) . PHP_EOL
+            . '- - - - - - - - - - - - - - -' . PHP_EOL
+            . $result;
+
+        Text::send($message['from']['UserName'], $reply);
+    }
+}
+
+```
+
 
