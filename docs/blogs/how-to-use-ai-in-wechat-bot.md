@@ -743,3 +743,8 @@ class VbotService extends Service
 ```
 
 
+
+
+### 把机器人拉到群里
+
+最后，我们只需要把机器人拉到群里，`@它` 就可以看到最终效果了。
