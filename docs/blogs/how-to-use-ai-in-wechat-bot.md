@@ -742,9 +742,198 @@ class VbotService extends Service
 
 ```
 
-
-
-
-### 把机器人拉到群里
+### 查看最终效果
 
 最后，我们只需要把机器人拉到群里，`@它` 就可以看到最终效果了。
+
+在我测试时，还是发现了一个问题，那就是我启动服务通常都不会手动 `php bin/hyperf.php start`，但当我将服务跑到 容器 里时，二维码便无法正常展示了，所以，这里我们仍需要进行一下改造。
+
+我们打算生成二维码后，上传到 阿里云，这样就可以直接从浏览器里打开二维码，然后进行扫码了。
+
+1. 安装组件
+
+```shell
+composer require limingxinleo/aliyun-oss-sdk
+composer require limingxinleo/aliyun-php-sdk-core
+```
+
+2. 增加配置文件 `config/autoload/oss.php`
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use function Hyperf\Support\env;
+
+return [
+    'key_id' => env('OSS_KEY_ID'),
+    'secret' => env('OSS_SECRET'),
+    'bucket' => env('OSS_BUCKET'),
+];
+
+```
+
+3. 增加文件上传类
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Service\SubService;
+
+use Fan\OSS\Client;
+use Han\Utils\Service;
+use Hyperf\Config\Annotation\Value;
+use Psr\Container\ContainerInterface;
+
+class OSSClient extends Service
+{
+    #[Value(key: 'oss.key_id')]
+    protected string $keyId;
+
+    #[Value(key: 'oss.secret')]
+    protected string $secret;
+
+    #[Value(key: 'oss.bucket')]
+    protected string $bucket;
+
+    protected Client $client;
+
+    public function __construct(ContainerInterface $container)
+    {
+        parent::__construct($container);
+
+        $this->client = new Client($container, [
+            'key' => $this->keyId,
+            'secret' => $this->secret,
+            'endpoint' => 'https://oss-cn-hangzhou.aliyuncs.com',
+        ]);
+    }
+
+    public function put(string $path, ?string $object = null): string
+    {
+        if (! $object) {
+            $object = date('Y/m/d') . '/' . uniqid() . '.' . (pathinfo($path)['extension'] ?? 'unknown');
+        }
+
+        $fp = fopen($path, 'r+');
+
+        $this->client->uploader->put($this->bucket, $object, $fp, [
+            'timeout' => 10,
+        ]);
+
+        return sprintf('https://%s.oss-cn-hangzhou.aliyuncs.com/%s', $this->bucket, ltrim($object, '\/'));
+    }
+}
+
+```
+
+4. 重写二维码实现类
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Service\SubService;
+
+use Han\Utils\Service;
+use Hyperf\Di\Annotation\Inject;
+use Hyperf\Support\Filesystem\Filesystem;
+use PHPQRCode\QRcode as QrCodeConsole;
+use Psr\Container\ContainerInterface;
+
+class VBotQrCode extends Service
+{
+    #[Inject]
+    protected Filesystem $filesystem;
+
+    protected string $path = BASE_PATH . '/runtime/qrcode/';
+
+    public function __construct(ContainerInterface $container)
+    {
+        parent::__construct($container);
+
+        $this->filesystem->makeDirectory($this->path, 0755, true, true);
+    }
+
+    /**
+     * show qrCode on console.
+     *
+     * @param mixed $text
+     */
+    public function show($text): bool
+    {
+        QrCodeConsole::png($text, $path = $this->path . uniqid() . '.png');
+
+        $url = di()->get(OSSClient::class)->put($path);
+
+        echo $url . PHP_EOL;
+
+        return true;
+    }
+}
+
+```
+
+5. 改造我们的 vbot 服务，替换对应的二维码实现类
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Listener;
+
+use App\Service\SubService\VBotQrCode;
+use App\Service\VbotService;
+use Hanson\Vbot\Foundation\Vbot;
+use Hyperf\Collection\Collection;
+use Hyperf\Contract\StdoutLoggerInterface;
+use Hyperf\Event\Annotation\Listener;
+use Hyperf\Event\Contract\ListenerInterface;
+use Hyperf\Server\Event\MainCoroutineServerStart;
+use Psr\Container\ContainerInterface;
+use Throwable;
+
+#[Listener]
+class BootVbotListener implements ListenerInterface
+{
+    public function __construct(protected ContainerInterface $container)
+    {
+    }
+
+    public function listen(): array
+    {
+        return [
+            MainCoroutineServerStart::class,
+        ];
+    }
+
+    public function process(object $event): void
+    {
+        go(function () {
+            $pimple = new Vbot([]);
+            $pimple['qrCode'] = di()->get(VBotQrCode::class);
+            $pimple->messageHandler->setHandler(fn (Collection $message) => di()->get(VbotService::class)->handle($message));
+
+            $max = 10;
+            while ($max-- > 0) {
+                try {
+                    $pimple->server->serve();
+                } catch (Throwable $exception) {
+                    di()->get(StdoutLoggerInterface::class)->error((string) $exception);
+                    sleep(10);
+                }
+            }
+
+            di()->get(StdoutLoggerInterface::class)->error('微信机器人已停止，请重启服务');
+        });
+    }
+}
+
+```
+
+
