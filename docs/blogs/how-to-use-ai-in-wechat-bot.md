@@ -665,13 +665,19 @@ class OpenAiService extends Service
     #[Value(key: 'open_ai.default.key')]
     protected string $key;
 
-    public function send(string $content): string
+    public function client(): Client
     {
-        $client = new Client([
+        return new Client([
             'base_uri' => 'https://chat.swoole.com',
+            'headers' => [
+                'Authorization' => "Bearer {$this->key}",
+            ],
         ]);
+    }
 
-        $res = $client->post('/v1/chat/completions', [
+    public function completions(string $content): string
+    {
+        $res = $this->client()->post('/v1/chat/completions', [
             RequestOptions::JSON => [
                 'model' => 'qwen-v1',
                 'messages' => [
@@ -679,9 +685,6 @@ class OpenAiService extends Service
                         'role' => 'user', 'content' => $content,
                     ],
                 ],
-            ],
-            RequestOptions::HEADERS => [
-                'Authorization' => "Bearer {$this->key}",
             ],
         ]);
 
@@ -726,7 +729,7 @@ class VbotService extends Service
         }
 
         try {
-            $result = di()->get(OpenAiService::class)->send($content);
+            $result = di()->get(OpenAiService::class)->completions($content);
         } catch (Throwable $exception) {
             $this->logger->error((string) $exception);
             $result = '我不知道，别问我';
