@@ -823,8 +823,6 @@ class OSSClient extends Service
         $this->client->uploader->put($this->bucket, $object, $fp, [
             'timeout' => 10,
         ]);
-        
-        fclose($fp);
 
         return sprintf('https://%s.oss-cn-hangzhou.aliyuncs.com/%s', $this->bucket, ltrim($object, '\/'));
     }
