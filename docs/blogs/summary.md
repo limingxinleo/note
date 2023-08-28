@@ -1,6 +1,7 @@
 - 2023-08
 - [使用 Hyperf 的小技巧](blogs/how-to-use-hyperf-easily.md)
 - [配合微信机器人使用 AI 大语言模型](blogs/how-to-use-ai-in-wechat-bot.md)
+- [配合 微信机器人 使用 RPC 服务](blogs/how-to-use-rpc-in-wechat-bot.md)
 
 - 2022-07
 - [Build PHP by Micro](blogs/build-php-by-micro.md)
