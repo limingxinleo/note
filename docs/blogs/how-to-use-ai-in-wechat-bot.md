@@ -679,7 +679,7 @@ class OpenAiService extends Service
     {
         $res = $this->client()->post('/v1/chat/completions', [
             RequestOptions::JSON => [
-                'model' => 'qwen-v1',
+                'model' => 'llama2-6b',
                 'messages' => [
                     [
                         'role' => 'user', 'content' => $content,
