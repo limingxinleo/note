@@ -1,3 +1,6 @@
+- 2023-11
+- [如何在 Hyperf 项目中使用 Sentry 服务](blogs/how-to-use-sentry.md)
+
 - 2023-08
 - [使用 Hyperf 的小技巧](blogs/how-to-use-hyperf-easily.md)
 - [配合微信机器人使用 AI 大语言模型](blogs/how-to-use-ai-in-wechat-bot.md)
