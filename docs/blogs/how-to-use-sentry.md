@@ -1,6 +1,6 @@
 # 如何使用 Sentry
 
-这里我们使用 [sentry](https://github.com/friendsofhyperf/sentry) 组件包来为 `Hyperf` 框架接入 `Sentry` 的能力。
+这里我们使用 [sentry](https://github.com/friendsofhyperf/sentry) 组件包来为 `Hyperf` 框架提供接入 `Sentry` 的能力。
 
 ## 准备工作
 
@@ -20,7 +20,7 @@
 
 2. 安装 Hyperf 项目
 
-因为这个组件包仅支持 Hyperf 3.1 版本，所以我们直接安装一个最新的骨架包
+因为这个组件包仅支持 Hyperf 3.0 和 3.1 版本，所以我们直接安装一个最新的骨架包，毕竟 3.1 快发布了，谁还用 3.0 啊？
 
 ```shell
 composer create hyperf/biz-skeleton sentry-demo dev-master
